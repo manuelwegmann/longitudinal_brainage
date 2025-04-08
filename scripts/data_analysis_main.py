@@ -1,31 +1,40 @@
 import numpy as np
 import pandas as pd
+from .prep_data import full_data_load, split_by_class, split_by_gender
+from .data_analysis_tools import plot_age_histograms, extract_counts_for_mris, basic_duration_analysis, extract_race_counts
 
-#Consider absolutely basic overview of features with min max and mean +  std_dev before processing anything
+df = full_data_load()
+mf, ff = split_by_gender(df)
+plot_age_histograms(df, mf, ff)
+#number of subjects and scans
+print("Number of subjects: " , df.shape[0])
+print("Number of scans: ", df['mr_sessions'].sum())
+print("Number of CN participants at baseline: ", df[df['class_at_baseline'] == "CN"].shape[0])
+print("Number of CI participants at baseline: ", df[df['class_at_baseline'] == "CI"].shape[0])
+print("Number of CN participants at final scan: ", df[df['class_at_final'] == "CN"].shape[0])
+print("Number of CI participants at final scan: ", df[df['class_at_final'] == "CI"].shape[0])
+df_CN, df_CI = split_by_class(df)
+print("Average age,sd at baseline (CN):", pd.to_numeric(df_CN['age'], errors='coerce').mean(), pd.to_numeric(df_CN['age'], errors='coerce').std())
+print("Average age,sd at baseline (CI):", pd.to_numeric(df_CI['age'], errors='coerce').mean(), pd.to_numeric(df_CI['age'], errors='coerce').std())
+print("Average age,sd at baseline (total):", pd.to_numeric(df['age'], errors='coerce').mean(), pd.to_numeric(df['age'], errors='coerce').std())
+df_CN_male, df_CN_female = split_by_gender(df_CN)
+df_CI_male, df_CI_female = split_by_gender(df_CI)
+print("Male in CN: ", df_CN_male.shape[0])
+print("Female in CN: ", df_CN_female.shape[0])
+print("Male in CI: ", df_CI_male.shape[0])
+print("Female in CI: ", df_CI_female.shape[0])
+print("Education in CN: ", pd.to_numeric(df_CN['education'], errors='coerce').mean(), pd.to_numeric(df_CN['education'], errors='coerce').std())
+print("Education in CI: ", pd.to_numeric(df_CI['education'], errors='coerce').mean(), pd.to_numeric(df_CI['education'], errors='coerce').std())
+print("Education (total): " ,pd.to_numeric(df['education'], errors='coerce').mean(), pd.to_numeric(df['education'], errors='coerce').std())
 
-#import of data
-from .prep_data import load_basic_overview, check_folders_exist, update_ages, add_duration, exclude_single_scan_participants
-from .prep_data import split_by_gender
-df = load_basic_overview('/mimer/NOBACKUP/groups/brainage/data/oasis3/participants.tsv') #load overview of data
-oasis3_fp = '/mimer/NOBACKUP/groups/brainage/data/oasis3'
-df = check_folders_exist(df, oasis3_fp) #check if all folders with data exist
-df = exclude_single_scan_participants(df) #delete subjects with not enough scans
-df = update_ages(df, oasis3_fp) #add ages at first scan
-df = add_duration(df) #add duration in days between first and last scan
-mf,ff = split_by_gender(df) #get sex-specific dataframes
-
-from .data_analysis_tools import basic_age_analysis, plot_age_histograms
-print("Let's look at the basic age statistics for all the subjects:")
-print(basic_age_analysis(df))
-print("Age analysis for male:")
-print(basic_age_analysis(mf))
-print("Age analysis for female:")
-print(basic_age_analysis(ff))
-plot_age_histograms(df,mf,ff)
-
-from .data_analysis_tools import basic_mr_sessions_analysis, plot_mris_by_age
-print("Let's see how many scans we have available per subject:")
-print(basic_mr_sessions_analysis(df))
-plot_mris_by_age(df)
-
-
+CN_unique_mri, CN_mri_counts = extract_counts_for_mris(df_CN)
+CI_unique_mri, CI_mri_counts = extract_counts_for_mris(df_CI)
+print("Unique MRIs in CN: ", CN_unique_mri)
+print("The respective counts: ", CN_mri_counts)
+print("Unique MRIs in CI: ", CI_unique_mri)
+print("The respective counts: ", CI_mri_counts)
+print("Basic duration analysis CN: ", basic_duration_analysis(df_CN))
+print("Basic duration analysis CI: ", basic_duration_analysis(df_CI))
+print("Basic duration analysis total: ", basic_duration_analysis(df))
+different_race, race_counts = extract_race_counts(df)
+print("Race groups", different_race, race_counts)

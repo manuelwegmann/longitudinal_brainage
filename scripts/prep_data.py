@@ -9,7 +9,6 @@ def load_basic_overview(file_path): #filepath points to participants.tsv file in
     return df
 
 
-
 #for a given participant ID, find their actual age at baseline
 def extract_age_at_baseline(participant_id, folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'): #extract correct age at baseline
     file_path = os.path.join(folder_path, str(participant_id), 'sessions.tsv')  
@@ -17,7 +16,7 @@ def extract_age_at_baseline(participant_id, folder_path = '/mimer/NOBACKUP/group
 
 
 #update whole dataset with corect ages at baseline
-def update_ages(df, folder_path):  # df is the DataFrame, and folder_path points to the OASIS-3 folder
+def add_ages(df, folder_path):  # df is the DataFrame, and folder_path points to the OASIS-3 folder
     df['age'] = df['participant_id'].apply(extract_age_at_baseline)
     return df
 
@@ -38,11 +37,10 @@ def extract_class_at_final(participant_id, folder_path = '/mimer/NOBACKUP/groups
     return classification
     
 
-def update_classification(df, folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
+def add_classification(df, folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
     df['class_at_baseline'] = df['participant_id'].apply(extract_class_at_baseline)
     df['class_at_final'] = df['participant_id'].apply(extract_class_at_final)
     return df
-
 
 
 #extract time between first and last scan for a given participant id
@@ -90,7 +88,6 @@ def exclude_by_duration(df, duration_threshold = 30):
     return filtered_df
 
 
-
 #split dataset into female and male
 def split_by_gender(df):
     df_male = df[df['sex'] == 'M']
@@ -105,8 +102,8 @@ def split_by_class(df):
 def full_data_load(fp_participants = '/mimer/NOBACKUP/groups/brainage/data/oasis3/participants.tsv', fp_oasis = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
     df = load_basic_overview(file_path = fp_participants)
     df = check_folders_exist(df=df, folder_path=fp_oasis)
-    df = update_ages(df=df, folder_path=fp_oasis)
+    df = add_ages(df=df, folder_path=fp_oasis)
     df = add_duration(df)
-    df = update_classification(df)
+    df = add_classification(df)
     print(df.head())
     return df

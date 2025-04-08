@@ -73,7 +73,6 @@ def plot_age_histograms(df1, df2, df3, num_bins=30):
     plt.show()
     plt.savefig('results/age_histogram.png')
 
-
 def plot_mri_info_by_age(df, age_th1 = 50, age_th2 = 65, age_th3 = 75, age_th4 = 90):
     age_group1 = df[df['age'] <= age_th1]
     age_group2 = df[(age_th1 < df['age']) & (df['age'] <= age_th2)]
@@ -143,7 +142,6 @@ def plot_mri_info_by_age(df, age_th1 = 50, age_th2 = 65, age_th3 = 75, age_th4 =
     plt.xticks(rotation=45)
     plt.show()
     plt.savefig('results/mris_by_age.png')
-
 
 def plot_race(df):
     asian = df[df['race']=='Asian'].shape[0]
