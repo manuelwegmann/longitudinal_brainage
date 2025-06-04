@@ -720,3 +720,21 @@ We are in epoch (val):  7
 Epoch 7: Avg Val Loss = 3.7540
 Epoch 7: Avg Val MAE = 1.3677
 We are in epoch (training):  8
+Epoch 8: Avg Train Loss = 2.9477
+Epoch 8: Avg Train MAE = 1.2296
+We are in epoch (val):  8
+Epoch 8: Avg Val Loss = 3.5470
+Epoch 8: Avg Val MAE = 1.3648
+We are in epoch (training):  9
+Epoch 9: Avg Train Loss = 2.6176
+Epoch 9: Avg Train MAE = 1.1741
+We are in epoch (val):  9
+Epoch 9: Avg Val Loss = 3.4824
+Epoch 9: Avg Val MAE = 1.3694
+We are in epoch (training):  10
+Epoch 10: Avg Train Loss = 2.5026
+Epoch 10: Avg Train MAE = 1.1691
+We are in epoch (val):  10
+Epoch 10: Avg Val Loss = 3.8607
+Epoch 10: Avg Val MAE = 1.4455
+We are in epoch (training):  11

@@ -1,1 +1,2 @@
-results/**/model.pt
+results/**/*.pt
+archive/**/*.pt
