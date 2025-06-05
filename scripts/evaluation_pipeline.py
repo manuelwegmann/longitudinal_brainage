@@ -82,6 +82,23 @@ def scatter_plot_targets_residuals(targets, residuals, save_path, sex, name):
     plt.close()
 
 
+def scatter_plot_targets_pace(targets, pace, save_path, name):
+    plt.figure(figsize=(6, 6))
+    plt.scatter(targets, pace, alpha=0.5)
+    min_val = min(targets)
+    max_val = max(targets)
+    plt.plot([min_val, max_val], [1, 1], 'r--', label='y = 1 (optimal)')
+    plt.xlabel('Target (years)')
+    plt.ylabel('Pace of ageing')
+    plt.title('Targets vs Pace of ageing (' + name + ')')
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plot_path = os.path.join(save_path, 'scatter_plot_targets_pace.png')
+    plt.savefig(plot_path)
+    plt.close()
+
+
 if __name__ == "__main__":
 
     """
@@ -95,18 +112,22 @@ if __name__ == "__main__":
     
     #prepare data directory for saving outputs.
     dir = os.path.dirname(args.results_file)
-    folder_name = "results_" + name
+    folder_name = "evaluation_" + name
     save_path = os.path.join(dir,folder_name)
     os.makedirs(save_path, exist_ok=True)
 
     idx_M = results[results['Sex (M)'] == 1].index
     idx_F = results[results['Sex (F)'] == 1].index
+    idx_mt = results[results['Target']>=1].index
+    idx_lt = results[results['Target']>=5].index
     #potentially add in sex undefined
+
     predictions = results['Prediction'].values
     targets = results['Target'].values
     residuals = targets - predictions
     ages = results['Age'].values
     sex = results['Sex (M)'].values
+    pace = predictions / targets
 
     #save results in eval_dict to export later
     eval_dict = {
@@ -174,10 +195,31 @@ if __name__ == "__main__":
 
 
     """
+    Analysis of pace of ageing.
+    """
+    eval_dict['Mean pace (all,>=1,>=5)'] = [np.mean(pace), np.mean(pace[idx_mt]), np.mean(pace[idx_lt])]
+    eval_dict['SD pace (all,>=1,>=5)'] = [np.std(pace), np.std(pace[idx_mt]), np.std(pace[idx_lt])]
+    r,p = pearsonr(pace[idx_mt], targets[idx_mt])
+    eval_dict['PCC(pace,target), >= 1y'] = [r, np.nan, np.nan]
+    eval_dict['p(pace,target), >= 1y'] = [p, np.nan, np.nan]
+    scatter_plot_targets_pace(targets[idx_mt], pace[idx_mt], save_path, name + ', >=1 years')
+
+
+    """
+    Playground for future analysis.
+    """
+    
+    adj_residuals= residuals[idx_lt]/targets[idx_lt]
+    print(len(adj_residuals))
+    r, p = pearsonr(targets[idx_lt], adj_residuals)
+    print(f"Pearson correlation between targets and adjusted residuals: r={r}, p={p}")
+
+
+
+    """
     Print results and save as .csv .
     """
     df = pd.DataFrame(eval_dict)
-    print(df.head())
     evaluation_results = df.T
     evaluation_results.columns = evaluation_results.iloc[0]
     evaluation_results = evaluation_results.drop(evaluation_results.index[0])

@@ -1,5 +1,5 @@
 """
-This script applies a trained longitudinal model to a .csv file containing participant ids.
+This script applies a trained cross-sectional model to a .csv file containing participant ids.
 """
 
 import numpy as np
@@ -12,19 +12,16 @@ import torch.nn as nn
 import torch
 from torch.utils.data import DataLoader
 
-from LILAC import LILAC
-from CV_LILAC import CV_LILAC
-from loader import loader3D
+from CS_CNN import CS_CNN3D
+from loader_CS import loader3D
 
 #options from the command line
 def parse_args():
     parser = argparse.ArgumentParser()
 
-
     parser.add_argument('--json', default='blank', type=str, help = "json file with run details.")
     parser.add_argument('--participants_file', default = 'blank', type=str, help = "participants file csv")
     parser.add_argument('--model_state', default = 'blank', type=str, help = "path to model state")
-    parser.add_argument('--model', default = 'blank', type=str, help = "CV_LILAC or LILAC")
 
     args = parser.parse_args()
 
@@ -79,26 +76,23 @@ def apply_model(opt, model, participants_df, name):
     all_targets = []
     all_preds = []
     all_ids = []
-    all_ages = []
     all_sex_M = []
     all_sex_F = []
-    all_session1 = []
-    all_session2 = []
+    all_sessions = []
 
     with torch.no_grad():
         for batch_idx, batch in enumerate(dataloader):
-            if len(batch) == 3:
-                x1, x2, target = batch
+            if len(batch) == 2:
+                x, target = batch
                 meta = None
             else:
-                x1, x2, meta, target = batch
+                x, meta, target = batch
                 meta = meta.to(device)
 
-            x1 = x1.to(device)
-            x2 = x2.to(device)
+            x = x.to(device)
             target = target.to(device)
 
-            output = model(x1, x2, meta)
+            output = model(x, meta)
             loss = criterion(output, target)
             total_loss += loss.item()
 
@@ -106,15 +100,13 @@ def apply_model(opt, model, participants_df, name):
             all_preds.append(output.cpu().numpy())
 
             start_idx = batch_idx * opt.batchsize
-            end_idx = start_idx + x1.size(0)
+            end_idx = start_idx + x.size(0)
             batch_demo = dataloader.dataset.demo.iloc[start_idx:end_idx]
 
             all_ids.extend(batch_demo["participant_id"].tolist())
-            all_ages.extend(batch_demo["age"].tolist())
             all_sex_M.extend(batch_demo["sex_M"].tolist())
             all_sex_F.extend(batch_demo["sex_F"].tolist())
-            all_session1.extend(batch_demo["session_id1"].tolist())
-            all_session2.extend(batch_demo["session_id2"].tolist())
+            all_sessions.extend(batch_demo["session_id"].tolist())
 
     avg_loss = total_loss / len(dataloader)
     print(f"{name} Loss (MSE): {avg_loss:.4f}")
@@ -131,11 +123,9 @@ def apply_model(opt, model, participants_df, name):
         "Participant_ID": all_ids,
         "Target": targets,
         "Prediction": preds,
-        "Age": all_ages,
         "Sex (M)": all_sex_M,
         "Sex (F)": all_sex_F,
-        "Session 1": all_session1,
-        "Session 2": all_session2
+        "Sessions": all_sessions
     })
 
     return results
@@ -156,14 +146,7 @@ if __name__ == "__main__":
 
     #load model
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    if args.model == 'LILAC':
-        model = LILAC(opt).to(device)
-        print("The model is (classic) LILAC.")
-    elif args.model == 'CV_LILAC':
-        model = CV_LILAC(opt).to(device)
-        print("The model is CV_LILAC.")
-    else:
-        print("There was an error in selecting the proper model.")
+    model = CS_CNN3D(opt).to(device)
     checkpoint = torch.load(args.model_state, map_location = device)
     model.load_state_dict(checkpoint['model_state_dict'])
 

@@ -1,0 +1,14 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/4588018
+Filename (results):  /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_model/test_fold.csv
+We are looking at test data.
+Model saved at /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_model/best_model.pt will be applied to participants at /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_model/test_fold.csv.
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Loaded 100 images.
+Loaded 100 rows of metadata.
+Loaded 100 targets.
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+test Loss (MSE): 61.4335
+test MAE: 6.2387
+Saved results to CSV to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_model/results_test.csv.
