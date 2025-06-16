@@ -1,24 +1,17 @@
 import torch.nn as nn
 import torch
 
-"""
-Further improvements to do: make padding dynamic
-"""
 
 class EncoderBlock3D(nn.Module):
 
-    def __init__(self, in_num_ch, out_num_ch, kernel_size=3, conv_act='leaky_relu', dropout=0, pooling=nn.AvgPool3d):
+    def __init__(self, in_num_ch, out_num_ch, kernel_size=3, dropout=0, pooling=nn.AvgPool3d):
         super(EncoderBlock3D, self).__init__()
-        if conv_act == 'relu':
-            conv_act_layer = nn.ReLU(inplace=True)
-        else:
-            conv_act_layer = nn.LeakyReLU(0.2, inplace=True)
         self.conv = nn.Sequential(
                         nn.Conv3d(in_num_ch, out_num_ch, kernel_size=kernel_size, padding=kernel_size // 2), #convolution
                         nn.BatchNorm3d(out_num_ch), #batch normalization
-                        conv_act_layer, #activation function as above
+                        nn.LeakyReLU(0.2, inplace=True), #Leaky ReLU activation
                         nn.Dropout3d(dropout), #dropout, if specificied
-                        pooling(2)) #pooling layer, can be average or max pooling
+                        pooling(2)) #average pooling
         self.init_model()
 
     def init_model(self): #weight initialization
@@ -30,7 +23,7 @@ class EncoderBlock3D(nn.Module):
                     if 'bias' in name:
                         nn.init.constant_(weight, 0.0)
 
-    def forward(self, x): #forqard pass acccoring to __init__ above
+    def forward(self, x): #forward pass acccoring to __init__ above
         return self.conv(x)
     
 
@@ -39,7 +32,7 @@ class Encoder3D(nn.Module):
     """
     Building multiple convolutional blocks together for feature extraction.
     """
-    def __init__(self, in_num_ch, num_block, inter_num_ch, kernel_size, conv_act, dropout,  pooling=nn.AvgPool3d): #add dropout argument vs original LILAC
+    def __init__(self, in_num_ch, num_block, inter_num_ch, kernel_size, dropout):
         """
         inter_num_ch: base number of output channels for the first block.
         """
@@ -49,13 +42,13 @@ class Encoder3D(nn.Module):
         conv_blocks = []
         for i in range(num_block):
             if i == 0: # initial block
-                conv_blocks.append(EncoderBlock3D(in_num_ch, inter_num_ch, kernel_size=kernel_size, conv_act=conv_act, dropout=dropout,  pooling=pooling))
+                conv_blocks.append(EncoderBlock3D(in_num_ch, inter_num_ch, kernel_size=kernel_size, dropout=dropout))
             elif i == (num_block-1): # last block: compress features back to inter_num_ch as bottleneck
                 print("Last block has number of input channels:", inter_num_ch * (2 ** (i - 1)))
                 print("Last block has number of output channels:", inter_num_ch)
-                conv_blocks.append(EncoderBlock3D(inter_num_ch * (2 ** (i - 1)), inter_num_ch, kernel_size=kernel_size, conv_act=conv_act, dropout=dropout,  pooling=pooling))
+                conv_blocks.append(EncoderBlock3D(inter_num_ch * (2 ** (i - 1)), inter_num_ch, kernel_size=kernel_size, dropout=dropout))
             else:
-                conv_blocks.append(EncoderBlock3D(inter_num_ch * (2 ** (i - 1)), inter_num_ch * (2 ** (i)), kernel_size=kernel_size, conv_act=conv_act, dropout=dropout,  pooling=pooling))
+                conv_blocks.append(EncoderBlock3D(inter_num_ch * (2 ** (i - 1)), inter_num_ch * (2 ** (i)), kernel_size=kernel_size, dropout=dropout))
 
         self.conv_blocks = nn.Sequential(*conv_blocks)
 
@@ -69,12 +62,12 @@ class Encoder3D(nn.Module):
     
 
 class CNNbasic3D(nn.Module): #todo: add conv_act and dropout arguments
-    def __init__(self, inputsize = [128,128,128], channels = 1, n_of_blocks = 4, initial_channel = 16, kernel_size = 3, conv_act = 'leaky_relu', dropout = 0, pooling = nn.AvgPool3d, additional_feature = 0):
+    def __init__(self, inputsize = [128,128,128], channels = 1, n_of_blocks = 4, initial_channel = 16, kernel_size = 3, dropout = 0, additional_feature = 0):
         super(CNNbasic3D, self).__init__()
 
         self.feature_image = (torch.tensor(inputsize) / (2**(n_of_blocks)))
         self.feature_channel = initial_channel
-        self.encoder = Encoder3D(in_num_ch=channels, num_block=n_of_blocks, inter_num_ch=initial_channel, kernel_size=kernel_size, conv_act=conv_act, dropout=dropout, pooling=pooling)
+        self.encoder = Encoder3D(in_num_ch=channels, num_block=n_of_blocks, inter_num_ch=initial_channel, kernel_size=kernel_size, dropout=dropout)
         self.linear = nn.Linear((self.feature_channel * (self.feature_image.prod()).type(torch.int).item()) + additional_feature, 1, bias=False)
 
     def forward(self, x):
@@ -87,7 +80,7 @@ class CNNbasic3D(nn.Module): #todo: add conv_act and dropout arguments
 def get_backbone(args = None):
     n_of_meta = len(args.optional_meta)
 
-    backbone = CNNbasic3D(inputsize=args.image_size, channels=args.image_channel, n_of_blocks=args.n_of_blocks, initial_channel= args.initial_channel, kernel_size=args.kernel_size, conv_act=args.conv_act, dropout=args.dropout, pooling=nn.AvgPool3d, additional_feature = n_of_meta)
+    backbone = CNNbasic3D(inputsize=args.image_size, channels=args.image_channel, n_of_blocks=args.n_of_blocks, initial_channel= args.initial_channel, kernel_size=args.kernel_size, dropout=args.dropout, additional_feature = n_of_meta)
     linear = backbone.linear
     backbone.linear = nn.Identity()
 
@@ -103,9 +96,7 @@ class LILAC(nn.Module):
         n_of_blocks: number of convolutional blocks
         initial_channel: number of feature maps after first and last conv block
         kernel_size: size of the convolutional kernel
-        conv_act: activation function for the convolutional layers
         dropout: dropout rate for the convolutional layers
-        pooling: pooling function (e.g., nn.AvgPool3d)
         optional_meta: additional features to be used in the linear layer
     """
     def __init__(self, args):

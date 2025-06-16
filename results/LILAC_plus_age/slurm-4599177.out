@@ -1,0 +1,1214 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/4599177
+We are in main.
+Warning: Folder for participant sub-OAS30937 does not exist and will be deleted.
+Warning: Folder for participant sub-OAS31357 does not exist and will be deleted.
+We are in fold: 0
+We are in train.
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Loaded 1847 image pairs.
+Loaded 1847 rows of metadata.
+Loaded 1847 targets.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 495 image pairs.
+Loaded 495 rows of metadata.
+Loaded 495 targets.
+We are in epoch (training):  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Epoch 0: Avg Train Loss = 8.4440
+Epoch 0: Avg Train MAE = 2.1904
+We are in epoch (val):  0
+Epoch 0: Avg Val Loss = 4.7289
+Epoch 0: Avg Val MAE = 1.6958
+We are in epoch (training):  1
+Epoch 1: Avg Train Loss = 5.4898
+Epoch 1: Avg Train MAE = 1.7749
+We are in epoch (val):  1
+Epoch 1: Avg Val Loss = 4.2898
+Epoch 1: Avg Val MAE = 1.5775
+We are in epoch (training):  2
+Epoch 2: Avg Train Loss = 4.7351
+Epoch 2: Avg Train MAE = 1.6602
+We are in epoch (val):  2
+Epoch 2: Avg Val Loss = 4.0261
+Epoch 2: Avg Val MAE = 1.4986
+We are in epoch (training):  3
+Epoch 3: Avg Train Loss = 4.3638
+Epoch 3: Avg Train MAE = 1.5886
+We are in epoch (val):  3
+Epoch 3: Avg Val Loss = 3.3187
+Epoch 3: Avg Val MAE = 1.3796
+We are in epoch (training):  4
+Epoch 4: Avg Train Loss = 3.6539
+Epoch 4: Avg Train MAE = 1.4760
+We are in epoch (val):  4
+Epoch 4: Avg Val Loss = 3.7972
+Epoch 4: Avg Val MAE = 1.5346
+We are in epoch (training):  5
+Epoch 5: Avg Train Loss = 3.5361
+Epoch 5: Avg Train MAE = 1.4158
+We are in epoch (val):  5
+Epoch 5: Avg Val Loss = 3.0382
+Epoch 5: Avg Val MAE = 1.3155
+We are in epoch (training):  6
+Epoch 6: Avg Train Loss = 3.1266
+Epoch 6: Avg Train MAE = 1.3460
+We are in epoch (val):  6
+Epoch 6: Avg Val Loss = 2.9509
+Epoch 6: Avg Val MAE = 1.3603
+We are in epoch (training):  7
+Epoch 7: Avg Train Loss = 3.2841
+Epoch 7: Avg Train MAE = 1.3473
+We are in epoch (val):  7
+Epoch 7: Avg Val Loss = 3.3890
+Epoch 7: Avg Val MAE = 1.3680
+We are in epoch (training):  8
+Epoch 8: Avg Train Loss = 2.8611
+Epoch 8: Avg Train MAE = 1.2810
+We are in epoch (val):  8
+Epoch 8: Avg Val Loss = 2.6673
+Epoch 8: Avg Val MAE = 1.2557
+We are in epoch (training):  9
+Epoch 9: Avg Train Loss = 2.4533
+Epoch 9: Avg Train MAE = 1.1870
+We are in epoch (val):  9
+Epoch 9: Avg Val Loss = 2.5570
+Epoch 9: Avg Val MAE = 1.2117
+We are in epoch (training):  10
+Epoch 10: Avg Train Loss = 2.3727
+Epoch 10: Avg Train MAE = 1.1516
+We are in epoch (val):  10
+Epoch 10: Avg Val Loss = 2.9315
+Epoch 10: Avg Val MAE = 1.2779
+We are in epoch (training):  11
+Epoch 11: Avg Train Loss = 2.7237
+Epoch 11: Avg Train MAE = 1.2520
+We are in epoch (val):  11
+Epoch 11: Avg Val Loss = 2.5523
+Epoch 11: Avg Val MAE = 1.2260
+We are in epoch (training):  12
+Epoch 12: Avg Train Loss = 2.2079
+Epoch 12: Avg Train MAE = 1.1398
+We are in epoch (val):  12
+Epoch 12: Avg Val Loss = 2.5658
+Epoch 12: Avg Val MAE = 1.2327
+We are in epoch (training):  13
+Epoch 13: Avg Train Loss = 2.2860
+Epoch 13: Avg Train MAE = 1.1369
+We are in epoch (val):  13
+Epoch 13: Avg Val Loss = 2.6740
+Epoch 13: Avg Val MAE = 1.2290
+We are in epoch (training):  14
+Epoch 14: Avg Train Loss = 2.0216
+Epoch 14: Avg Train MAE = 1.0805
+We are in epoch (val):  14
+Epoch 14: Avg Val Loss = 2.6968
+Epoch 14: Avg Val MAE = 1.2356
+We are in epoch (training):  15
+Epoch 15: Avg Train Loss = 2.0650
+Epoch 15: Avg Train MAE = 1.0652
+We are in epoch (val):  15
+Epoch 15: Avg Val Loss = 3.3381
+Epoch 15: Avg Val MAE = 1.3175
+We are in epoch (training):  16
+Epoch 16: Avg Train Loss = 1.9040
+Epoch 16: Avg Train MAE = 1.0549
+We are in epoch (val):  16
+Epoch 16: Avg Val Loss = 2.5166
+Epoch 16: Avg Val MAE = 1.2257
+We are in epoch (training):  17
+Epoch 17: Avg Train Loss = 2.0635
+Epoch 17: Avg Train MAE = 1.0807
+We are in epoch (val):  17
+Epoch 17: Avg Val Loss = 2.6964
+Epoch 17: Avg Val MAE = 1.2364
+We are in epoch (training):  18
+Epoch 18: Avg Train Loss = 1.6293
+Epoch 18: Avg Train MAE = 0.9438
+We are in epoch (val):  18
+Epoch 18: Avg Val Loss = 2.6721
+Epoch 18: Avg Val MAE = 1.2227
+We are in epoch (training):  19
+Epoch 19: Avg Train Loss = 1.7443
+Epoch 19: Avg Train MAE = 0.9928
+We are in epoch (val):  19
+Epoch 19: Avg Val Loss = 2.6246
+Epoch 19: Avg Val MAE = 1.2180
+We are in epoch (training):  20
+Epoch 20: Avg Train Loss = 1.5921
+Epoch 20: Avg Train MAE = 0.9476
+We are in epoch (val):  20
+Epoch 20: Avg Val Loss = 4.0685
+Epoch 20: Avg Val MAE = 1.4441
+We are in epoch (training):  21
+Epoch 21: Avg Train Loss = 1.7068
+Epoch 21: Avg Train MAE = 0.9734
+We are in epoch (val):  21
+Epoch 21: Avg Val Loss = 2.4920
+Epoch 21: Avg Val MAE = 1.1975
+We are in epoch (training):  22
+Epoch 22: Avg Train Loss = 1.5120
+Epoch 22: Avg Train MAE = 0.9079
+We are in epoch (val):  22
+Epoch 22: Avg Val Loss = 3.0847
+Epoch 22: Avg Val MAE = 1.2690
+We are in epoch (training):  23
+Epoch 23: Avg Train Loss = 1.4339
+Epoch 23: Avg Train MAE = 0.9003
+We are in epoch (val):  23
+Epoch 23: Avg Val Loss = 2.6364
+Epoch 23: Avg Val MAE = 1.2280
+We are in epoch (training):  24
+Epoch 24: Avg Train Loss = 1.4589
+Epoch 24: Avg Train MAE = 0.8920
+We are in epoch (val):  24
+Epoch 24: Avg Val Loss = 2.4532
+Epoch 24: Avg Val MAE = 1.1720
+We are in epoch (training):  25
+Epoch 25: Avg Train Loss = 1.4333
+Epoch 25: Avg Train MAE = 0.8921
+We are in epoch (val):  25
+Epoch 25: Avg Val Loss = 2.5678
+Epoch 25: Avg Val MAE = 1.1815
+We are in epoch (training):  26
+Epoch 26: Avg Train Loss = 1.2282
+Epoch 26: Avg Train MAE = 0.8167
+We are in epoch (val):  26
+Epoch 26: Avg Val Loss = 2.6159
+Epoch 26: Avg Val MAE = 1.1986
+We are in epoch (training):  27
+Epoch 27: Avg Train Loss = 1.3902
+Epoch 27: Avg Train MAE = 0.8247
+We are in epoch (val):  27
+Epoch 27: Avg Val Loss = 2.4444
+Epoch 27: Avg Val MAE = 1.1787
+We are in epoch (training):  28
+Epoch 28: Avg Train Loss = 1.1018
+Epoch 28: Avg Train MAE = 0.7738
+We are in epoch (val):  28
+Epoch 28: Avg Val Loss = 2.4645
+Epoch 28: Avg Val MAE = 1.1922
+We are in epoch (training):  29
+Epoch 29: Avg Train Loss = 1.1584
+Epoch 29: Avg Train MAE = 0.7914
+We are in epoch (val):  29
+Epoch 29: Avg Val Loss = 2.4619
+Epoch 29: Avg Val MAE = 1.1816
+We are in epoch (training):  30
+Epoch 30: Avg Train Loss = 1.1375
+Epoch 30: Avg Train MAE = 0.7858
+We are in epoch (val):  30
+Epoch 30: Avg Val Loss = 2.4757
+Epoch 30: Avg Val MAE = 1.1795
+We are in epoch (training):  31
+Epoch 31: Avg Train Loss = 1.2075
+Epoch 31: Avg Train MAE = 0.8174
+We are in epoch (val):  31
+Epoch 31: Avg Val Loss = 2.7516
+Epoch 31: Avg Val MAE = 1.2583
+We are in epoch (training):  32
+Epoch 32: Avg Train Loss = 1.0206
+Epoch 32: Avg Train MAE = 0.7423
+We are in epoch (val):  32
+Epoch 32: Avg Val Loss = 2.8137
+Epoch 32: Avg Val MAE = 1.2669
+We are in epoch (training):  33
+Epoch 33: Avg Train Loss = 1.0612
+Epoch 33: Avg Train MAE = 0.7605
+We are in epoch (val):  33
+Epoch 33: Avg Val Loss = 2.5521
+Epoch 33: Avg Val MAE = 1.1966
+We are in epoch (training):  34
+Epoch 34: Avg Train Loss = 1.0924
+Epoch 34: Avg Train MAE = 0.7528
+We are in epoch (val):  34
+Epoch 34: Avg Val Loss = 2.9182
+Epoch 34: Avg Val MAE = 1.2587
+Loss plot (Train/Val) saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_0/loss_plot.png
+MAE plot (Train/Val) saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_0/mae_plot.png
+We are in fold: 1
+We are in train.
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 1885 image pairs.
+Loaded 1885 rows of metadata.
+Loaded 1885 targets.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Loaded 457 image pairs.
+Loaded 457 rows of metadata.
+Loaded 457 targets.
+We are in epoch (training):  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Epoch 0: Avg Train Loss = 8.3197
+Epoch 0: Avg Train MAE = 2.1612
+We are in epoch (val):  0
+Epoch 0: Avg Val Loss = 6.1244
+Epoch 0: Avg Val MAE = 1.9255
+We are in epoch (training):  1
+Epoch 1: Avg Train Loss = 5.0378
+Epoch 1: Avg Train MAE = 1.7016
+We are in epoch (val):  1
+Epoch 1: Avg Val Loss = 4.5118
+Epoch 1: Avg Val MAE = 1.6251
+We are in epoch (training):  2
+Epoch 2: Avg Train Loss = 4.3540
+Epoch 2: Avg Train MAE = 1.5636
+We are in epoch (val):  2
+Epoch 2: Avg Val Loss = 4.1134
+Epoch 2: Avg Val MAE = 1.5451
+We are in epoch (training):  3
+Epoch 3: Avg Train Loss = 3.7689
+Epoch 3: Avg Train MAE = 1.4829
+We are in epoch (val):  3
+Epoch 3: Avg Val Loss = 4.1120
+Epoch 3: Avg Val MAE = 1.5042
+We are in epoch (training):  4
+Epoch 4: Avg Train Loss = 3.5395
+Epoch 4: Avg Train MAE = 1.4272
+We are in epoch (val):  4
+Epoch 4: Avg Val Loss = 3.3712
+Epoch 4: Avg Val MAE = 1.4166
+We are in epoch (training):  5
+Epoch 5: Avg Train Loss = 3.2488
+Epoch 5: Avg Train MAE = 1.3739
+We are in epoch (val):  5
+Epoch 5: Avg Val Loss = 3.7004
+Epoch 5: Avg Val MAE = 1.4355
+We are in epoch (training):  6
+Epoch 6: Avg Train Loss = 3.2429
+Epoch 6: Avg Train MAE = 1.3654
+We are in epoch (val):  6
+Epoch 6: Avg Val Loss = 4.0179
+Epoch 6: Avg Val MAE = 1.4919
+We are in epoch (training):  7
+Epoch 7: Avg Train Loss = 2.5587
+Epoch 7: Avg Train MAE = 1.2099
+We are in epoch (val):  7
+Epoch 7: Avg Val Loss = 3.5240
+Epoch 7: Avg Val MAE = 1.3822
+We are in epoch (training):  8
+Epoch 8: Avg Train Loss = 2.5295
+Epoch 8: Avg Train MAE = 1.2036
+We are in epoch (val):  8
+Epoch 8: Avg Val Loss = 3.2154
+Epoch 8: Avg Val MAE = 1.3308
+We are in epoch (training):  9
+Epoch 9: Avg Train Loss = 2.3354
+Epoch 9: Avg Train MAE = 1.1605
+We are in epoch (val):  9
+Epoch 9: Avg Val Loss = 3.4436
+Epoch 9: Avg Val MAE = 1.3935
+We are in epoch (training):  10
+Epoch 10: Avg Train Loss = 2.2067
+Epoch 10: Avg Train MAE = 1.1194
+We are in epoch (val):  10
+Epoch 10: Avg Val Loss = 3.0566
+Epoch 10: Avg Val MAE = 1.2966
+We are in epoch (training):  11
+Epoch 11: Avg Train Loss = 2.7106
+Epoch 11: Avg Train MAE = 1.2285
+We are in epoch (val):  11
+Epoch 11: Avg Val Loss = 2.7929
+Epoch 11: Avg Val MAE = 1.2344
+We are in epoch (training):  12
+Epoch 12: Avg Train Loss = 2.1861
+Epoch 12: Avg Train MAE = 1.0961
+We are in epoch (val):  12
+Epoch 12: Avg Val Loss = 2.9460
+Epoch 12: Avg Val MAE = 1.3000
+We are in epoch (training):  13
+Epoch 13: Avg Train Loss = 2.0329
+Epoch 13: Avg Train MAE = 1.0586
+We are in epoch (val):  13
+Epoch 13: Avg Val Loss = 3.2065
+Epoch 13: Avg Val MAE = 1.3592
+We are in epoch (training):  14
+Epoch 14: Avg Train Loss = 2.1123
+Epoch 14: Avg Train MAE = 1.0960
+We are in epoch (val):  14
+Epoch 14: Avg Val Loss = 3.9204
+Epoch 14: Avg Val MAE = 1.3987
+We are in epoch (training):  15
+Epoch 15: Avg Train Loss = 1.7629
+Epoch 15: Avg Train MAE = 0.9978
+We are in epoch (val):  15
+Epoch 15: Avg Val Loss = 2.9935
+Epoch 15: Avg Val MAE = 1.2752
+We are in epoch (training):  16
+Epoch 16: Avg Train Loss = 1.6700
+Epoch 16: Avg Train MAE = 0.9831
+We are in epoch (val):  16
+Epoch 16: Avg Val Loss = 2.8320
+Epoch 16: Avg Val MAE = 1.2639
+We are in epoch (training):  17
+Epoch 17: Avg Train Loss = 1.6827
+Epoch 17: Avg Train MAE = 0.9848
+We are in epoch (val):  17
+Epoch 17: Avg Val Loss = 3.0212
+Epoch 17: Avg Val MAE = 1.2965
+We are in epoch (training):  18
+Epoch 18: Avg Train Loss = 1.5521
+Epoch 18: Avg Train MAE = 0.9390
+We are in epoch (val):  18
+Epoch 18: Avg Val Loss = 3.7617
+Epoch 18: Avg Val MAE = 1.4419
+We are in epoch (training):  19
+Epoch 19: Avg Train Loss = 1.5459
+Epoch 19: Avg Train MAE = 0.9159
+We are in epoch (val):  19
+Epoch 19: Avg Val Loss = 3.1992
+Epoch 19: Avg Val MAE = 1.3141
+We are in epoch (training):  20
+Epoch 20: Avg Train Loss = 1.5665
+Epoch 20: Avg Train MAE = 0.9311
+We are in epoch (val):  20
+Epoch 20: Avg Val Loss = 2.5764
+Epoch 20: Avg Val MAE = 1.1843
+We are in epoch (training):  21
+Epoch 21: Avg Train Loss = 1.5232
+Epoch 21: Avg Train MAE = 0.9306
+We are in epoch (val):  21
+Epoch 21: Avg Val Loss = 2.5699
+Epoch 21: Avg Val MAE = 1.2351
+We are in epoch (training):  22
+Epoch 22: Avg Train Loss = 1.2622
+Epoch 22: Avg Train MAE = 0.8392
+We are in epoch (val):  22
+Epoch 22: Avg Val Loss = 3.5891
+Epoch 22: Avg Val MAE = 1.4464
+We are in epoch (training):  23
+Epoch 23: Avg Train Loss = 1.4540
+Epoch 23: Avg Train MAE = 0.8822
+We are in epoch (val):  23
+Epoch 23: Avg Val Loss = 2.7407
+Epoch 23: Avg Val MAE = 1.2249
+We are in epoch (training):  24
+Epoch 24: Avg Train Loss = 1.3173
+Epoch 24: Avg Train MAE = 0.8427
+We are in epoch (val):  24
+Epoch 24: Avg Val Loss = 2.8400
+Epoch 24: Avg Val MAE = 1.2387
+We are in epoch (training):  25
+Epoch 25: Avg Train Loss = 1.0974
+Epoch 25: Avg Train MAE = 0.7750
+We are in epoch (val):  25
+Epoch 25: Avg Val Loss = 2.4895
+Epoch 25: Avg Val MAE = 1.1639
+We are in epoch (training):  26
+Epoch 26: Avg Train Loss = 1.1644
+Epoch 26: Avg Train MAE = 0.7866
+We are in epoch (val):  26
+Epoch 26: Avg Val Loss = 2.6617
+Epoch 26: Avg Val MAE = 1.2252
+We are in epoch (training):  27
+Epoch 27: Avg Train Loss = 1.1193
+Epoch 27: Avg Train MAE = 0.7745
+We are in epoch (val):  27
+Epoch 27: Avg Val Loss = 2.1835
+Epoch 27: Avg Val MAE = 1.0999
+We are in epoch (training):  28
+Epoch 28: Avg Train Loss = 1.0841
+Epoch 28: Avg Train MAE = 0.7551
+We are in epoch (val):  28
+Epoch 28: Avg Val Loss = 2.6162
+Epoch 28: Avg Val MAE = 1.1753
+We are in epoch (training):  29
+Epoch 29: Avg Train Loss = 1.1414
+Epoch 29: Avg Train MAE = 0.7807
+We are in epoch (val):  29
+Epoch 29: Avg Val Loss = 2.3013
+Epoch 29: Avg Val MAE = 1.1151
+We are in epoch (training):  30
+Epoch 30: Avg Train Loss = 1.1417
+Epoch 30: Avg Train MAE = 0.7689
+We are in epoch (val):  30
+Epoch 30: Avg Val Loss = 2.5458
+Epoch 30: Avg Val MAE = 1.1756
+We are in epoch (training):  31
+Epoch 31: Avg Train Loss = 1.8982
+Epoch 31: Avg Train MAE = 0.9644
+We are in epoch (val):  31
+Epoch 31: Avg Val Loss = 2.5221
+Epoch 31: Avg Val MAE = 1.1983
+We are in epoch (training):  32
+Epoch 32: Avg Train Loss = 1.1395
+Epoch 32: Avg Train MAE = 0.7965
+We are in epoch (val):  32
+Epoch 32: Avg Val Loss = 2.6951
+Epoch 32: Avg Val MAE = 1.2036
+We are in epoch (training):  33
+Epoch 33: Avg Train Loss = 1.0424
+Epoch 33: Avg Train MAE = 0.7480
+We are in epoch (val):  33
+Epoch 33: Avg Val Loss = 2.8027
+Epoch 33: Avg Val MAE = 1.2445
+We are in epoch (training):  34
+Epoch 34: Avg Train Loss = 1.0591
+Epoch 34: Avg Train MAE = 0.7496
+We are in epoch (val):  34
+Epoch 34: Avg Val Loss = 2.7751
+Epoch 34: Avg Val MAE = 1.2307
+Loss plot (Train/Val) saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_1/loss_plot.png
+MAE plot (Train/Val) saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_1/mae_plot.png
+We are in fold: 2
+We are in train.
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 1909 image pairs.
+Loaded 1909 rows of metadata.
+Loaded 1909 targets.
+Loaded 433 image pairs.
+Loaded 433 rows of metadata.
+Loaded 433 targets.
+We are in epoch (training):  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Epoch 0: Avg Train Loss = 7.1082
+Epoch 0: Avg Train MAE = 2.0093
+We are in epoch (val):  0
+Epoch 0: Avg Val Loss = 7.8745
+Epoch 0: Avg Val MAE = 2.0390
+We are in epoch (training):  1
+Epoch 1: Avg Train Loss = 5.2405
+Epoch 1: Avg Train MAE = 1.7347
+We are in epoch (val):  1
+Epoch 1: Avg Val Loss = 7.6523
+Epoch 1: Avg Val MAE = 2.0532
+We are in epoch (training):  2
+Epoch 2: Avg Train Loss = 4.1823
+Epoch 2: Avg Train MAE = 1.5581
+We are in epoch (val):  2
+Epoch 2: Avg Val Loss = 6.7115
+Epoch 2: Avg Val MAE = 1.7753
+We are in epoch (training):  3
+Epoch 3: Avg Train Loss = 4.2493
+Epoch 3: Avg Train MAE = 1.5667
+We are in epoch (val):  3
+Epoch 3: Avg Val Loss = 6.3379
+Epoch 3: Avg Val MAE = 1.7566
+We are in epoch (training):  4
+Epoch 4: Avg Train Loss = 3.6084
+Epoch 4: Avg Train MAE = 1.4559
+We are in epoch (val):  4
+Epoch 4: Avg Val Loss = 4.8862
+Epoch 4: Avg Val MAE = 1.6526
+We are in epoch (training):  5
+Epoch 5: Avg Train Loss = 3.4215
+Epoch 5: Avg Train MAE = 1.4143
+We are in epoch (val):  5
+Epoch 5: Avg Val Loss = 4.4001
+Epoch 5: Avg Val MAE = 1.4686
+We are in epoch (training):  6
+Epoch 6: Avg Train Loss = 2.8227
+Epoch 6: Avg Train MAE = 1.2676
+We are in epoch (val):  6
+Epoch 6: Avg Val Loss = 4.6683
+Epoch 6: Avg Val MAE = 1.5099
+We are in epoch (training):  7
+Epoch 7: Avg Train Loss = 2.7306
+Epoch 7: Avg Train MAE = 1.2799
+We are in epoch (val):  7
+Epoch 7: Avg Val Loss = 5.2536
+Epoch 7: Avg Val MAE = 1.5688
+We are in epoch (training):  8
+Epoch 8: Avg Train Loss = 2.5770
+Epoch 8: Avg Train MAE = 1.2265
+We are in epoch (val):  8
+Epoch 8: Avg Val Loss = 5.8481
+Epoch 8: Avg Val MAE = 1.6749
+We are in epoch (training):  9
+Epoch 9: Avg Train Loss = 3.0526
+Epoch 9: Avg Train MAE = 1.3081
+We are in epoch (val):  9
+Epoch 9: Avg Val Loss = 4.2869
+Epoch 9: Avg Val MAE = 1.4119
+We are in epoch (training):  10
+Epoch 10: Avg Train Loss = 2.3161
+Epoch 10: Avg Train MAE = 1.1621
+We are in epoch (val):  10
+Epoch 10: Avg Val Loss = 4.3665
+Epoch 10: Avg Val MAE = 1.4554
+We are in epoch (training):  11
+Epoch 11: Avg Train Loss = 2.3464
+Epoch 11: Avg Train MAE = 1.1609
+We are in epoch (val):  11
+Epoch 11: Avg Val Loss = 4.1408
+Epoch 11: Avg Val MAE = 1.4044
+We are in epoch (training):  12
+Epoch 12: Avg Train Loss = 2.0860
+Epoch 12: Avg Train MAE = 1.1060
+We are in epoch (val):  12
+Epoch 12: Avg Val Loss = 4.0363
+Epoch 12: Avg Val MAE = 1.3878
+We are in epoch (training):  13
+Epoch 13: Avg Train Loss = 1.9492
+Epoch 13: Avg Train MAE = 1.0789
+We are in epoch (val):  13
+Epoch 13: Avg Val Loss = 4.2579
+Epoch 13: Avg Val MAE = 1.4463
+We are in epoch (training):  14
+Epoch 14: Avg Train Loss = 1.8653
+Epoch 14: Avg Train MAE = 1.0483
+We are in epoch (val):  14
+Epoch 14: Avg Val Loss = 3.9297
+Epoch 14: Avg Val MAE = 1.3795
+We are in epoch (training):  15
+Epoch 15: Avg Train Loss = 1.9906
+Epoch 15: Avg Train MAE = 1.0654
+We are in epoch (val):  15
+Epoch 15: Avg Val Loss = 4.0599
+Epoch 15: Avg Val MAE = 1.4196
+We are in epoch (training):  16
+Epoch 16: Avg Train Loss = 1.8372
+Epoch 16: Avg Train MAE = 1.0311
+We are in epoch (val):  16
+Epoch 16: Avg Val Loss = 4.4312
+Epoch 16: Avg Val MAE = 1.4738
+We are in epoch (training):  17
+Epoch 17: Avg Train Loss = 1.5238
+Epoch 17: Avg Train MAE = 0.9695
+We are in epoch (val):  17
+Epoch 17: Avg Val Loss = 3.5685
+Epoch 17: Avg Val MAE = 1.3452
+We are in epoch (training):  18
+Epoch 18: Avg Train Loss = 1.6116
+Epoch 18: Avg Train MAE = 0.9697
+We are in epoch (val):  18
+Epoch 18: Avg Val Loss = 3.9106
+Epoch 18: Avg Val MAE = 1.3566
+We are in epoch (training):  19
+Epoch 19: Avg Train Loss = 1.9601
+Epoch 19: Avg Train MAE = 1.0349
+We are in epoch (val):  19
+Epoch 19: Avg Val Loss = 3.8559
+Epoch 19: Avg Val MAE = 1.4163
+We are in epoch (training):  20
+Epoch 20: Avg Train Loss = 1.5382
+Epoch 20: Avg Train MAE = 0.9547
+We are in epoch (val):  20
+Epoch 20: Avg Val Loss = 4.3991
+Epoch 20: Avg Val MAE = 1.4315
+We are in epoch (training):  21
+Epoch 21: Avg Train Loss = 1.3705
+Epoch 21: Avg Train MAE = 0.8829
+We are in epoch (val):  21
+Epoch 21: Avg Val Loss = 4.0886
+Epoch 21: Avg Val MAE = 1.3932
+We are in epoch (training):  22
+Epoch 22: Avg Train Loss = 1.4558
+Epoch 22: Avg Train MAE = 0.9159
+We are in epoch (val):  22
+Epoch 22: Avg Val Loss = 4.0971
+Epoch 22: Avg Val MAE = 1.4047
+We are in epoch (training):  23
+Epoch 23: Avg Train Loss = 1.3761
+Epoch 23: Avg Train MAE = 0.8883
+We are in epoch (val):  23
+Epoch 23: Avg Val Loss = 4.0733
+Epoch 23: Avg Val MAE = 1.3671
+We are in epoch (training):  24
+Epoch 24: Avg Train Loss = 1.3239
+Epoch 24: Avg Train MAE = 0.8648
+We are in epoch (val):  24
+Epoch 24: Avg Val Loss = 3.5156
+Epoch 24: Avg Val MAE = 1.2952
+We are in epoch (training):  25
+Epoch 25: Avg Train Loss = 1.3202
+Epoch 25: Avg Train MAE = 0.8566
+We are in epoch (val):  25
+Epoch 25: Avg Val Loss = 3.8045
+Epoch 25: Avg Val MAE = 1.3429
+We are in epoch (training):  26
+Epoch 26: Avg Train Loss = 1.5986
+Epoch 26: Avg Train MAE = 0.9381
+We are in epoch (val):  26
+Epoch 26: Avg Val Loss = 3.5144
+Epoch 26: Avg Val MAE = 1.3154
+We are in epoch (training):  27
+Epoch 27: Avg Train Loss = 1.1493
+Epoch 27: Avg Train MAE = 0.8154
+We are in epoch (val):  27
+Epoch 27: Avg Val Loss = 3.4820
+Epoch 27: Avg Val MAE = 1.3011
+We are in epoch (training):  28
+Epoch 28: Avg Train Loss = 1.3994
+Epoch 28: Avg Train MAE = 0.8784
+We are in epoch (val):  28
+Epoch 28: Avg Val Loss = 3.2802
+Epoch 28: Avg Val MAE = 1.2717
+We are in epoch (training):  29
+Epoch 29: Avg Train Loss = 1.1458
+Epoch 29: Avg Train MAE = 0.7892
+We are in epoch (val):  29
+Epoch 29: Avg Val Loss = 3.8769
+Epoch 29: Avg Val MAE = 1.3781
+We are in epoch (training):  30
+Epoch 30: Avg Train Loss = 1.3299
+Epoch 30: Avg Train MAE = 0.8477
+We are in epoch (val):  30
+Epoch 30: Avg Val Loss = 3.8904
+Epoch 30: Avg Val MAE = 1.4023
+We are in epoch (training):  31
+Epoch 31: Avg Train Loss = 1.0435
+Epoch 31: Avg Train MAE = 0.7640
+We are in epoch (val):  31
+Epoch 31: Avg Val Loss = 3.8938
+Epoch 31: Avg Val MAE = 1.3532
+We are in epoch (training):  32
+Epoch 32: Avg Train Loss = 0.9982
+Epoch 32: Avg Train MAE = 0.7460
+We are in epoch (val):  32
+Epoch 32: Avg Val Loss = 3.8060
+Epoch 32: Avg Val MAE = 1.3464
+We are in epoch (training):  33
+Epoch 33: Avg Train Loss = 1.3598
+Epoch 33: Avg Train MAE = 0.8539
+We are in epoch (val):  33
+Epoch 33: Avg Val Loss = 3.4305
+Epoch 33: Avg Val MAE = 1.2835
+We are in epoch (training):  34
+Epoch 34: Avg Train Loss = 1.0675
+Epoch 34: Avg Train MAE = 0.7520
+We are in epoch (val):  34
+Epoch 34: Avg Val Loss = 3.6867
+Epoch 34: Avg Val MAE = 1.3305
+Loss plot (Train/Val) saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_2/loss_plot.png
+MAE plot (Train/Val) saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_2/mae_plot.png
+We are in fold: 3
+We are in train.
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 1874 image pairs.
+Loaded 1874 rows of metadata.
+Loaded 1874 targets.
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Loaded 468 image pairs.
+Loaded 468 rows of metadata.
+Loaded 468 targets.
+We are in epoch (training):  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Epoch 0: Avg Train Loss = 7.4484
+Epoch 0: Avg Train MAE = 2.0431
+We are in epoch (val):  0
+Epoch 0: Avg Val Loss = 4.7685
+Epoch 0: Avg Val MAE = 1.7231
+We are in epoch (training):  1
+Epoch 1: Avg Train Loss = 5.9306
+Epoch 1: Avg Train MAE = 1.8217
+We are in epoch (val):  1
+Epoch 1: Avg Val Loss = 3.6488
+Epoch 1: Avg Val MAE = 1.4793
+We are in epoch (training):  2
+Epoch 2: Avg Train Loss = 4.4984
+Epoch 2: Avg Train MAE = 1.6012
+We are in epoch (val):  2
+Epoch 2: Avg Val Loss = 3.6844
+Epoch 2: Avg Val MAE = 1.4427
+We are in epoch (training):  3
+Epoch 3: Avg Train Loss = 3.8795
+Epoch 3: Avg Train MAE = 1.4738
+We are in epoch (val):  3
+Epoch 3: Avg Val Loss = 4.4187
+Epoch 3: Avg Val MAE = 1.5368
+We are in epoch (training):  4
+Epoch 4: Avg Train Loss = 3.7000
+Epoch 4: Avg Train MAE = 1.4650
+We are in epoch (val):  4
+Epoch 4: Avg Val Loss = 3.4977
+Epoch 4: Avg Val MAE = 1.4219
+We are in epoch (training):  5
+Epoch 5: Avg Train Loss = 3.4166
+Epoch 5: Avg Train MAE = 1.4106
+We are in epoch (val):  5
+Epoch 5: Avg Val Loss = 3.9577
+Epoch 5: Avg Val MAE = 1.3795
+We are in epoch (training):  6
+Epoch 6: Avg Train Loss = 2.8241
+Epoch 6: Avg Train MAE = 1.2771
+We are in epoch (val):  6
+Epoch 6: Avg Val Loss = 3.3404
+Epoch 6: Avg Val MAE = 1.3442
+We are in epoch (training):  7
+Epoch 7: Avg Train Loss = 2.7415
+Epoch 7: Avg Train MAE = 1.2713
+We are in epoch (val):  7
+Epoch 7: Avg Val Loss = 3.1822
+Epoch 7: Avg Val MAE = 1.3128
+We are in epoch (training):  8
+Epoch 8: Avg Train Loss = 2.6537
+Epoch 8: Avg Train MAE = 1.2121
+We are in epoch (val):  8
+Epoch 8: Avg Val Loss = 2.9345
+Epoch 8: Avg Val MAE = 1.2311
+We are in epoch (training):  9
+Epoch 9: Avg Train Loss = 2.5607
+Epoch 9: Avg Train MAE = 1.2026
+We are in epoch (val):  9
+Epoch 9: Avg Val Loss = 4.2308
+Epoch 9: Avg Val MAE = 1.5017
+We are in epoch (training):  10
+Epoch 10: Avg Train Loss = 2.3548
+Epoch 10: Avg Train MAE = 1.1594
+We are in epoch (val):  10
+Epoch 10: Avg Val Loss = 2.6322
+Epoch 10: Avg Val MAE = 1.2110
+We are in epoch (training):  11
+Epoch 11: Avg Train Loss = 2.1725
+Epoch 11: Avg Train MAE = 1.1078
+We are in epoch (val):  11
+Epoch 11: Avg Val Loss = 3.2437
+Epoch 11: Avg Val MAE = 1.3323
+We are in epoch (training):  12
+Epoch 12: Avg Train Loss = 2.1287
+Epoch 12: Avg Train MAE = 1.0812
+We are in epoch (val):  12
+Epoch 12: Avg Val Loss = 2.9554
+Epoch 12: Avg Val MAE = 1.2526
+We are in epoch (training):  13
+Epoch 13: Avg Train Loss = 1.7609
+Epoch 13: Avg Train MAE = 1.0181
+We are in epoch (val):  13
+Epoch 13: Avg Val Loss = 2.5471
+Epoch 13: Avg Val MAE = 1.1840
+We are in epoch (training):  14
+Epoch 14: Avg Train Loss = 1.8085
+Epoch 14: Avg Train MAE = 1.0000
+We are in epoch (val):  14
+Epoch 14: Avg Val Loss = 3.6568
+Epoch 14: Avg Val MAE = 1.3081
+We are in epoch (training):  15
+Epoch 15: Avg Train Loss = 2.4138
+Epoch 15: Avg Train MAE = 1.1124
+We are in epoch (val):  15
+Epoch 15: Avg Val Loss = 2.8082
+Epoch 15: Avg Val MAE = 1.2404
+We are in epoch (training):  16
+Epoch 16: Avg Train Loss = 1.9413
+Epoch 16: Avg Train MAE = 1.0410
+We are in epoch (val):  16
+Epoch 16: Avg Val Loss = 2.6255
+Epoch 16: Avg Val MAE = 1.1749
+We are in epoch (training):  17
+Epoch 17: Avg Train Loss = 1.6303
+Epoch 17: Avg Train MAE = 0.9463
+We are in epoch (val):  17
+Epoch 17: Avg Val Loss = 3.5573
+Epoch 17: Avg Val MAE = 1.3417
+We are in epoch (training):  18
+Epoch 18: Avg Train Loss = 1.6107
+Epoch 18: Avg Train MAE = 0.9455
+We are in epoch (val):  18
+Epoch 18: Avg Val Loss = 2.9479
+Epoch 18: Avg Val MAE = 1.2047
+We are in epoch (training):  19
+Epoch 19: Avg Train Loss = 1.4641
+Epoch 19: Avg Train MAE = 0.8818
+We are in epoch (val):  19
+Epoch 19: Avg Val Loss = 2.8888
+Epoch 19: Avg Val MAE = 1.2026
+We are in epoch (training):  20
+Epoch 20: Avg Train Loss = 1.4566
+Epoch 20: Avg Train MAE = 0.8910
+We are in epoch (val):  20
+Epoch 20: Avg Val Loss = 2.2664
+Epoch 20: Avg Val MAE = 1.1180
+We are in epoch (training):  21
+Epoch 21: Avg Train Loss = 1.2960
+Epoch 21: Avg Train MAE = 0.8516
+We are in epoch (val):  21
+Epoch 21: Avg Val Loss = 2.3910
+Epoch 21: Avg Val MAE = 1.1216
+We are in epoch (training):  22
+Epoch 22: Avg Train Loss = 1.2770
+Epoch 22: Avg Train MAE = 0.8310
+We are in epoch (val):  22
+Epoch 22: Avg Val Loss = 3.4531
+Epoch 22: Avg Val MAE = 1.3290
+We are in epoch (training):  23
+Epoch 23: Avg Train Loss = 1.2415
+Epoch 23: Avg Train MAE = 0.8162
+We are in epoch (val):  23
+Epoch 23: Avg Val Loss = 3.2026
+Epoch 23: Avg Val MAE = 1.2234
+We are in epoch (training):  24
+Epoch 24: Avg Train Loss = 1.4530
+Epoch 24: Avg Train MAE = 0.8774
+We are in epoch (val):  24
+Epoch 24: Avg Val Loss = 2.4399
+Epoch 24: Avg Val MAE = 1.1584
+We are in epoch (training):  25
+Epoch 25: Avg Train Loss = 1.2625
+Epoch 25: Avg Train MAE = 0.8203
+We are in epoch (val):  25
+Epoch 25: Avg Val Loss = 4.4094
+Epoch 25: Avg Val MAE = 1.4596
+We are in epoch (training):  26
+Epoch 26: Avg Train Loss = 1.0693
+Epoch 26: Avg Train MAE = 0.7585
+We are in epoch (val):  26
+Epoch 26: Avg Val Loss = 2.2366
+Epoch 26: Avg Val MAE = 1.1188
+We are in epoch (training):  27
+Epoch 27: Avg Train Loss = 1.1190
+Epoch 27: Avg Train MAE = 0.7734
+We are in epoch (val):  27
+Epoch 27: Avg Val Loss = 2.3497
+Epoch 27: Avg Val MAE = 1.1410
+We are in epoch (training):  28
+Epoch 28: Avg Train Loss = 1.2515
+Epoch 28: Avg Train MAE = 0.7882
+We are in epoch (val):  28
+Epoch 28: Avg Val Loss = 4.0690
+Epoch 28: Avg Val MAE = 1.3198
+We are in epoch (training):  29
+Epoch 29: Avg Train Loss = 1.2320
+Epoch 29: Avg Train MAE = 0.7907
+We are in epoch (val):  29
+Epoch 29: Avg Val Loss = 2.1432
+Epoch 29: Avg Val MAE = 1.1022
+We are in epoch (training):  30
+Epoch 30: Avg Train Loss = 1.0659
+Epoch 30: Avg Train MAE = 0.7644
+We are in epoch (val):  30
+Epoch 30: Avg Val Loss = 2.3255
+Epoch 30: Avg Val MAE = 1.0882
+We are in epoch (training):  31
+Epoch 31: Avg Train Loss = 1.1124
+Epoch 31: Avg Train MAE = 0.7698
+We are in epoch (val):  31
+Epoch 31: Avg Val Loss = 3.4187
+Epoch 31: Avg Val MAE = 1.2692
+We are in epoch (training):  32
+Epoch 32: Avg Train Loss = 0.9042
+Epoch 32: Avg Train MAE = 0.6936
+We are in epoch (val):  32
+Epoch 32: Avg Val Loss = 2.2207
+Epoch 32: Avg Val MAE = 1.0833
+We are in epoch (training):  33
+Epoch 33: Avg Train Loss = 0.8702
+Epoch 33: Avg Train MAE = 0.6609
+We are in epoch (val):  33
+Epoch 33: Avg Val Loss = 2.5919
+Epoch 33: Avg Val MAE = 1.1876
+We are in epoch (training):  34
+Epoch 34: Avg Train Loss = 0.8927
+Epoch 34: Avg Train MAE = 0.6850
+We are in epoch (val):  34
+Epoch 34: Avg Val Loss = 2.5030
+Epoch 34: Avg Val MAE = 1.1407
+Loss plot (Train/Val) saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_3/loss_plot.png
+MAE plot (Train/Val) saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_3/mae_plot.png
+We are in fold: 4
+We are in train.
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 1853 image pairs.
+Loaded 1853 rows of metadata.
+Loaded 1853 targets.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Loaded 489 image pairs.
+Loaded 489 rows of metadata.
+Loaded 489 targets.
+We are in epoch (training):  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Epoch 0: Avg Train Loss = 7.0893
+Epoch 0: Avg Train MAE = 2.0289
+We are in epoch (val):  0
+Epoch 0: Avg Val Loss = 5.8546
+Epoch 0: Avg Val MAE = 1.8384
+We are in epoch (training):  1
+Epoch 1: Avg Train Loss = 5.3743
+Epoch 1: Avg Train MAE = 1.7516
+We are in epoch (val):  1
+Epoch 1: Avg Val Loss = 6.5578
+Epoch 1: Avg Val MAE = 1.7655
+We are in epoch (training):  2
+Epoch 2: Avg Train Loss = 4.7225
+Epoch 2: Avg Train MAE = 1.6129
+We are in epoch (val):  2
+Epoch 2: Avg Val Loss = 4.8802
+Epoch 2: Avg Val MAE = 1.6085
+We are in epoch (training):  3
+Epoch 3: Avg Train Loss = 3.7840
+Epoch 3: Avg Train MAE = 1.4751
+We are in epoch (val):  3
+Epoch 3: Avg Val Loss = 4.2112
+Epoch 3: Avg Val MAE = 1.5211
+We are in epoch (training):  4
+Epoch 4: Avg Train Loss = 3.2296
+Epoch 4: Avg Train MAE = 1.3637
+We are in epoch (val):  4
+Epoch 4: Avg Val Loss = 4.5231
+Epoch 4: Avg Val MAE = 1.5651
+We are in epoch (training):  5
+Epoch 5: Avg Train Loss = 3.0793
+Epoch 5: Avg Train MAE = 1.3355
+We are in epoch (val):  5
+Epoch 5: Avg Val Loss = 4.5737
+Epoch 5: Avg Val MAE = 1.5176
+We are in epoch (training):  6
+Epoch 6: Avg Train Loss = 2.7486
+Epoch 6: Avg Train MAE = 1.2784
+We are in epoch (val):  6
+Epoch 6: Avg Val Loss = 4.4337
+Epoch 6: Avg Val MAE = 1.5423
+We are in epoch (training):  7
+Epoch 7: Avg Train Loss = 2.5277
+Epoch 7: Avg Train MAE = 1.2084
+We are in epoch (val):  7
+Epoch 7: Avg Val Loss = 4.7377
+Epoch 7: Avg Val MAE = 1.5812
+We are in epoch (training):  8
+Epoch 8: Avg Train Loss = 2.5911
+Epoch 8: Avg Train MAE = 1.2305
+We are in epoch (val):  8
+Epoch 8: Avg Val Loss = 3.7450
+Epoch 8: Avg Val MAE = 1.3581
+We are in epoch (training):  9
+Epoch 9: Avg Train Loss = 2.3329
+Epoch 9: Avg Train MAE = 1.1768
+We are in epoch (val):  9
+Epoch 9: Avg Val Loss = 4.7238
+Epoch 9: Avg Val MAE = 1.5405
+We are in epoch (training):  10
+Epoch 10: Avg Train Loss = 2.2654
+Epoch 10: Avg Train MAE = 1.1339
+We are in epoch (val):  10
+Epoch 10: Avg Val Loss = 3.9809
+Epoch 10: Avg Val MAE = 1.4132
+We are in epoch (training):  11
+Epoch 11: Avg Train Loss = 2.3170
+Epoch 11: Avg Train MAE = 1.1375
+We are in epoch (val):  11
+Epoch 11: Avg Val Loss = 3.8880
+Epoch 11: Avg Val MAE = 1.3999
+We are in epoch (training):  12
+Epoch 12: Avg Train Loss = 2.4834
+Epoch 12: Avg Train MAE = 1.1786
+We are in epoch (val):  12
+Epoch 12: Avg Val Loss = 5.8334
+Epoch 12: Avg Val MAE = 1.6420
+We are in epoch (training):  13
+Epoch 13: Avg Train Loss = 2.3032
+Epoch 13: Avg Train MAE = 1.1556
+We are in epoch (val):  13
+Epoch 13: Avg Val Loss = 4.5243
+Epoch 13: Avg Val MAE = 1.4792
+We are in epoch (training):  14
+Epoch 14: Avg Train Loss = 1.9378
+Epoch 14: Avg Train MAE = 1.0367
+We are in epoch (val):  14
+Epoch 14: Avg Val Loss = 3.9921
+Epoch 14: Avg Val MAE = 1.3524
+We are in epoch (training):  15
+Epoch 15: Avg Train Loss = 1.7488
+Epoch 15: Avg Train MAE = 0.9950
+We are in epoch (val):  15
+Epoch 15: Avg Val Loss = 4.1013
+Epoch 15: Avg Val MAE = 1.4230
+We are in epoch (training):  16
+Epoch 16: Avg Train Loss = 1.6118
+Epoch 16: Avg Train MAE = 0.9592
+We are in epoch (val):  16
+Epoch 16: Avg Val Loss = 7.2434
+Epoch 16: Avg Val MAE = 1.8240
+We are in epoch (training):  17
+Epoch 17: Avg Train Loss = 1.6233
+Epoch 17: Avg Train MAE = 0.9525
+We are in epoch (val):  17
+Epoch 17: Avg Val Loss = 4.9727
+Epoch 17: Avg Val MAE = 1.4599
+We are in epoch (training):  18
+Epoch 18: Avg Train Loss = 1.6590
+Epoch 18: Avg Train MAE = 0.9582
+We are in epoch (val):  18
+Epoch 18: Avg Val Loss = 3.8365
+Epoch 18: Avg Val MAE = 1.2988
+We are in epoch (training):  19
+Epoch 19: Avg Train Loss = 1.7730
+Epoch 19: Avg Train MAE = 0.9907
+We are in epoch (val):  19
+Epoch 19: Avg Val Loss = 3.1255
+Epoch 19: Avg Val MAE = 1.2538
+We are in epoch (training):  20
+Epoch 20: Avg Train Loss = 1.2843
+Epoch 20: Avg Train MAE = 0.8515
+We are in epoch (val):  20
+Epoch 20: Avg Val Loss = 3.3306
+Epoch 20: Avg Val MAE = 1.2791
+We are in epoch (training):  21
+Epoch 21: Avg Train Loss = 1.3013
+Epoch 21: Avg Train MAE = 0.8569
+We are in epoch (val):  21
+Epoch 21: Avg Val Loss = 3.2144
+Epoch 21: Avg Val MAE = 1.2173
+We are in epoch (training):  22
+Epoch 22: Avg Train Loss = 1.4976
+Epoch 22: Avg Train MAE = 0.9200
+We are in epoch (val):  22
+Epoch 22: Avg Val Loss = 4.1180
+Epoch 22: Avg Val MAE = 1.3769
+We are in epoch (training):  23
+Epoch 23: Avg Train Loss = 1.1954
+Epoch 23: Avg Train MAE = 0.8278
+We are in epoch (val):  23
+Epoch 23: Avg Val Loss = 3.5137
+Epoch 23: Avg Val MAE = 1.2728
+We are in epoch (training):  24
+Epoch 24: Avg Train Loss = 1.2665
+Epoch 24: Avg Train MAE = 0.8307
+We are in epoch (val):  24
+Epoch 24: Avg Val Loss = 3.7652
+Epoch 24: Avg Val MAE = 1.2753
+We are in epoch (training):  25
+Epoch 25: Avg Train Loss = 1.1575
+Epoch 25: Avg Train MAE = 0.7916
+We are in epoch (val):  25
+Epoch 25: Avg Val Loss = 3.2341
+Epoch 25: Avg Val MAE = 1.2117
+We are in epoch (training):  26
+Epoch 26: Avg Train Loss = 1.2993
+Epoch 26: Avg Train MAE = 0.8449
+We are in epoch (val):  26
+Epoch 26: Avg Val Loss = 3.2993
+Epoch 26: Avg Val MAE = 1.2190
+We are in epoch (training):  27
+Epoch 27: Avg Train Loss = 1.3141
+Epoch 27: Avg Train MAE = 0.8209
+We are in epoch (val):  27
+Epoch 27: Avg Val Loss = 4.8850
+Epoch 27: Avg Val MAE = 1.4694
+We are in epoch (training):  28
+Epoch 28: Avg Train Loss = 1.1217
+Epoch 28: Avg Train MAE = 0.7864
+We are in epoch (val):  28
+Epoch 28: Avg Val Loss = 3.8249
+Epoch 28: Avg Val MAE = 1.3579
+We are in epoch (training):  29
+Epoch 29: Avg Train Loss = 1.1872
+Epoch 29: Avg Train MAE = 0.8108
+We are in epoch (val):  29
+Epoch 29: Avg Val Loss = 3.4707
+Epoch 29: Avg Val MAE = 1.3107
+We are in epoch (training):  30
+Epoch 30: Avg Train Loss = 1.0417
+Epoch 30: Avg Train MAE = 0.7534
+We are in epoch (val):  30
+Epoch 30: Avg Val Loss = 3.1588
+Epoch 30: Avg Val MAE = 1.2152
+We are in epoch (training):  31
+Epoch 31: Avg Train Loss = 1.0113
+Epoch 31: Avg Train MAE = 0.7362
+We are in epoch (val):  31
+Epoch 31: Avg Val Loss = 3.2216
+Epoch 31: Avg Val MAE = 1.1989
+We are in epoch (training):  32
+Epoch 32: Avg Train Loss = 0.9242
+Epoch 32: Avg Train MAE = 0.7061
+We are in epoch (val):  32
+Epoch 32: Avg Val Loss = 3.2834
+Epoch 32: Avg Val MAE = 1.2125
+We are in epoch (training):  33
+Epoch 33: Avg Train Loss = 0.9154
+Epoch 33: Avg Train MAE = 0.6980
+We are in epoch (val):  33
+Epoch 33: Avg Val Loss = 3.7490
+Epoch 33: Avg Val MAE = 1.2866
+We are in epoch (training):  34
+Epoch 34: Avg Train Loss = 0.8383
+Epoch 34: Avg Train MAE = 0.6774
+We are in epoch (val):  34
+Epoch 34: Avg Val Loss = 3.5604
+Epoch 34: Avg Val MAE = 1.2488
+Loss plot (Train/Val) saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_4/loss_plot.png
+MAE plot (Train/Val) saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_4/mae_plot.png

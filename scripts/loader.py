@@ -13,11 +13,10 @@ import torch
 
 from prep_data import add_classification, exclude_CI_participants, exclude_single_scan_participants, check_folders_exist
 
-def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3', clean = True, add_age = False):
+def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3', add_age = False):
     """
     Input:
         folder_path: path to the folder containing the participants.tsv file
-        clean: boolean to clean the data from single scan and CI participants
         add_age: whether to add age
     Output:
         df: dataframe with the participants and their gender (possibly age)
@@ -26,9 +25,8 @@ def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3
     df = pd.read_csv(participants_file_path, sep='\t')
     df = check_folders_exist(df, folder_path) #delete participants that do not have a folder
     df = add_classification(df, folder_path) #add classification to the dataframe
-    if clean: # Exclude participants with CI and those with only one scan
-        df = exclude_CI_participants(df)
-        df = exclude_single_scan_participants(df)
+    df = exclude_CI_participants(df)
+    df = exclude_single_scan_participants(df)
     if add_age:
         filtered_rows = []
         for _, row in df.iterrows():

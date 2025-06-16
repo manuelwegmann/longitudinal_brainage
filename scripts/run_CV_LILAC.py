@@ -1,18 +1,20 @@
 from loader import loader3D, load_participants
-from CV_LILAC import CV_LILAC
+from LILAC import LILAC
+from LILAC_plus import LILAC_plus
 
-import torch
+
 import numpy as np
 import os
 import json
-import math
-import torch.nn as nn
-import torch.optim as optim
 import pandas as pd
-from torch.utils.data import DataLoader
 import argparse
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split, StratifiedKFold
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader
+from sklearn.model_selection import StratifiedKFold
 
 
 def parse_args():
@@ -20,12 +22,11 @@ def parse_args():
 
     parser.add_argument('--data_directory', default='/mimer/NOBACKUP/groups/brainage/data/oasis3', type=str, help="directory of the data (OASIS3)")
 
+    parser.add_argument('--model', default='LILAC_plus', type=str, choices=['LILAC', 'LILAC_plus'], help="model to use: LILAC or LILAC_plus")
+
     #data preprocessing arguments
-    parser.add_argument('--clean', default=True, type=bool, help="whether to clean data from CI and single scan participants")
     parser.add_argument('--image_size', nargs=3, type=int, default=[128, 128, 128], help='Input image size as three integers (e.g. 128 128 128)')
     parser.add_argument('--image_channel', default=1, type=int, help="number of channels in the input image")
-    parser.add_argument('--val_size', default=0.2, type=float, help="validation size for splitting the data")
-    parser.add_argument('--test_size', default=0.2, type=float, help="test size for splitting the data")
     parser.add_argument('--seed', default=15, type=int)
 
     #target and optional meta data arguments
@@ -36,8 +37,6 @@ def parse_args():
     parser.add_argument('--n_of_blocks', default=4, type=int, help="number of blocks in the encoder")
     parser.add_argument('--initial_channel', default=16, type=int, help="initial channel size after first conv")
     parser.add_argument('--kernel_size', default=3, type=int, help="kernel size")
-    parser.add_argument('--conv_act', default='leaky_relu', type=str, help="activation function")
-    #parser.add_argument('--pooling', default=nn.AvgPool3d, type=nn.Module, help="pooling function")
 
     #training arguments
     parser.add_argument('--dropout', default=0, type=float, help="dropout rate")
@@ -45,9 +44,8 @@ def parse_args():
     parser.add_argument('--batchsize', default=16, type=int)
     parser.add_argument('--max_epoch', default=30, type=int, help="max epoch")
     parser.add_argument('--epoch', default=0, type=int, help="starting epoch")
-    parser.add_argument('--save_epoch_num', default=1, type=int, help="validate and save every N epoch")
-
-    parser.add_argument('--folds', default=5, type=int, help = "number of folds for k-fold cv. 0 for no cv.")
+    
+    parser.add_argument('--folds', default=5, type=int, help = "number of folds for k-fold cv.")
     parser.add_argument('--output_directory', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results', type=str, help="directory path for saving model and outputs")
     parser.add_argument('--run_name', default='test_run', type=str, help="name of the run")
 
@@ -60,32 +58,6 @@ def parse_args():
 def save_args_to_json(args, filepath):
     with open(filepath, 'w') as f:
         json.dump(vars(args), f, indent=4)
-
-
-def split(opt, participant_df, output_dir = None):
-    """
-    Splits the data into training, validation and testing sets and returns the dataframes.
-    Input:
-        opt: options from the command line
-        participant_df: dataframe with the participants and their gender
-        output_dir: directory to save the datasets (set to None if not needed)
-    Output:
-        train_dataset: dataframe with the training set (id, sex)
-        val_dataset: dataframe with the validation set (id, sex)
-        test_dataset: dataframe with the testing set (id, sex)
-    """
-    train_dataset, temp_dataset = train_test_split(participant_df, test_size=opt.test_size + opt.val_size, random_state=opt.seed)
-    test_relative_size = opt.test_size / (opt.test_size + opt.val_size)
-    val_dataset, test_dataset = train_test_split(temp_dataset, test_size=test_relative_size, random_state=opt.seed)
-    print(f"Train size (number of participants): {len(train_dataset)}, Validation size: {len(val_dataset)}, Test size: {len(test_dataset)}")
-
-    # Save the datasets to CSV files if output_dir is provided
-    if output_dir is not None:
-        train_dataset.to_csv(os.path.join(output_dir, 'train_dataset.csv'), index=False)
-        val_dataset.to_csv(os.path.join(output_dir, 'val_dataset.csv'), index=False)
-        test_dataset.to_csv(os.path.join(output_dir, 'test_dataset.csv'), index=False)
-
-    return train_dataset, val_dataset, test_dataset
 
 
 
@@ -106,7 +78,13 @@ def train(opt, train_dataset, val_dataset):
     print(f"Using device: {device}")
 
     # Model, Loss, Optimizer
-    model = CV_LILAC(opt).to(device)
+    if opt.model == 'LILAC':
+        model = LILAC(opt).to(device)
+    elif opt.model == 'LILAC_plus':
+        model = LILAC_plus(opt).to(device)
+    else:
+        raise ValueError("Invalid model type. Choose 'LILAC' or 'LILAC_plus'.")
+    
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=opt.lr)
 
@@ -213,77 +191,7 @@ def train(opt, train_dataset, val_dataset):
             'optimizer_state_dict': optimizer.state_dict(),
             'val_loss': avg_val_loss
         }, model_path)
-            
-
-    # Calculate predicted values on train and val set
-    if model_state is not None:
-        model.load_state_dict(model_state)
-        print("Training complete. Will now calculate predicted values on train and test set.")
-
-        model.eval()
-
-        train_preds = []
-        train_targets = []
-
-        val_preds = []
-        val_targets = []
-
-        with torch.no_grad():
-            for batch in dataloader_train:
-                if len(batch) == 3:
-                    x1, x2, target = batch
-                    meta = None
-                else:
-                    x1, x2, meta, target = batch
-                    meta = meta.float().to(device)
-
-                x1 = x1.float().to(device)
-                x2 = x2.float().to(device)
-                target = target.to(device).float()
-
-                output = model(x1, x2, meta)
-
-                train_preds.append(output.cpu())
-                train_targets.append(target.cpu())
-
-            for batch in dataloader_val:
-                if len(batch) == 3:
-                    x1, x2, target = batch
-                    meta = None
-                else:
-                    x1, x2, meta, target = batch
-                    meta = meta.float().to(device)
-
-                x1 = x1.float().to(device)
-                x2 = x2.float().to(device)
-                target = target.to(device).float()
-
-                output = model(x1, x2, meta)
-
-                val_preds.append(output.cpu())
-                val_targets.append(target.cpu())
-
-            
-        # Save predictions and targets for train and val to CSV
-        targets = np.concatenate(train_targets, axis=0)
-        preds = np.concatenate(train_preds, axis=0)
-        results_df = pd.DataFrame({
-            "Target (Train)": targets.flatten(),
-            "Prediction (Train)": preds.flatten()
-        })
-        results_path = os.path.join(opt.output_directory, opt.run_name, "train_predicted_values.csv")
-        results_df.to_csv(results_path, index=False)
-
-        targets = np.concatenate(val_targets, axis=0)
-        preds = np.concatenate(val_preds, axis=0)
-        results_df = pd.DataFrame({
-            "Target (Val)": targets.flatten(),
-            "Prediction (Val)": preds.flatten()
-        })
-        results_path = os.path.join(opt.output_directory, opt.run_name, "val_predicted_values.csv")
-        results_df.to_csv(results_path, index=False)
     
-
     # Shift validation losses forward by one epoch for alignment
     val_losses = [np.nan] + val_losses[:-1]
     val_mae = [np.nan] + val_mae[:-1]
@@ -316,7 +224,7 @@ def train(opt, train_dataset, val_dataset):
     plt.close()
     print(f"MAE plot (Train/Val) saved to: {plot_path}")
 
-    return model
+    return model, train_losses, train_mae, val_losses, val_mae
 
 
 
@@ -335,7 +243,7 @@ if __name__ == "__main__":
     save_args_to_json(opt, os.path.join(output_dir,'run_details.json'))
 
     # Setup data
-    participant_df = load_participants(folder_path = opt.data_directory, clean = opt.clean, add_age = True)
+    participant_df = load_participants(folder_path = opt.data_directory, add_age = True)
         
     age_values = participant_df['age'].values 
 
@@ -361,5 +269,19 @@ if __name__ == "__main__":
         train_fold.to_csv((os.path.join(opt.output_directory, opt.run_name, 'train_fold.csv')), index=False)
         val_fold.to_csv((os.path.join(opt.output_directory, opt.run_name, 'val_fold.csv')), index=False)
 
-        # Train and test
-        trained_model = train(opt, train_fold, val_fold)
+        # Train
+        trained_model, train_losses, train_mae, val_losses, val_mae = train(opt, train_fold, val_fold)
+
+        training_metrics = pd.DataFrame({
+            'train_loss': train_losses,
+            'train_mae': train_mae,
+            'val_loss': val_losses,
+            'val_mae': val_mae
+        })
+
+        # Define directory and file path
+        csv_path = os.path.join(opt.output_directory, opt.run_name, 'training_metrics.csv')
+        training_metrics.to_csv(csv_path, index=False)
+
+
+        

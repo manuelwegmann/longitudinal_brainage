@@ -1,13 +1,13 @@
 import torch
 import torch.nn as nn
 from LILAC import LILAC
-from CV_LILAC import CV_LILAC
+from LILAC_plus import LILAC_plus
 import json
 from argparse import Namespace
 
 # Set paths
-path_to_json = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/proper_CV_w_MLP_wo_age/run_details.json'
-path_to_best_model = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/proper_CV_w_MLP_wo_age/fold_0/model.pt'
+path_to_json = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/run_details.json'
+path_to_best_model = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_0/best_model.pt'
 
 # Load args from JSON
 with open(path_to_json, 'r') as f:
@@ -19,7 +19,7 @@ device = torch.device("cpu")
 print(f"Using device: {device}")
 
 # Initialize model on CPU
-model = CV_LILAC(args).to(device)
+model = LILAC(args).to(device)
 
 # Load checkpoint onto CPU
 checkpoint = torch.load(path_to_best_model, map_location=device)

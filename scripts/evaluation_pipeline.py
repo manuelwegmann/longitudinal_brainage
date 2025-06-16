@@ -24,6 +24,10 @@ def decide_type_of_result(filepath):
         name = 'val'
     elif 'results_test' in filepath.lower():
         name = 'test'
+    elif 'results_ci' in filepath.lower():
+        name = 'CI'
+    elif 'results_all_folds' in filepath.lower():
+        name = 'all_folds'
     else:
         print("Error in naming of file.")
         name = 'error'

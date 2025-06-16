@@ -5,7 +5,6 @@ import torch
 import numpy as np
 import os
 import json
-import math
 import torch.nn as nn
 import torch.optim as optim
 import pandas as pd
@@ -21,7 +20,6 @@ def parse_args():
     parser.add_argument('--data_directory', default='/mimer/NOBACKUP/groups/brainage/data/oasis3', type=str, help="directory of the data (OASIS3)")
 
     #data preprocessing arguments
-    parser.add_argument('--clean', default=True, type=bool, help="whether to clean data from CI and single scan participants")
     parser.add_argument('--image_size', nargs=3, type=int, default=[128, 128, 128], help='Input image size as three integers (e.g. 128 128 128)')
     parser.add_argument('--image_channel', default=1, type=int, help="number of channels in the input image")
     parser.add_argument('--val_size', default=0.2, type=float, help="validation size for splitting the data")
@@ -400,7 +398,7 @@ if __name__ == "__main__":
     save_args_to_json(opt, os.path.join(output_dir,'run_details.json'))
 
     # Setup data
-    participant_df = load_participants(folder_path = opt.data_directory, clean = opt.clean)
+    participant_df = load_participants(folder_path = opt.data_directory)
     train_dataset, val_dataset, test_dataset = split(opt, participant_df, output_dir = output_dir)
 
     #train model

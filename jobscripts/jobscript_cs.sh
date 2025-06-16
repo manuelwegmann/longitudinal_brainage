@@ -2,7 +2,7 @@
 
 #SBATCH -A NAISS2025-22-353     # project ID found via "projinfo"
 #SBATCH -p alvis                # what partition to use (usually not necessary)
-#SBATCH -t 08:00:00          # how long time it will take to run
+#SBATCH -t 04:00:00          # how long time it will take to run
 #SBATCH --gpus-per-node=V100:1    # choosing no. GPUs and their type
 
 # load modules
@@ -14,4 +14,4 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
-python -u run_CS_CNN.py --batchsize 16 --early_stopping_patience 10 --seed 20 --run_name 'CS_model' --dropout 0.1
+python -u run_CS_CNN.py --batchsize 16 --early_stopping_patience 10 --seed 20 --run_name 'CS_try'

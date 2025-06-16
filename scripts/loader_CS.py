@@ -11,9 +11,9 @@ import torchio as tio
 import numpy as np
 import torch
 
-from prep_data import add_classification, exclude_CI_participants, exclude_single_scan_participants, check_folders_exist
+from prep_data import add_classification, exclude_CI_participants, check_folders_exist
 
-def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3', clean = True, add_age = False):
+def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
     """
     Input:
         folder_path: path to the folder containing the participants.tsv file
@@ -26,30 +26,13 @@ def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3
     df = pd.read_csv(participants_file_path, sep='\t')
     df = check_folders_exist(df, folder_path) #delete participants that do not have a folder
     df = add_classification(df, folder_path) #add classification to the dataframe
-    if clean: # Exclude participants with CI
-        df = exclude_CI_participants(df)
-    if add_age:
-        filtered_rows = []
-        for _, row in df.iterrows():
-            participant_id = str(row['participant_id'])
-            sessions_file_path = os.path.join(folder_path, participant_id, 'sessions.tsv')
+    df = exclude_CI_participants(df)
 
-            if os.path.exists(sessions_file_path):
-                sessions_file = pd.read_csv(sessions_file_path, sep='\t')
-                age_values = sessions_file['age'].dropna()
-                if not age_values.empty:
-                    row['age'] = age_values.iloc[0]
-                    filtered_rows.append(row)
-
-        df = pd.DataFrame(filtered_rows).reset_index(drop=True)
-        return df[['participant_id', 'sex', 'age']]
-
-    else:
-        return df[['participant_id', 'sex']]
+    return df[['participant_id', 'sex']]
     
 
 
-def build_participant_block(participant_id, sex ,folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
+def build_participant_block(participant_id, sex , folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
     """
     Function to extract all available images of one participant. Encode gender as one-hot encoding.
     Input:
@@ -57,7 +40,7 @@ def build_participant_block(participant_id, sex ,folder_path = '/mimer/NOBACKUP/
         sex: gender of the participant
         folder_path: path to the folder containing all participant folders
     Output:
-        Dataframe where each row is a pair of images from the same participant, preprocessed.
+        Dataframe where each row is a new images from the same participant.
     """
     #one-hot encoding
     sex_M = 0
@@ -83,23 +66,26 @@ def build_participant_block(participant_id, sex ,folder_path = '/mimer/NOBACKUP/
     age_list = []
     
     #extract sessions and age   
-    for i in range(num_sessions-1):
+    for i in range(num_sessions):
         scan_id = sessions_file.iloc[i]['session_id']
         scan_session = sessions_file[sessions_file['session_id'] == scan_id]
         age = scan_session.iloc[0]['age']
         if np.isnan(age): #skip if age is not available
-            break
+            continue
         scan_list.append(scan_id)
         age_list.append(age)
 
-        return pd.DataFrame({
-            'participant_id': [participant_id] * len(scan_list),
-            'sex_M': [sex_M] * len(scan_list),
-            'sex_F': [sex_F] * len(scan_list),
-            'sex_U': [sex_U] * len(scan_list),
-            'age': age_list,
-            'session_id': scan_list
-        })
+    return pd.DataFrame({
+        'participant_id': [participant_id] * len(scan_list),
+        'sex_M': [sex_M] * len(scan_list),
+        'sex_F': [sex_F] * len(scan_list),
+        'sex_U': [sex_U] * len(scan_list),
+        'age': age_list,
+        'session_id': scan_list
+    })
+ 
+
+
 
 
 
