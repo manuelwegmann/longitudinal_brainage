@@ -15,6 +15,6 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
 
-python -u apply_CS_model.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_model/run_details.json \
-    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_model/test_fold.csv \
-    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_model/best_model.pt
+python -u apply_CS_CNN.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_try/run_details.json \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_try/test_dataset.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_try/best_model.pt
