@@ -1,0 +1,34 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/4635813
+making attention of type 'vanilla' with 512 in_channels
+Working with z of shape (1, 1, 128, 128) = 16384 dimensions.
+making attention of type 'vanilla' with 512 in_channels
+Restored from /cephyr/users/manuelw/Alvis/.cache/huggingface/hub/models--stanfordmimi--MedVAE/snapshots/8040c5ccb7a51eff6b4cef513c7f20bd1bda983d/model_weights/vae_4x_1c_3D.ckpt with 0 missing and 0 unexpected keys
+model loaded, will now be applied.
+Check.
+Ran model. Now plotting slices.
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts/ae_playground.py:41: UserWarning: The use of `x.T` on tensors of dimension other than 2 to reverse their shape is deprecated and it will throw an error in a future release. Consider `x.mT` to transpose batches of matrices or `x.permute(*torch.arange(x.ndim - 1, -1, -1))` to reverse the dimensions of a tensor. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:3725.)
+  plt.imshow(slice_original.T, cmap='gray', origin='lower')
+Traceback (most recent call last):
+  File "/mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts/ae_playground.py", line 41, in <module>
+    plt.imshow(slice_original.T, cmap='gray', origin='lower')
+  File "/apps/Arch/software/matplotlib/3.9.2-gfbf-2024a/lib/python3.12/site-packages/matplotlib/pyplot.py", line 3562, in imshow
+    __ret = gca().imshow(
+            ^^^^^^^^^^^^^
+  File "/apps/Arch/software/matplotlib/3.9.2-gfbf-2024a/lib/python3.12/site-packages/matplotlib/__init__.py", line 1473, in inner
+    return func(
+           ^^^^^
+  File "/apps/Arch/software/matplotlib/3.9.2-gfbf-2024a/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 5895, in imshow
+    im.set_data(X)
+  File "/apps/Arch/software/matplotlib/3.9.2-gfbf-2024a/lib/python3.12/site-packages/matplotlib/image.py", line 729, in set_data
+    self._A = self._normalize_image_array(A)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/apps/Arch/software/matplotlib/3.9.2-gfbf-2024a/lib/python3.12/site-packages/matplotlib/image.py", line 690, in _normalize_image_array
+    A = cbook.safe_masked_invalid(A, copy=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/apps/Arch/software/matplotlib/3.9.2-gfbf-2024a/lib/python3.12/site-packages/matplotlib/cbook.py", line 733, in safe_masked_invalid
+    x = np.array(x, subok=True, copy=copy)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torch/_tensor.py", line 1194, in __array__
+    return self.numpy()
+           ^^^^^^^^^^^^
+TypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.

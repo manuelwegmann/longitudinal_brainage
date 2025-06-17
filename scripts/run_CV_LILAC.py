@@ -70,7 +70,8 @@ def train(opt, train_dataset, val_dataset):
         val_dataset: dataset with the validation set (id,sex)
     Output:
         model: trained model
-        plots for training loss to output directory, as well as predicted values for train and val
+        training metrics: lists of training and validation losses and MAE
+        plots for training and validation loss to output directory.
     """
     # Set up device
     print("We are in train.")
@@ -162,7 +163,7 @@ def train(opt, train_dataset, val_dataset):
                 # Move tensors to device
                 x1 = x1.float().to(device)
                 x2 = x2.float().to(device)
-                target = target.to(device).float()
+                target = target.float().to(device)
 
                 # Forward pass
                 output = model(x1, x2, meta)

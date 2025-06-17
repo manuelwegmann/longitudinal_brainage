@@ -13,11 +13,10 @@ import torch
 
 from prep_data import add_classification, exclude_CI_participants, check_folders_exist
 
-def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
+def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3', add_age = False):
     """
     Input:
         folder_path: path to the folder containing the participants.tsv file
-        clean: boolean to clean the data from single scan and CI participants
         add_age: whether to add age
     Output:
         df: dataframe with the participants and their gender (possibly age)
@@ -27,12 +26,28 @@ def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3
     df = check_folders_exist(df, folder_path) #delete participants that do not have a folder
     df = add_classification(df, folder_path) #add classification to the dataframe
     df = exclude_CI_participants(df)
+    if add_age:
+        filtered_rows = []
+        for _, row in df.iterrows():
+            participant_id = str(row['participant_id'])
+            sessions_file_path = os.path.join(folder_path, participant_id, 'sessions.tsv')
 
-    return df[['participant_id', 'sex']]
+            if os.path.exists(sessions_file_path):
+                sessions_file = pd.read_csv(sessions_file_path, sep='\t')
+                age_values = sessions_file['age'].dropna()
+                if not age_values.empty:
+                    row['age'] = age_values.iloc[0]
+                    filtered_rows.append(row)
+
+        df = pd.DataFrame(filtered_rows).reset_index(drop=True)
+        return df[['participant_id', 'sex', 'age']]
+
+    else:
+        return df[['participant_id', 'sex']]
     
 
 
-def build_participant_block(participant_id, sex , folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
+def build_participant_block(participant_id, sex, folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
     """
     Function to extract all available images of one participant. Encode gender as one-hot encoding.
     Input:

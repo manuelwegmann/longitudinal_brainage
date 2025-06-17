@@ -6,8 +6,8 @@ import json
 from argparse import Namespace
 
 # Set paths
-path_to_json = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/run_details.json'
-path_to_best_model = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_0/best_model.pt'
+path_to_json = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/run_details.json'
+path_to_best_model = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age/fold_0/model.pt'
 
 # Load args from JSON
 with open(path_to_json, 'r') as f:
@@ -19,7 +19,7 @@ device = torch.device("cpu")
 print(f"Using device: {device}")
 
 # Initialize model on CPU
-model = LILAC(args).to(device)
+model = LILAC_plus(args).to(device)
 
 # Load checkpoint onto CPU
 checkpoint = torch.load(path_to_best_model, map_location=device)
