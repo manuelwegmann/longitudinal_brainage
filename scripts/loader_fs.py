@@ -11,20 +11,7 @@ import torchio as tio
 import numpy as np
 import torch
 
-from argparse import Namespace
-import json
-
 from prep_data import add_classification, exclude_CI_participants, exclude_single_scan_participants, check_folders_exist
-
-def load_args_from_json(filepath):
-
-    with open(filepath, 'r') as f:
-        args_dict = json.load(f)
-
-    args = Namespace(**args_dict)
-
-    return args
-
 
 def load_participants(project_data_dir = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/data', folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3', add_age = False):
     """
@@ -271,12 +258,3 @@ class loader3D(Dataset):
         
     def __len__(self):
         return len(self.image_pair_paths)
-    
-
-
-if __name__ == "__main__":
-    #need to add project directory path to args
-    df = load_participants(add_age=True)
-    opt = load_args_from_json('/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age/run_details.json')
-    data = loader3D(opt,df)
-    print(data.demo.head())
