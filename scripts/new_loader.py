@@ -11,9 +11,22 @@ import torchio as tio
 import numpy as np
 import torch
 
+from argparse import Namespace
+import json
+
 from prep_data import add_classification, exclude_CI_participants, exclude_single_scan_participants, check_folders_exist
 
-def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3', add_age = False):
+def load_args_from_json(filepath):
+
+    with open(filepath, 'r') as f:
+        args_dict = json.load(f)
+
+    args = Namespace(**args_dict)
+
+    return args
+
+
+def load_participants(project_data_dir = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/data', folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3', add_age = False):
     """
     Input:
         folder_path: path to the folder containing the participants.tsv file
@@ -31,10 +44,10 @@ def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3
         filtered_rows = []
         for _, row in df.iterrows():
             participant_id = str(row['participant_id'])
-            sessions_file_path = os.path.join(folder_path, participant_id, 'sessions.tsv')
+            sessions_file_path = os.path.join(project_data_dir, participant_id, 'sessions.csv')
 
             if os.path.exists(sessions_file_path):
-                sessions_file = pd.read_csv(sessions_file_path, sep='\t')
+                sessions_file = pd.read_csv(sessions_file_path)
                 age_values = sessions_file['age'].dropna()
                 if not age_values.empty:
                     row['age'] = age_values.iloc[0]
@@ -70,7 +83,7 @@ def check_fieldstrength(participant_id, session_id, folder_path = '/mimer/NOBACK
     
 
 
-def build_participant_block(participant_id, sex, folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
+def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/groups/brainage/data/oasis3', project_data_dir = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/data'):
     """
     Function to extract all available image pairs of a participant. Encode gender as one-hot encoding.
     Only include participants with 3 Tesla scans.
@@ -81,6 +94,7 @@ def build_participant_block(participant_id, sex, folder_path = '/mimer/NOBACKUP/
     Output:
         Dataframe where each row is a pair of images from the same participant, preprocessed.
     """
+
     #one-hot encoding
     sex_M = 0
     sex_F = 0
@@ -91,14 +105,18 @@ def build_participant_block(participant_id, sex, folder_path = '/mimer/NOBACKUP/
         sex_F = 1
     if sex not in ['M', 'F']:
         sex_U = 1
+
     #load the sessions file for extracting sessions
-    sessions_file_path = os.path.join(folder_path, str(participant_id), 'sessions.tsv')
-    sessions_file = pd.read_csv(sessions_file_path, sep='\t')
-    num_sessions = sessions_file.shape[0]
+    sessions_file_path = os.path.join(project_data_dir, str(participant_id), 'sessions.csv')
+    sessions_file = pd.read_csv(sessions_file_path)
+
     #check if the participant has at least 2 sessions
+    num_sessions = sessions_file.shape[0]
     if num_sessions < 2:
         print(f"Warning: Participant {participant_id} has less than 2 sessions. Skipping.")
         return None
+    
+    #generate block for one participant
     else:
         scan1_list = []
         scan2_list = []
@@ -106,24 +124,26 @@ def build_participant_block(participant_id, sex, folder_path = '/mimer/NOBACKUP/
         age_list = []
         field_strength1_list = []
         field_strength2_list = []
+
         #extract pairs of sessions
         for i in range(num_sessions-1):
             scan1_id = sessions_file.iloc[i]['session_id']
             field_strength1 = check_fieldstrength(participant_id, scan1_id, folder_path)
-
             scan1_session = sessions_file[sessions_file['session_id'] == scan1_id]
             scan1_time = scan1_session.iloc[0]['days_from_baseline']
             age = scan1_session.iloc[0]['age']
+
             if np.isnan(age): #skip if age is not available
                 print(f"No age available for participant {participant_id} in session {scan1_id}. Skipping this session.")
                 continue
+
             for j in range(i+1, num_sessions):
                 scan2_id = sessions_file.iloc[j]['session_id']
                 field_strength2 = check_fieldstrength(participant_id, scan2_id, folder_path)
                 scan2_session = sessions_file[sessions_file['session_id'] == scan2_id]
                 scan2_time = scan2_session.iloc[0]['days_from_baseline']
-                time_difference = (scan2_time - scan1_time)/365
 
+                time_difference = (scan2_time - scan1_time)/365
 
                 if field_strength1 is None or field_strength2 is None:
                     print(f"Warning: Field strength not found for participant {participant_id} in session(s) {scan1_id} or {scan2_id}. Skipping this pair.")
@@ -131,6 +151,7 @@ def build_participant_block(participant_id, sex, folder_path = '/mimer/NOBACKUP/
                 if field_strength1 < 2 or field_strength2 < 2:
                     print(f"Warning: Participant {participant_id} has a field strength below 2 Tesla in session(s) {scan1_id} or {scan2_id}. Skipping this pair.")
                     continue
+
                 scan1_list.append(scan1_id)
                 scan2_list.append(scan2_id)
                 age_list.append(age)
@@ -254,16 +275,8 @@ class loader3D(Dataset):
 
 
 if __name__ == "__main__":
-    df = load_participants()
-    print(df.head())
-    case = df[df['participant_id'] == 'sub-OAS31064']
-    a = build_participant_block(participant_id = case['participant_id'].values[0], sex=case['sex'].values[0])
-    print(a)
-
-    for index,row in df.iterrows():
-        participant_id = row['participant_id']
-        sex = row['sex']
-        a = build_participant_block(participant_id, sex)
-        print(a)
-
-    b = 'sub-OAS30807'
+    #need to add project directory path to args
+    df = load_participants(add_age=True)
+    opt = load_args_from_json('/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age/run_details.json')
+    data = loader3D(opt,df)
+    print(data.demo.head())
