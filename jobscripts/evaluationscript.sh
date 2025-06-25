@@ -13,24 +13,8 @@ module load SciPy-bundle/2024.05-gfbf-2024a
 source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 
 # execute 
-cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
+cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/tools
 
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_0/train_predicted_values.csv
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_0/val_predicted_values.csv
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_0/test_predicted_values.csv
-
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_1/train_predicted_values.csv
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_1/val_predicted_values.csv
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_1/test_predicted_values.csv
-
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_2/train_predicted_values.csv
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_2/val_predicted_values.csv
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_2/test_predicted_values.csv
-
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_3/train_predicted_values.csv
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_3/val_predicted_values.csv
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_3/test_predicted_values.csv
-
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_4/train_predicted_values.csv
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_4/val_predicted_values.csv
-python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_w_age/5-fold-cv_w_age/fold_4/test_predicted_values.csv
+python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/fs_LILAC_plus/fold_0/results_val.csv
+python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/fs_LILAC_plus/fold_1/results_val.csv
+python -u evaluation_pipeline.py --results_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/fs_LILAC_plus/results_all_folds.csv

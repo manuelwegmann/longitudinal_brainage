@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-path_to_folds = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_age'
+path_to_folds = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/fs_LILAC_plus'
 
 # List to store individual DataFrames
 dfs = []

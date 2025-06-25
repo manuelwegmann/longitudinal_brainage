@@ -14,7 +14,7 @@ from torch.utils.data import DataLoader
 
 from LILAC import LILAC
 from LILAC_plus import LILAC_plus
-from loader import loader3D
+from loader_fs import loader3D
 
 #options from the command line
 def parse_args():

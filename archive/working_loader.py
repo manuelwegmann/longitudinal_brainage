@@ -208,22 +208,3 @@ class loader3D(Dataset):
         
     def __len__(self):
         return len(self.image_pair_paths)
-    
-
-if __name__ == "__main__":
-    import json
-    from argparse import Namespace
-
-    def load_args_from_json(filepath):
-
-        with open(filepath, 'r') as f:
-            args_dict = json.load(f)
-
-        args = Namespace(**args_dict)
-
-        return args
-    #need to add project directory path to args
-    df = load_participants(add_age=True)
-    opt = load_args_from_json('/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age/run_details.json')
-    data = loader3D(opt,df)
-    print(data.demo.head())

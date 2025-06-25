@@ -15,15 +15,15 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
 
-python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_wo_age/run_details.json \
-    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CI_participants/CI_participants.csv \
-    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/5-fold-cv_wo_age/fold_4/best_model.pt \
-    --model LILAC \
-    --model_name LILAC
-
-python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/proper_CV_w_MLP_wo_age/run_details.json \
-    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CI_participants/CI_participants.csv \
-    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/proper_CV_w_MLP_wo_age/fold_4/model.pt \
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/fs_LILAC_plus/run_details.json \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/fs_LILAC_plus/fold_0/val_fold.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/fs_LILAC_plus/fold_0/model.pt \
     --model LILAC_plus \
-    --model_name LILAC_plus
+    --model_name fs_LILAC_plus
+
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/fs_LILAC_plus/run_details.json \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/fs_LILAC_plus/fold_1/val_fold.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/fs_LILAC_plus/fold_1/model.pt \
+    --model LILAC_plus \
+    --model_name fs_LILAC_plus
 

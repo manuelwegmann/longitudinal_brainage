@@ -1,4 +1,4 @@
-from loader import loader3D, load_participants
+from loader_fs import loader3D, load_participants
 from LILAC import LILAC
 from LILAC_plus import LILAC_plus
 
@@ -245,7 +245,7 @@ if __name__ == "__main__":
     save_args_to_json(opt, os.path.join(output_dir,'run_details.json'))
 
     # Setup data
-    participant_df = load_participants(folder_path = opt.data_directory, add_age = True)
+    participant_df = load_participants(project_data_dir = opt.project_data_dir, folder_path = opt.data_directory, add_age = True)
         
     age_values = participant_df['age'].values 
 
