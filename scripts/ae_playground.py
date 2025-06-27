@@ -5,30 +5,56 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import torchio as tio
+import argparse
 
-fpath = "/mimer/NOBACKUP/groups/brainage/thesis_brainage/data/sub-OAS30001/ses-d0757/sub-OAS30001_ses-d0757_latent_8.pt"
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+from loader_AE import loader3D
 
-# Load raw 3D volume
-tensor = torch.load(fpath) 
+def parse_args():
+    parser = argparse.ArgumentParser()
 
-print(tensor.shape)
+    parser.add_argument('--data_directory', default='/mimer/NOBACKUP/groups/brainage/data/oasis3', type=str, help="directory of the data (OASIS3)")
+    parser.add_argument('--project_data_dir', default ='/mimer/NOBACKUP/groups/brainage/thesis_brainage/data', type=str, help="directory with the updated session files")
 
-tensor = tensor.unsqueeze(0)
+    parser.add_argument('--model', default='LILAC_plus', type=str, choices=['LILAC', 'LILAC_plus'], help="model to use: LILAC or LILAC_plus")
 
-print(tensor.shape)
+    #data preprocessing arguments
+    parser.add_argument('--compression', default=0, type=int, help='compression used in autoencoder (4 or 8)')
+    parser.add_argument('--image_channel', default=1, type=int, help="number of channels in the input image")
+    parser.add_argument('--seed', default=15, type=int)
 
-# Create dummy affine (identity or your known affine)
-affine = torch.eye(4)
+    #target and optional meta data arguments
+    parser.add_argument('--target_name', default='duration', type=str, help="name of the target variable")
+    parser.add_argument('--optional_meta', nargs='+', default=['sex_F', 'sex_M'], help="List of optional meta to be used in the model")
+    
+    #model architecture arguments
+    parser.add_argument('--n_of_blocks', default=4, type=int, help="number of blocks in the encoder")
+    parser.add_argument('--initial_channel', default=16, type=int, help="initial channel size after first conv")
+    parser.add_argument('--kernel_size', default=3, type=int, help="kernel size")
 
-# Wrap in ScalarImage
-image = tio.ScalarImage(tensor=tensor, affine=affine)
+    #training arguments
+    parser.add_argument('--dropout', default=0, type=float, help="dropout rate")
+    parser.add_argument('--lr', default=0.001, type=float)
+    parser.add_argument('--batchsize', default=16, type=int)
+    parser.add_argument('--max_epoch', default=30, type=int, help="max epoch")
+    parser.add_argument('--epoch', default=0, type=int, help="starting epoch")
+    
+    parser.add_argument('--folds', default=5, type=int, help = "number of folds for k-fold cv.")
+    parser.add_argument('--output_directory', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results', type=str, help="directory path for saving model and outputs")
+    parser.add_argument('--run_name', default='test_run', type=str, help="name of the run")
 
-# Resize to desired shape (e.g., [128, 128, 128])
-resized = tio.Resize((24, 24, 24))(image)
 
-print(resized.shape)
+    args = parser.parse_args()
 
-resized = resized.data
+    return args
 
-print(resized.shape)
+if __name__ == '__main__':
+    args = parse_args()
+    participants = pd.read_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/further_analysis_results/participants_file.csv')
+    a = loader3D(args, participants)
+    ad = a.demo
+    print(ad.head())
+
+    print(ad.iloc[49])
+    b = a[49]
+    print(ad.iloc[125])
+    c = a[125]

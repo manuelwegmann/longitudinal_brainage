@@ -163,16 +163,17 @@ class loader3D(Dataset):
         self.demo = pd.concat(blocks, ignore_index=True)
         
         if args.compression == 4:
-            self.image_size = 32
+            self.image_size = [32, 32, 32]
             self.compression_string = '4'
         elif args.compression == 8:
             self.compression_string = '8'
-            self.image_size = 16
+            self.image_size = [16, 16, 16]
         else:
             print("The compression argument is not set correctly.")
         self.resize = tio.transforms.Resize(tuple(self.image_size)) #safe resize transform
         self.targetname = args.target_name #save target for training
         self.datadir = args.data_directory  #save data directory
+        self.projdatadir = args.project_data_dir #save project datadirectory
 
         # Build file path pairs
         self.image_pair_paths = []
@@ -181,10 +182,10 @@ class loader3D(Dataset):
             participant_id = str(row['participant_id'])
             session1 = str(row['session_id1'])
             session2 = str(row['session_id2'])
-            img_dir1 = os.path.join(self.datadir, 'derivatives', 'mriprep', participant_id, session1)
-            img_dir2 = os.path.join(self.datadir, 'derivatives', 'mriprep', participant_id, session2)
-            pattern1 = os.path.join(img_dir1, '*T1w.nii.gz')
-            pattern2 = os.path.join(img_dir2, '*T1w.nii.gz')
+            img_dir1 = os.path.join(self.projdatadir, participant_id, session1)
+            img_dir2 = os.path.join(self.projdatadir, participant_id, session2)
+            pattern1 = os.path.join(img_dir1, '*.pt')
+            pattern2 = os.path.join(img_dir2, '*.pt')
 
             matching_files1 = glob.glob(pattern1)
             matching_files2 = glob.glob(pattern2)
@@ -216,12 +217,15 @@ class loader3D(Dataset):
         # Get target as float tensor
         target = torch.tensor([self.demo[self.targetname].iloc[index]], dtype=torch.float32)
 
-        path1, path2 = self.image_pair_paths[index]
-        
+        path1, path2 = self.image_pair_paths[index]      
 
         # Load images as torchio images
-        image1 = tio.ScalarImage(path1)
-        image2 = tio.ScalarImage(path2)
+        image1_tensor = torch.load(path1)
+        image2_tensor = torch.load(path2)
+        image1_tensor = image1_tensor.unsqueeze(0)
+        image2_tensor = image2_tensor.unsqueeze(0)
+        image1 = tio.ScalarImage(tensor=image1_tensor, affine=torch.eye(4))
+        image2 = tio.ScalarImage(tensor=image2_tensor, affine=torch.eye(4))
         image1 = self.resize(image1)
         image2 = self.resize(image2)
         image1_tensor = image1.data

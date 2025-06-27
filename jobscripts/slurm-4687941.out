@@ -1,0 +1,5 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/4687941
+  File "/mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts/run_AE.py", line 243
+    opt-image_size = [16,16,16]
+    ^^^^^^^^^^^^^^
+SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?
