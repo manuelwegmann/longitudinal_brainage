@@ -2,7 +2,7 @@
 
 #SBATCH -A NAISS2025-22-353     # project ID found via "projinfo"
 #SBATCH -p alvis                # what partition to use (usually not necessary)
-#SBATCH -t 04:00:00           # how long time it will take to run
+#SBATCH -t 01:25:00           # how long time it will take to run
 #SBATCH --gpus-per-node=A40:1    # choosing no. GPUs and their type
 
 # load modules
@@ -15,4 +15,4 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
 
-python -u generate_latent_representations.py --compression 8
+python -u generate_latent_representations.py --compression 4

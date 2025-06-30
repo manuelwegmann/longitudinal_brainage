@@ -1,5 +1,5 @@
 """
-This script applies a trained longitudinal model (LILAC/LILAC+) to a .csv file containing participant ids.
+This script applies a trained longitudinal autoencoder model (4/8 times compression) to a .csv file containing participant ids.
 """
 
 import numpy as np
@@ -14,18 +14,19 @@ from torch.utils.data import DataLoader
 
 from LILAC import LILAC
 from LILAC_plus import LILAC_plus
-from loader import loader3D
+from loader_AE import loader3D
 
 #options from the command line
 def parse_args():
-    parser = argparse.ArgumentParser()
 
+    parser = argparse.ArgumentParser()
 
     parser.add_argument('--json', default='blank', type=str, help = "json file with run details.")
     parser.add_argument('--participants_file', default = 'blank', type=str, help = "participants file csv")
     parser.add_argument('--model_state', default = 'blank', type=str, help = "path to model state")
     parser.add_argument('--model', default = 'blank', type=str, help = "LILAC_plus or LILAC")
     parser.add_argument('--model_name', default = 'blank', type=str, help = "name of the model, e.g. LILAC_plus_age")
+    parser.add_argument('--compression', default = '0', type=str, help = "compression of AE (4 or 8)")
 
     args = parser.parse_args()
 
@@ -180,8 +181,3 @@ if __name__ == "__main__":
     full_path = os.path.join(folder_path, file_name)
     results.to_csv(full_path, index=False)
     print(f"Saved results to CSV to: {full_path}.") 
-
-
-
-
-

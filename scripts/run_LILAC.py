@@ -1,4 +1,4 @@
-from loader_fs import loader3D, load_participants
+from loader import loader3D
 from LILAC import LILAC
 from LILAC_plus import LILAC_plus
 
@@ -22,6 +22,7 @@ def parse_args():
 
     parser.add_argument('--data_directory', default='/mimer/NOBACKUP/groups/brainage/data/oasis3', type=str, help="directory of the data (OASIS3)")
     parser.add_argument('--project_data_dir', default ='/mimer/NOBACKUP/groups/brainage/thesis_brainage/data', type=str, help="directory with the updated session files")
+    parser.add_argument('--participants_file_path', default = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/further_analysis_results/participants_file_with_age.csv', type = str, help = 'path to participants csv.')
 
     parser.add_argument('--model', default='LILAC_plus', type=str, choices=['LILAC', 'LILAC_plus'], help="model to use: LILAC or LILAC_plus")
 
@@ -245,7 +246,7 @@ if __name__ == "__main__":
     save_args_to_json(opt, os.path.join(output_dir,'run_details.json'))
 
     # Setup data
-    participant_df = load_participants(project_data_dir = opt.project_data_dir, folder_path = opt.data_directory, add_age = True)
+    participant_df = pd.read_csv(opt.participants_file_path)
         
     age_values = participant_df['age'].values 
 

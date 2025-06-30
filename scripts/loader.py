@@ -1,5 +1,9 @@
 """
-This script contains a reworked data loader that allows for all available image pairs of a participant to be loaded.
+This script contains the data loader for LILAC and LILAC+.
+For each participant that gets passed to the custom dataset, it:
+    generates all possible pairs.
+    filters out scans with field strength 1.5 Tesla.
+    filters out pairs without available age at baseline.
 """
 
 
@@ -10,41 +14,6 @@ import glob
 import torchio as tio
 import numpy as np
 import torch
-
-from prep_data import add_classification, exclude_CI_participants, exclude_single_scan_participants, check_folders_exist
-
-def load_participants(project_data_dir = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/data', folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3', add_age = False):
-    """
-    Input:
-        folder_path: path to the folder containing the participants.tsv file
-        add_age: whether to add age
-    Output:
-        df: dataframe with the participants and their gender (possibly age)
-    """
-    participants_file_path = os.path.join(folder_path, 'participants.tsv')
-    df = pd.read_csv(participants_file_path, sep='\t')
-    df = check_folders_exist(df, folder_path) #delete participants that do not have a folder
-    df = add_classification(df, folder_path) #add classification to the dataframe
-    df = exclude_CI_participants(df)
-    df = exclude_single_scan_participants(df)
-    if add_age:
-        filtered_rows = []
-        for _, row in df.iterrows():
-            participant_id = str(row['participant_id'])
-            sessions_file_path = os.path.join(project_data_dir, participant_id, 'sessions.csv')
-
-            if os.path.exists(sessions_file_path):
-                sessions_file = pd.read_csv(sessions_file_path)
-                age_values = sessions_file['age'].dropna()
-                if not age_values.empty:
-                    row['age'] = age_values.iloc[0]
-                    filtered_rows.append(row)
-
-        df = pd.DataFrame(filtered_rows).reset_index(drop=True)
-        return df[['participant_id', 'sex', 'age']]
-
-    else:
-        return df[['participant_id', 'sex']]
     
 
 def check_fieldstrength(participant_id, session_id, folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):

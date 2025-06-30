@@ -1,5 +1,9 @@
 """
-This script contains a data loader that works with the autoencoder.
+This script contains the data loader for the autoencoder model.
+For each participant that gets passed to the custom dataset, it:
+    generates all possible pairs.
+    filters out scans with field strength 1.5 Tesla.
+    filters out pairs without available age at baseline.
 """
 
 
@@ -10,13 +14,6 @@ import glob
 import torchio as tio
 import numpy as np
 import torch
-
-from prep_data import add_classification, exclude_CI_participants, exclude_single_scan_participants, check_folders_exist
-
-def load_participants(project_data_dir = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/data', folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3', add_age = False):
-    """
-    replace with direct loading of participant file.
-    """
     
 
 def check_fieldstrength(participant_id, session_id, folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
@@ -184,8 +181,8 @@ class loader3D(Dataset):
             session2 = str(row['session_id2'])
             img_dir1 = os.path.join(self.projdatadir, participant_id, session1)
             img_dir2 = os.path.join(self.projdatadir, participant_id, session2)
-            pattern1 = os.path.join(img_dir1, '*.pt')
-            pattern2 = os.path.join(img_dir2, '*.pt')
+            pattern1 = os.path.join(img_dir1, f"*{str(args.compression)}.pt")
+            pattern2 = os.path.join(img_dir2, f"*{str(args.compression)}.pt")
 
             matching_files1 = glob.glob(pattern1)
             matching_files2 = glob.glob(pattern2)

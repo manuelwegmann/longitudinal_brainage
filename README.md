@@ -11,7 +11,7 @@ This project includes the following models:
 1. **LILAC** – Reimplementation of the original [LILAC model](https://github.com/heejong-kim/LILAC).
 2. **LILAC+** – An expanded version of LILAC with modifications and enhancements.
 3. **Cross-sectional model** – A model of similar size and architecture to compare against the longitudinal models.
-4. **Autoencoder model** - The MRIs are first passed from the autoencoder [MedVAE](https://github.com/StanfordMIMI/MedVAE) before being passed through LILAC.
+4. **Autoencoder model** - The MRIs are first passed through the autoencoder [MedVAE](https://github.com/StanfordMIMI/MedVAE) before being passed through LILAC.
 
 ## Evaluation
 
