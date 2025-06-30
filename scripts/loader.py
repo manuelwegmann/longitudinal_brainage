@@ -47,6 +47,7 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
         participant_id: id of the participant
         sex: gender of the participant
         folder_path: path to the folder containing all participant folders
+        project_data_dir: path to the new data directory containing the updated session files.
     Output:
         Dataframe where each row is a pair of images from the same participant, preprocessed.
     """
@@ -152,7 +153,7 @@ class loader3D(Dataset):
         for _, row in df.iterrows():
             participant_id = str(row['participant_id'])
             sex = str(row['sex'])
-            block = build_participant_block(participant_id, sex, folder_path=args.data_directory)
+            block = build_participant_block(participant_id, sex, folder_path=args.data_directory, project_data_dir=args.project_data_dir)
             if block is not None:
                 blocks.append(block)
 

@@ -1,5 +1,9 @@
 """
-This script contains a reworked data loader that allows for all available image pairs of a participant to be loaded.
+This script contains the data loader for the cross-sectional CNN model.
+For each participant that gets passed to the custom dataset, it:
+    generates all available scans.
+    filters out scans with field strength 1.5 Tesla.
+    filters out scans without available age.
 """
 
 
@@ -11,52 +15,43 @@ import torchio as tio
 import numpy as np
 import torch
 
-from prep_data import add_classification, exclude_CI_participants, check_folders_exist
 
-def load_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3', add_age = False):
+def check_fieldstrength(participant_id, session_id, folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
     """
+    Function to check the field strength of a participant's session.
     Input:
-        folder_path: path to the folder containing the participants.tsv file
-        add_age: whether to add age
+        participant_id: id of the participant
+        session_id: id of the session
+        folder_path: path to the folder containing all participant folders
     Output:
-        df: dataframe with the participants and their gender (possibly age)
+        field_strength: field strength of the session
     """
-    participants_file_path = os.path.join(folder_path, 'participants.tsv')
-    df = pd.read_csv(participants_file_path, sep='\t')
-    df = check_folders_exist(df, folder_path) #delete participants that do not have a folder
-    df = add_classification(df, folder_path) #add classification to the dataframe
-    df = exclude_CI_participants(df)
-    if add_age:
-        filtered_rows = []
-        for _, row in df.iterrows():
-            participant_id = str(row['participant_id'])
-            sessions_file_path = os.path.join(folder_path, participant_id, 'sessions.tsv')
-
-            if os.path.exists(sessions_file_path):
-                sessions_file = pd.read_csv(sessions_file_path, sep='\t')
-                age_values = sessions_file['age'].dropna()
-                if not age_values.empty:
-                    row['age'] = age_values.iloc[0]
-                    filtered_rows.append(row)
-
-        df = pd.DataFrame(filtered_rows).reset_index(drop=True)
-        return df[['participant_id', 'sex', 'age']]
-
+    scans_file_path = os.path.join(folder_path, str(participant_id), str(session_id), 'scans.tsv')
+    if not os.path.exists(scans_file_path):
+        print(f"Warning: 'scans.tsv' file not found for participant {participant_id} in session {session_id}. Skipping this session.")
+        return None
+    
     else:
-        return df[['participant_id', 'sex']]
+        scans_file = pd.read_csv(scans_file_path, sep='\t')
+        field_strength = scans_file['fieldstrength'].iloc[0]
+        return field_strength
+
     
 
 
-def build_participant_block(participant_id, sex, folder_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3'):
+def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/groups/brainage/data/oasis3', project_data_dir = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/data'):
     """
-    Function to extract all available images of one participant. Encode gender as one-hot encoding.
+    Function to extract all available scans of a participant. Encode gender as one-hot encoding.
+    Only include participants with 3 Tesla scans.
     Input:
         participant_id: id of the participant
         sex: gender of the participant
         folder_path: path to the folder containing all participant folders
+        project_data_dir: path to the new data directory containing the updated session files.
     Output:
-        Dataframe where each row is a new images from the same participant.
+        Dataframe where each all the scans from the same participant is extracted.
     """
+
     #one-hot encoding
     sex_M = 0
     sex_F = 0
@@ -67,41 +62,56 @@ def build_participant_block(participant_id, sex, folder_path = '/mimer/NOBACKUP/
         sex_F = 1
     if sex not in ['M', 'F']:
         sex_U = 1
-    #load the sessions file for extracting sessions
-    sessions_file_path = os.path.join(folder_path, str(participant_id), 'sessions.tsv')
 
-    if not os.path.exists(sessions_file_path):
-        print(f"Warning: The sessions file for participant {participant_id} does not exist.")
+    #load the sessions file for extracting sessions
+    sessions_file_path = os.path.join(project_data_dir, str(participant_id), 'sessions.csv')
+    sessions_file = pd.read_csv(sessions_file_path)
+
+    #check if the participant has at least 2 sessions
+    num_sessions = sessions_file.shape[0]
+    if num_sessions < 2:
+        print(f"Warning: Participant {participant_id} has less than 2 sessions. Skipping.")
         return None
     
-    sessions_file = pd.read_csv(sessions_file_path, sep='\t')
-    num_sessions = sessions_file.shape[0]
-    
-    scan_list = []
-    age_list = []
-    
-    #extract sessions and age   
-    for i in range(num_sessions):
-        scan_id = sessions_file.iloc[i]['session_id']
-        scan_session = sessions_file[sessions_file['session_id'] == scan_id]
-        age = scan_session.iloc[0]['age']
-        if np.isnan(age): #skip if age is not available
-            continue
-        scan_list.append(scan_id)
-        age_list.append(age)
+    #generate block for one participant
+    else:
+        scan_list = []
+        age_list = []
+        field_strength_list = []
 
-    return pd.DataFrame({
-        'participant_id': [participant_id] * len(scan_list),
-        'sex_M': [sex_M] * len(scan_list),
-        'sex_F': [sex_F] * len(scan_list),
-        'sex_U': [sex_U] * len(scan_list),
-        'age': age_list,
-        'session_id': scan_list
-    })
- 
+        #extract pairs of sessions
+        for i in range(num_sessions-1):
+            scan_id = sessions_file.iloc[i]['session_id']
+            field_strength = check_fieldstrength(participant_id, scan_id, folder_path)
+            scan_session = sessions_file[sessions_file['session_id'] == scan_id]
+            age = scan_session.iloc[0]['age']
+
+            if np.isnan(age): #skip if age is not available
+                print(f"No age available for participant {participant_id} in session {scan_id}. Skipping this session.")
+                continue
 
 
+            if field_strength is None:
+                print(f"Warning: Field strength not found for participant {participant_id} in session {scan_id}. Skipping this pair.")
+                continue
+            if field_strength < 2:
+                print(f"Warning: Participant {participant_id} has a field strength below 2 Tesla in session {scan_id}. Skipping this pair.")
+                continue
 
+            scan_list.append(scan_id)
+            age_list.append(age)
+            field_strength_list.append(field_strength)
+
+
+        return pd.DataFrame({
+            'participant_id': [participant_id] * len(scan_list),
+            'sex_M': [sex_M] * len(scan_list),
+            'sex_F': [sex_F] * len(scan_list),
+            'sex_U': [sex_U] * len(scan_list),
+            'age': age_list,
+            'session_id': scan_list,
+            'field_strength': field_strength_list
+        })
 
 
 
@@ -125,7 +135,7 @@ class loader3D(Dataset):
         for _, row in df.iterrows():
             participant_id = str(row['participant_id'])
             sex = str(row['sex'])
-            block = build_participant_block(participant_id, sex, folder_path=args.data_directory)
+            block = build_participant_block(participant_id, sex, folder_path=args.data_directory, project_data_dir=args.project_data_dir)
             if block is not None:
                 blocks.append(block)
 
