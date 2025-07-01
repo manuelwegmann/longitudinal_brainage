@@ -54,14 +54,8 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
 
     #one-hot encoding
     sex_M = 0
-    sex_F = 0
-    sex_U = 0
     if sex == 'M':
         sex_M = 1
-    if sex == 'F':
-        sex_F = 1
-    if sex not in ['M', 'F']:
-        sex_U = 1
 
     #load the sessions file for extracting sessions
     sessions_file_path = os.path.join(project_data_dir, str(participant_id), 'sessions.csv')
@@ -120,8 +114,6 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
         return pd.DataFrame({
             'participant_id': [participant_id] * len(scan1_list),
             'sex_M': [sex_M] * len(scan1_list),
-            'sex_F': [sex_F] * len(scan1_list),
-            'sex_U': [sex_U] * len(scan1_list),
             'age': age_list,
             'session_id1': scan1_list,
             'session_id2': scan2_list,
