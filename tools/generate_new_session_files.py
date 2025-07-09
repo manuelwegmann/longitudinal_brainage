@@ -20,16 +20,24 @@ def generate_new_sessions_df(participant_id, original_data_dir = '/mimer/NOBACKU
     df = pd.read_csv(sessions_file_path, sep = '\t')
 
     num_sessions = len(df)
-    baseline_age = df['age'].iloc[0]
-    baseline_days = df['days_from_baseline'].iloc[0]
 
-    if np.isnan(baseline_age):
-        return df
-    else:
+    not_nan_mask = df['age'].notna()
+    if not_nan_mask.any():
+        first_valid_index = df[not_nan_mask].index[0]
+        valid_age = df.loc[first_valid_index, 'age']
+        valid_days = df.loc[first_valid_index, 'days_from_baseline']
         for i in range(num_sessions):
             if np.isnan(df['age'].iloc[i]):
-                df.loc[i, 'age'] = baseline_age + (df.loc[i, 'days_from_baseline'] - baseline_days) / 365
+                df.loc[i, 'age'] = valid_age + (df.loc[i, 'days_from_baseline'] - valid_days) / 365
         return df
+    else:
+        # If all ages are NaN, we cannot calculate a valid age, so we return the original df
+        print(f"Warning: All ages are NaN for participant {participant_id}. Returning original df.")
+        return df
+
+
+#30422,30486,30754
+
 
 
 if __name__ == "__main__":
