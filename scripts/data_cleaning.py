@@ -1,3 +1,8 @@
+"""
+This script is used to understand the process of data cleaning and preparation for the thesis project.
+"""
+
+
 import pandas as pd
 import numpy as np
 import os
@@ -8,6 +13,9 @@ import json
 from argparse import Namespace
 
 
+"""
+Function to load arguments from a json file to work with the data loader.
+"""
 def load_args_from_json(filepath):
 
     with open(filepath, 'r') as f:
@@ -17,6 +25,9 @@ def load_args_from_json(filepath):
 
     return args
 
+"""
+These functions are to classify participants based on their cognitive status.
+"""
 # For a given participant ID, find CN/CI classification at baseline and final session
 def extract_class_at_baseline(participant_id, project_data_dir='/mimer/NOBACKUP/groups/thesis_brainage/data'):
     classification = "CN"
@@ -44,18 +55,32 @@ def add_classification(df, project_data_dir='/mimer/NOBACKUP/groups/brainage/dat
     df['class_at_final'] = df['participant_id'].apply(lambda participant_id: extract_class_at_final(participant_id, project_data_dir))
     return df
 
+
+
 if __name__ == "__main__":
+    """
+    Load the arguments from the json file.
+    """
     args = load_args_from_json('/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age/run_details.json')
     args.project_data_dir = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/data'
     args.optional_meta = ['sex_M']
 
+    """
+    Load the participants file and extract the complete number of participants.
+    """
     df = pd.read_csv('/mimer/NOBACKUP/groups/brainage/data/oasis3/participants.tsv', sep='\t')
     num_before_CI_removal = len(df)
 
+    """
+    Add classification to the dataframe and remove CI participants.
+    """
     df = add_classification(df, args.project_data_dir)
     df = df[(df['class_at_baseline'] == 'CN') & (df['class_at_final'] == 'CN')] # Exclude CI participants
     num_before_single_scan_removal = len(df)
 
+    """
+    Remove single-scan participants and split by sex. Extract participants with 3 or more scans.
+    """
     df = df[df['mr_sessions'] > 1]  # Exclude participants with only one scan
     num_after_single_scan_removal = len(df)
     female_participants = df[df['sex']== 'F']
@@ -78,7 +103,9 @@ if __name__ == "__main__":
     df_M = loader3D(args, df_M)
     df_F = loader3D(args, df_F)
 
-
+    """
+    Print the results of the cleaning process.
+    """
     print(f"Number of participants before CI removal: {num_before_CI_removal}")
     print(f"Number of participants before single scan removal: {num_before_single_scan_removal}")
     print(f"Number of participants after single scan removal: {num_after_single_scan_removal}")
@@ -93,6 +120,9 @@ if __name__ == "__main__":
     max_scans_F = many_scans_female['mr_sessions'].max()
     print(f"Maximum number of scans for one participant: {max(max_scans_M, max_scans_F)}")
 
+    """
+    Check how many clean participants have multiple field strengths.
+    """
     df = all_fs_loader3D(args, clean_participants).demo
     ids = []
     sessions = []
@@ -118,6 +148,16 @@ if __name__ == "__main__":
         sessions.extend(part_sessions)
         field_strengths.extend(part_field_strengths)
 
+    print(f"type(ids): {type(ids)}, length: {len(ids)}")
+    print(f"type(sessions): {type(sessions)}, length: {len(sessions)}")
+    print(f"type(field_strengths): {type(field_strengths)}, length: {len(field_strengths)}")
+    if len(ids) > 0:
+        print(f"First element in ids: {type(ids[0])}")
+    if len(sessions) > 0:
+        print(f"First element in sessions: {type(sessions[0])}")
+    if len(field_strengths) > 0:
+        print(f"First element in field_strengths: {type(field_strengths[0])}")
+
     clean_participants_with_ses_fs = pd.DataFrame({'participant_id': ids, 'session_id': sessions, 'field_strength': field_strengths})
     count = 0
     ids = []
@@ -126,7 +166,8 @@ if __name__ == "__main__":
         if id in ids:
             continue
         sub_df = clean_participants_with_ses_fs[clean_participants_with_ses_fs['participant_id'] == id]
-        num_unique_fs = sub_df['field_strength'].nunique()
+        num_unique_fs = sub_df['field_strength'].nunique()   
         if num_unique_fs > 1:
+            ids.append(id)
             count += 1
     print(f"Number of clean participants with multiple field strengths: {count}")
