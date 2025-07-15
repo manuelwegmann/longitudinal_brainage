@@ -106,6 +106,7 @@ if __name__ == "__main__":
     
     CI_participants = load_CI_participants()
     print(len(CI_participants))
+    print(CI_participants.head())
     CN_participants = load_CN_participants()
 
     CN_participants = CN_participants[CN_participants['mr_sessions'] <= 3]
@@ -120,3 +121,6 @@ if __name__ == "__main__":
     print(closest_df.head())
     print(len(closest_df))
     print(f"max error: {closest_df['error'].max()}, min error: {closest_df['error'].min()}, mean error: {closest_df['error'].mean()}")
+
+    CI_participants.to_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files/CI_participants.csv', index=False)
+    closest_df.to_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files/CN_controlgroup.csv', index=False)
