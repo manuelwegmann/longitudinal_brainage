@@ -103,7 +103,7 @@ def get_backbone(args = None):
     
 
 
-class CS_CNN3D(nn.Module):
+class CS_CNN(nn.Module):
     """
     Args:
         image_size: desired size of the input image

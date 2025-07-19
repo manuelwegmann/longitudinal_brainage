@@ -1,20 +1,16 @@
-from loader import loader3D
-from LILAC import LILAC
-from LILAC_plus import LILAC_plus
+from loader_CS import loader3D, load_participants
+from CS_CNN import CS_CNN
 
-
+import torch
 import numpy as np
 import os
 import json
-import pandas as pd
-import argparse
-import matplotlib.pyplot as plt
-
-import torch
 import torch.nn as nn
 import torch.optim as optim
+import pandas as pd
 from torch.utils.data import DataLoader
-from torch.optim.lr_scheduler import StepLR
+import argparse
+import matplotlib.pyplot as plt
 
 
 def parse_args():
@@ -24,14 +20,12 @@ def parse_args():
     parser.add_argument('--project_data_dir', default ='/mimer/NOBACKUP/groups/brainage/thesis_brainage/data', type=str, help="directory with the updated session files")
     parser.add_argument('--folds_dir', default = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files', type = str, help = 'path to participants csv.')
 
-    parser.add_argument('--model', default='LILAC_plus', type=str, choices=['LILAC', 'LILAC_plus'], help="model to use: LILAC or LILAC_plus")
-
     #data preprocessing arguments
     parser.add_argument('--image_size', nargs=3, type=int, default=[128, 128, 128], help='Input image size as three integers (e.g. 128 128 128)')
     parser.add_argument('--image_channel', default=1, type=int, help="number of channels in the input image")
 
     #target and optional meta data arguments
-    parser.add_argument('--target_name', default='duration', type=str, help="name of the target variable")
+    parser.add_argument('--target_name', default='age', type=str, help="name of the target variable")
     parser.add_argument('--optional_meta', nargs='+', default=['sex_M'], help="List of optional meta to be used in the model")
     
     #model architecture arguments
@@ -44,11 +38,11 @@ def parse_args():
     parser.add_argument('--epoch_weight_decay', default=15, type=int, help="epoch after which to decay the learning rate")
     parser.add_argument('--lr', default=0.001, type=float)
     parser.add_argument('--batchsize', default=16, type=int)
-    parser.add_argument('--max_epoch', default=30, type=int, help="max epoch")
+    parser.add_argument('--max_epoch', default=20, type=int, help="max epoch")
     parser.add_argument('--epoch', default=0, type=int, help="starting epoch")
     parser.add_argument('--ignore_folds', nargs='+', default = [], help="list of folds to ignore, e.g. 0 1 2")
-    
-    parser.add_argument('--folds', default=5, type=int, help = "number of folds for k-fold cv.")
+
+    parser.add_argument('--folds', default=5, type=int, help = "number of folds for k-fold cv. 0 for no cv.")
     parser.add_argument('--output_directory', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results', type=str, help="directory path for saving model and outputs")
     parser.add_argument('--run_name', default='test_run', type=str, help="name of the run")
 
@@ -61,6 +55,7 @@ def parse_args():
 def save_args_to_json(args, filepath):
     with open(filepath, 'w') as f:
         json.dump(vars(args), f, indent=4)
+
 
 
 def train(opt, train_dataset, val_dataset):
@@ -79,13 +74,8 @@ def train(opt, train_dataset, val_dataset):
     print(f"Using device: {device}")
 
     # Model, Loss, Optimizer
-    if opt.model == 'LILAC':
-        model = LILAC(opt).to(device)
-    elif opt.model == 'LILAC_plus':
-        model = LILAC_plus(opt).to(device)
-    else:
-        raise ValueError("Invalid model type. Choose 'LILAC' or 'LILAC_plus'.")
-    
+    model = CS_CNN(opt).to(device)
+
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=opt.lr)
     scheduler = StepLR(optimizer, step_size=opt.epoch_weight_decay, gamma=0.1)
@@ -109,20 +99,19 @@ def train(opt, train_dataset, val_dataset):
 
         for batch in dataloader_train:
             # Unpack batch
-            if len(batch) == 3:
-                x1, x2, target = batch
+            if len(batch) == 2:
+                x, target = batch
                 meta = None
             else:
-                x1, x2, meta, target = batch
+                x, meta, target = batch
                 meta = meta.float().to(device)
 
             # Move tensors to device
-            x1 = x1.float().to(device)
-            x2 = x2.float().to(device)
+            x = x.float().to(device)
             target = target.float().to(device)
 
             # Forward pass
-            output = model(x1, x2, meta)
+            output = model(x, meta)
             loss = criterion(output, target)
 
             #calculate MAE
@@ -136,7 +125,7 @@ def train(opt, train_dataset, val_dataset):
 
             total_loss += loss.item()
 
-        # Log the average training loss and MAE
+        # Log the average training loss
         avg_train_loss = total_loss / len(dataloader_train)
         avg_train_mae = total_mae / len(dataloader_train)
         train_losses.append(avg_train_loss)
@@ -150,20 +139,19 @@ def train(opt, train_dataset, val_dataset):
 
         with torch.no_grad():
             for batch in dataloader_val:
-                if len(batch) == 3:
-                    x1, x2, target = batch
+                if len(batch) == 2:
+                    x, target = batch
                     meta = None
                 else:
-                    x1, x2, meta, target = batch
+                    x, meta, target = batch
                     meta = meta.float().to(device)
 
                 # Move tensors to device
-                x1 = x1.float().to(device)
-                x2 = x2.float().to(device)
+                x = x.float().to(device)
                 target = target.float().to(device)
 
                 # Forward pass
-                output = model(x1, x2, meta)
+                output = model(x, meta)
                 val_loss = criterion(output, target)
                 total_val_loss += val_loss.item()
 
@@ -171,7 +159,7 @@ def train(opt, train_dataset, val_dataset):
                 mae = torch.mean(torch.abs(output - target))
                 total_val_mae += mae.item()
 
-        # Log the average validation loss/MAE
+        # Log the average validation loss
         avg_val_loss = total_val_loss / len(dataloader_val)
         avg_val_mae = total_val_mae / len(dataloader_val)
         val_losses.append(avg_val_loss)
@@ -182,8 +170,8 @@ def train(opt, train_dataset, val_dataset):
         scheduler.step()
         print(f"Current learning rate: {scheduler.get_last_lr()[0]}")
 
-        # Save model weights
-        model_state = model.state_dict() 
+        # Save model state
+        model_state = model.state_dict()  # Save model weights
         model_path = os.path.join(opt.output_directory, opt.run_name, 'model.pt')
         torch.save({
             'epoch': epoch,
@@ -197,7 +185,6 @@ def train(opt, train_dataset, val_dataset):
     val_mae = [np.nan] + val_mae[:-1]
 
     return model, train_losses, train_mae, val_losses, val_mae
-
 
 
 if __name__ == "__main__":
@@ -240,10 +227,6 @@ if __name__ == "__main__":
             'val_loss': val_losses,
             'val_mae': val_mae
         })
-
-        # Define directory and file path
-        csv_path = os.path.join(opt.output_directory, opt.run_name, 'training_metrics.csv')
-        training_metrics.to_csv(csv_path, index=False)
 
         # Plot training and validation losses
         plt.figure(figsize=(10, 6))

@@ -1,8 +1,0 @@
-This job can be monitored from: https://job.c3se.chalmers.se/alvis/4675363
-making attention of type 'vanilla' with 512 in_channels
-Working with z of shape (1, 1, 128, 128) = 16384 dimensions.
-making attention of type 'vanilla' with 512 in_channels
-Restored from /cephyr/users/manuelw/Alvis/.cache/huggingface/hub/models--stanfordmimi--MedVAE/snapshots/8040c5ccb7a51eff6b4cef513c7f20bd1bda983d/model_weights/vae_4x_1c_3D.ckpt with 0 missing and 0 unexpected keys
-model loaded, will now be applied.
-Check.
-Ran model. Now saving latent representation.

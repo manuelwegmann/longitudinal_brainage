@@ -28,7 +28,6 @@ def check_fieldstrength(participant_id, session_id, folder_path = '/mimer/NOBACK
     """
     scans_file_path = os.path.join(folder_path, str(participant_id), str(session_id), 'scans.tsv')
     if not os.path.exists(scans_file_path):
-        print(f"Warning: 'scans.tsv' file not found for participant {participant_id} in session {session_id}. Skipping this session.")
         return None
     
     else:
@@ -49,7 +48,7 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
         folder_path: path to the folder containing all participant folders
         project_data_dir: path to the new data directory containing the updated session files.
     Output:
-        Dataframe where each row is a pair of images from the same participant, preprocessed.
+        Dataframe where each row is a pair of images from the same participant, with metadata.
     """
 
     #one-hot encoding
@@ -64,7 +63,6 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
     #check if the participant has at least 2 sessions
     num_sessions = sessions_file.shape[0]
     if num_sessions < 2:
-        print(f"Warning: Participant {participant_id} has less than 2 sessions. Skipping.")
         return None
     
     #generate block for one participant
@@ -85,7 +83,6 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
             age = scan1_session.iloc[0]['age']
 
             if np.isnan(age): #skip if age is not available
-                print(f"No age available for participant {participant_id} in session {scan1_id}. Skipping this session.")
                 continue
 
             for j in range(i+1, num_sessions):
@@ -96,11 +93,9 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
 
                 time_difference = (scan2_time - scan1_time)/365
 
-                if field_strength1 is None or field_strength2 is None:
-                    print(f"Warning: Field strength not found for participant {participant_id} in session(s) {scan1_id} or {scan2_id}. Skipping this pair.")
+                if field_strength1 is None or field_strength2 is None: #skip if field strngth not available
                     continue
-                if field_strength1 < 2 or field_strength2 < 2:
-                    print(f"Warning: Participant {participant_id} has a field strength below 2 Tesla in session(s) {scan1_id} or {scan2_id}. Skipping this pair.")
+                if field_strength1 < 2 or field_strength2 < 2: #skip if field strength is 1.5 Tesla
                     continue
 
                 scan1_list.append(scan1_id)
@@ -130,6 +125,7 @@ class loader3D(Dataset):
     Args:
         participant_df: dataframe with basic participant data (ids and gender)
         data_directory: path to the data directory
+        project_data_dir: path to the project data directory with the updated session files
         image_size: size of the input image
         target_name: name of the target variable
         optional_meta: list of optional metadata features
@@ -155,7 +151,7 @@ class loader3D(Dataset):
         self.image_size = args.image_size #resize images
         self.resize = tio.transforms.Resize(tuple(self.image_size)) #safe resize transform
         self.targetname = args.target_name #save target for training
-        self.datadir = args.data_directory  #save data directory
+        self.datadir = args.data_directory #save data directory path
 
         # Build file path pairs
         self.image_pair_paths = []
@@ -172,9 +168,9 @@ class loader3D(Dataset):
             matching_files1 = glob.glob(pattern1)
             matching_files2 = glob.glob(pattern2)
 
-            if not matching_files1 or not matching_files2:
+            if not matching_files1 or not matching_files2: #skip if no matching files are found
                 print(f"Warning: No matching T1w image found for {participant_id} in session(s). Skipping.")
-                continue #skip if no matching files are found
+                continue
             path1 = matching_files1[0]
             path2 = matching_files2[0]
             self.image_pair_paths.append((path1, path2))

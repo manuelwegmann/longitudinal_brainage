@@ -2,7 +2,7 @@
 
 #SBATCH -A NAISS2025-22-353     # project ID found via "projinfo"
 #SBATCH -p alvis                # what partition to use (usually not necessary)
-#SBATCH -t 24:00:00          # how long time it will take to run
+#SBATCH -t 60:00:00          # how long time it will take to run
 #SBATCH --gpus-per-node=V100:1    # choosing no. GPUs and their type
 
 # load modules
@@ -14,6 +14,6 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
-python -u run_CV_LILAC.py --run_name fs_LILAC_plus_age \
-    --model LILAC_plus \
-    --max_epoch 35 
+python -u run_LILAC.py --run_name LILAC_final \
+    --model LILAC \
+    --max_epoch 25
