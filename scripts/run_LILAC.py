@@ -22,7 +22,7 @@ def parse_args():
 
     parser.add_argument('--data_directory', default='/mimer/NOBACKUP/groups/brainage/data/oasis3', type=str, help="directory of the data (OASIS3)")
     parser.add_argument('--project_data_dir', default ='/mimer/NOBACKUP/groups/brainage/thesis_brainage/data', type=str, help="directory with the updated session files")
-    parser.add_argument('--folds_dir', default = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files', type = str, help = 'path to participants csv.')
+    parser.add_argument('--folds_dir', default = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', type = str, help = 'path to participants csv.')
 
     parser.add_argument('--model', default='LILAC_plus', type=str, choices=['LILAC', 'LILAC_plus'], help="model to use: LILAC or LILAC_plus")
 
@@ -213,7 +213,7 @@ if __name__ == "__main__":
 
     for i in range(opt.folds):
 
-        if i in opt.ingore_folds:
+        if i in opt.ignore_folds:
             print(f"Skipping fold {i} as per ignore_folds list.")
             continue
 

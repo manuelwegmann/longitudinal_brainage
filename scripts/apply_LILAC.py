@@ -25,7 +25,6 @@ def parse_args():
     parser.add_argument('--participants_file', default = 'blank', type=str, help = "participants file csv")
     parser.add_argument('--model_state', default = 'blank', type=str, help = "path to model state")
     parser.add_argument('--model', default = 'blank', type=str, help = "LILAC_plus or LILAC")
-    parser.add_argument('--model_name', default = 'blank', type=str, help = "name of the model, e.g. LILAC_plus_age")
 
     args = parser.parse_args()
 
@@ -50,8 +49,6 @@ def decide_type_of_result(filepath):
         name = 'val'
     elif 'test_fold' in filepath.lower():
         name = 'test'
-    elif 'ci_participants' in filepath.lower():
-        name = 'CI'
     else:
         print("Error in naming of file.")
         name = 'error'
@@ -84,7 +81,6 @@ def apply_model(opt, model, participants_df, name):
     all_ids = []
     all_ages = []
     all_sex_M = []
-    all_sex_F = []
     all_session1 = []
     all_session2 = []
 
@@ -115,7 +111,6 @@ def apply_model(opt, model, participants_df, name):
             all_ids.extend(batch_demo["participant_id"].tolist())
             all_ages.extend(batch_demo["age"].tolist())
             all_sex_M.extend(batch_demo["sex_M"].tolist())
-            all_sex_F.extend(batch_demo["sex_F"].tolist())
             all_session1.extend(batch_demo["session_id1"].tolist())
             all_session2.extend(batch_demo["session_id2"].tolist())
 
@@ -136,7 +131,6 @@ def apply_model(opt, model, participants_df, name):
         "Prediction": preds,
         "Age": all_ages,
         "Sex (M)": all_sex_M,
-        "Sex (F)": all_sex_F,
         "Session 1": all_session1,
         "Session 2": all_session2
     })
@@ -174,9 +168,7 @@ if __name__ == "__main__":
 
     #save results
     folder_path = os.path.dirname(args.participants_file)
-    file_name = f"results_{name}.csv"
-    if name == 'CI':
-        file_name = f"results_{name}_{args.model_name}.csv"
+    file_name = f"predictions_{name}.csv"
     full_path = os.path.join(folder_path, file_name)
     results.to_csv(full_path, index=False)
     print(f"Saved results to CSV to: {full_path}.") 

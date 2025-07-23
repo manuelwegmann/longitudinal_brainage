@@ -1,0 +1,69 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/4797453
+Filename (participants file):  /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_1/val_fold.csv
+We are looking at val data.
+Model saved at /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_1/model.pt will be applied to participants at /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_1/val_fold.csv.
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+The model is LILAC_plus.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Loaded 420 image pairs.
+Loaded 420 rows of metadata.
+Loaded 420 targets.
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+val Loss (MSE): 1.4844
+val MAE: 0.9278
+Saved results to CSV to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_1/predictions_val.csv.
+Filename (participants file):  /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_2/val_fold.csv
+We are looking at val data.
+Model saved at /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_2/model.pt will be applied to participants at /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_2/val_fold.csv.
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+The model is LILAC_plus.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Loaded 403 image pairs.
+Loaded 403 rows of metadata.
+Loaded 403 targets.
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+val Loss (MSE): 1.7355
+val MAE: 0.9688
+Saved results to CSV to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_2/predictions_val.csv.
+Filename (participants file):  /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_3/val_fold.csv
+We are looking at val data.
+Model saved at /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_3/model.pt will be applied to participants at /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_3/val_fold.csv.
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+The model is LILAC_plus.
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Loaded 358 image pairs.
+Loaded 358 rows of metadata.
+Loaded 358 targets.
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+val Loss (MSE): 3.6668
+val MAE: 1.2037
+Saved results to CSV to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_3/predictions_val.csv.
+Filename (participants file):  /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_4/val_fold.csv
+We are looking at val data.
+Model saved at /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_4/model.pt will be applied to participants at /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_4/val_fold.csv.
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+The model is LILAC_plus.
+Loaded 407 image pairs.
+Loaded 407 rows of metadata.
+Loaded 407 targets.
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+val Loss (MSE): 1.7128
+val MAE: 0.9735
+Saved results to CSV to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_final_run/fold_4/predictions_val.csv.

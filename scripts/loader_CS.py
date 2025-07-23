@@ -63,8 +63,8 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
 
     #check if the participant has at least 2 sessions
     num_sessions = sessions_file.shape[0]
-    if num_sessions < 2:
-        print(f"Warning: Participant {participant_id} has less than 2 sessions. Skipping.")
+    if num_sessions < 1:
+        print(f"Warning: Participant {participant_id} has no sessions. Skipping.")
         return None
     
     #generate block for one participant
@@ -73,23 +73,18 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
         age_list = []
         field_strength_list = []
 
-        #extract pairs of sessions
-        for i in range(num_sessions-1):
+        #extract sessions
+        for i in range(num_sessions):
             scan_id = sessions_file.iloc[i]['session_id']
             field_strength = check_fieldstrength(participant_id, scan_id, folder_path)
-            scan_session = sessions_file[sessions_file['session_id'] == scan_id]
-            age = scan_session.iloc[0]['age']
+            age = sessions_file.iloc[i]['age']
 
             if np.isnan(age): #skip if age is not available
-                print(f"No age available for participant {participant_id} in session {scan_id}. Skipping this session.")
                 continue
-
 
             if field_strength is None:
-                print(f"Warning: Field strength not found for participant {participant_id} in session {scan_id}. Skipping this pair.")
                 continue
             if field_strength < 2:
-                print(f"Warning: Participant {participant_id} has a field strength below 2 Tesla in session {scan_id}. Skipping this pair.")
                 continue
 
             scan_list.append(scan_id)
@@ -112,6 +107,7 @@ class loader3D(Dataset):
     Args:
         participant_df: dataframe with basic participant data (ids and gender)
         data_directory: path to the data directory
+        project_data_dir: path to the project data directory with the updated session files
         image_size: size of the input image
         target_name: name of the target variable
         optional_meta: list of optional metadata features

@@ -9,7 +9,7 @@ import argparse
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--results_file', default='blank', type=str, help="directory of the results to be evaluated")
+    parser.add_argument('--predictions_file', default='blank', type=str, help="directory of the results to be evaluated")
 
     args = parser.parse_args()
 
@@ -18,15 +18,15 @@ def parse_args():
 
 def decide_type_of_result(filepath):
     print("Filename (results): ", filepath)
-    if 'results_train' in filepath.lower():
+    if 'predictions_train' in filepath.lower():
         name = 'train'
-    elif 'results_val' in filepath.lower():
+    elif 'predictions_val' in filepath.lower():
         name = 'val'
-    elif 'results_test' in filepath.lower():
+    elif 'predictions_test' in filepath.lower():
         name = 'test'
-    elif 'results_ci' in filepath.lower():
+    elif 'predictions_ci' in filepath.lower():
         name = 'CI'
-    elif 'results_all_folds' in filepath.lower():
+    elif 'predictions_all_folds' in filepath.lower():
         name = 'all_folds'
     else:
         print("Error in naming of file.")
@@ -186,18 +186,19 @@ if __name__ == "__main__":
     """
     args = parse_args()
 
-    name = decide_type_of_result(args.results_file)
+    name = decide_type_of_result(args.predictions_file)
 
-    results = pd.read_csv(args.results_file)
+    results = pd.read_csv(args.predictions_file)
+    print(results.columns.tolist())
     
     #prepare data directory for saving outputs.
-    dir = os.path.dirname(args.results_file)
+    dir = os.path.dirname(args.predictions_file)
     folder_name = "evaluation_" + name
     save_path = os.path.join(dir,folder_name)
     os.makedirs(save_path, exist_ok=True)
 
     idx_M = results[results['Sex (M)'] == 1].index
-    idx_F = results[results['Sex (F)'] == 1].index
+    idx_F = results[results['Sex (M)'] == 0].index
     idx_mt = results[results['Target']>=1].index
     idx_lt = results[results['Target']>=5].index
     #potentially add in sex undefined

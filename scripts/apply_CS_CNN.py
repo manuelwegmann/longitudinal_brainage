@@ -12,7 +12,7 @@ import torch.nn as nn
 import torch
 from torch.utils.data import DataLoader
 
-from CS_CNN import CS_CNN3D
+from CS_3DCNN import CS_CNN
 from loader_CS import loader3D
 
 #options from the command line
@@ -77,7 +77,6 @@ def apply_model(opt, model, participants_df, name):
     all_preds = []
     all_ids = []
     all_sex_M = []
-    all_sex_F = []
     all_sessions = []
 
     with torch.no_grad():
@@ -105,7 +104,6 @@ def apply_model(opt, model, participants_df, name):
 
             all_ids.extend(batch_demo["participant_id"].tolist())
             all_sex_M.extend(batch_demo["sex_M"].tolist())
-            all_sex_F.extend(batch_demo["sex_F"].tolist())
             all_sessions.extend(batch_demo["session_id"].tolist())
 
     avg_loss = total_loss / len(dataloader)
@@ -124,7 +122,6 @@ def apply_model(opt, model, participants_df, name):
         "Target": targets,
         "Prediction": preds,
         "Sex (M)": all_sex_M,
-        "Sex (F)": all_sex_F,
         "Sessions": all_sessions
     })
 
@@ -146,7 +143,7 @@ if __name__ == "__main__":
 
     #load model
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    model = CS_CNN3D(opt).to(device)
+    model = CS_CNN(opt).to(device)
     checkpoint = torch.load(args.model_state, map_location = device)
     model.load_state_dict(checkpoint['model_state_dict'])
 
@@ -154,7 +151,7 @@ if __name__ == "__main__":
 
     #save results
     folder_path = os.path.dirname(args.participants_file)
-    file_name = f"results_{name}.csv"
+    file_name = f"predictions_{name}.csv"
     full_path = os.path.join(folder_path, file_name)
     results.to_csv(full_path, index=False)
     print(f"Saved results to CSV to: {full_path}.") 

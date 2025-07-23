@@ -1,16 +1,19 @@
-from loader_CS import loader3D, load_participants
-from CS_CNN import CS_CNN
+from loader_CS import loader3D
+from CS_3DCNN import CS_CNN
 
-import torch
 import numpy as np
 import os
 import json
-import torch.nn as nn
-import torch.optim as optim
 import pandas as pd
-from torch.utils.data import DataLoader
 import argparse
 import matplotlib.pyplot as plt
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader
+from torch.optim.lr_scheduler import StepLR
+
 
 
 def parse_args():
@@ -18,7 +21,7 @@ def parse_args():
 
     parser.add_argument('--data_directory', default='/mimer/NOBACKUP/groups/brainage/data/oasis3', type=str, help="directory of the data (OASIS3)")
     parser.add_argument('--project_data_dir', default ='/mimer/NOBACKUP/groups/brainage/thesis_brainage/data', type=str, help="directory with the updated session files")
-    parser.add_argument('--folds_dir', default = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files', type = str, help = 'path to participants csv.')
+    parser.add_argument('--folds_dir', default = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', type = str, help = 'path to participants csv.')
 
     #data preprocessing arguments
     parser.add_argument('--image_size', nargs=3, type=int, default=[128, 128, 128], help='Input image size as three integers (e.g. 128 128 128)')
@@ -200,13 +203,13 @@ if __name__ == "__main__":
 
     for i in range(opt.folds):
 
-        if i in opt.ingore_folds:
+        if i in opt.ignore_folds:
             print(f"Skipping fold {i} as per ignore_folds list.")
             continue
 
         print("Fold:", i)
-        train_fold =pd.read_csv(os.path.join(opt.folds_dir, f'train_fold_{i}.csv'))
-        val_fold =pd.read_csv(os.path.join(opt.folds_dir, f'val_fold_{i}.csv'))
+        train_fold =pd.read_csv(os.path.join(opt.folds_dir, f'cs_train_fold_{i}.csv'))
+        val_fold =pd.read_csv(os.path.join(opt.folds_dir, f'cs_val_fold_{i}.csv'))
         train_fold = train_fold[['participant_id', 'sex']]
         val_fold = val_fold[['participant_id', 'sex']]
 
@@ -227,6 +230,10 @@ if __name__ == "__main__":
             'val_loss': val_losses,
             'val_mae': val_mae
         })
+
+        # Define directory and file path
+        csv_path = os.path.join(opt.output_directory, opt.run_name, 'training_metrics.csv')
+        training_metrics.to_csv(csv_path, index=False)
 
         # Plot training and validation losses
         plt.figure(figsize=(10, 6))

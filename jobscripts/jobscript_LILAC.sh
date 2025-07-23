@@ -14,6 +14,7 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
-python -u run_LILAC.py --run_name LILAC_final \
+python -u run_LILAC.py --run_name LILAC_final_run \
     --model LILAC \
-    --max_epoch 25
+    --max_epoch 25 \
+    --dropout 0

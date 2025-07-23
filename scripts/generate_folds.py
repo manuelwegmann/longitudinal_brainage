@@ -1,53 +1,13 @@
 import os
 import pandas as pd
-import argparse
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 from sklearn.model_selection import StratifiedKFold
 
 
-def parse_args():
-    parser = argparse.ArgumentParser()
 
-    parser.add_argument('--data_directory', default='/mimer/NOBACKUP/groups/brainage/data/oasis3', type=str, help="directory of the data (OASIS3)")
-    parser.add_argument('--project_data_dir', default ='/mimer/NOBACKUP/groups/brainage/thesis_brainage/data', type=str, help="directory with the updated session files")
-    parser.add_argument('--participants_file_path', default = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/participan_files/participants_file_with_age.csv', type = str, help = 'path to participants csv.')
-
-    parser.add_argument('--model', default='LILAC_plus', type=str, choices=['LILAC', 'LILAC_plus'], help="model to use: LILAC or LILAC_plus")
-
-    #data preprocessing arguments
-    parser.add_argument('--image_size', nargs=3, type=int, default=[128, 128, 128], help='Input image size as three integers (e.g. 128 128 128)')
-    parser.add_argument('--image_channel', default=1, type=int, help="number of channels in the input image")
-    parser.add_argument('--seed', default=15, type=int)
-
-    #target and optional meta data arguments
-    parser.add_argument('--target_name', default='duration', type=str, help="name of the target variable")
-    parser.add_argument('--optional_meta', nargs='+', default=['sex_F', 'sex_M'], help="List of optional meta to be used in the model")
-    
-    #model architecture arguments
-    parser.add_argument('--n_of_blocks', default=4, type=int, help="number of blocks in the encoder")
-    parser.add_argument('--initial_channel', default=16, type=int, help="initial channel size after first conv")
-    parser.add_argument('--kernel_size', default=3, type=int, help="kernel size")
-
-    #training arguments
-    parser.add_argument('--dropout', default=0, type=float, help="dropout rate")
-    parser.add_argument('--lr', default=0.001, type=float)
-    parser.add_argument('--batchsize', default=16, type=int)
-    parser.add_argument('--max_epoch', default=30, type=int, help="max epoch")
-    parser.add_argument('--epoch', default=0, type=int, help="starting epoch")
-    
-    parser.add_argument('--folds', default=5, type=int, help = "number of folds for k-fold cv.")
-    parser.add_argument('--output_directory', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results', type=str, help="directory path for saving model and outputs")
-    parser.add_argument('--run_name', default='test_run', type=str, help="name of the run")
-
-
-    args = parser.parse_args()
-
-    return args
-
-
-def plot_age_curves(a1, a2, a3, a4, a5, save_path):
+def plot_age_curves(a1, a2, a3, a4, a5, save_path, save_name):
     plt.figure(figsize=(10, 6))
 
     sns.kdeplot(a1, color='red', label='Fold 1')
@@ -63,14 +23,13 @@ def plot_age_curves(a1, a2, a3, a4, a5, save_path):
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.5)
     plt.tight_layout()
-    plt.savefig(os.path.join(save_path, 'age_curves_by_fold.png'))  # Added .png extension
+    plt.savefig(os.path.join(save_path, save_name))  # Added .png extension
     plt.show()
 
 
 # Setup data
-opt = parse_args()
 
-participant_df = pd.read_csv(opt.participants_file_path)
+participant_df = pd.read_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/participants.csv')
     
 age_values = participant_df['age'].values 
 
@@ -78,23 +37,22 @@ age_values = participant_df['age'].values
 binned_age = pd.qcut(age_values, q=10, labels=False)
 
 # Create stratified K-folds using the binned targets
-skf = StratifiedKFold(n_splits=opt.folds, shuffle=True, random_state=opt.seed)
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=15)
 folds = list(skf.split(participant_df, binned_age))
 
 for i, (train_idx, val_idx) in enumerate(folds):
-    print("We are in fold:", i)
     train_fold = participant_df.iloc[train_idx].reset_index(drop=True)
     val_fold = participant_df.iloc[val_idx].reset_index(drop=True)
     train_fold = train_fold[['participant_id', 'sex', 'age']]
     val_fold = val_fold[['participant_id', 'sex', 'age']]
-    train_fold.to_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files', f'train_fold_{i}.csv'), index=False)
-    val_fold.to_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files', f'val_fold_{i}.csv'), index=False)
+    train_fold.to_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', f'train_fold_{i}.csv'), index=False)
+    val_fold.to_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', f'val_fold_{i}.csv'), index=False)
 
-fold1 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files', 'val_fold_0.csv'), index=False)
-fold2 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files', 'val_fold_1.csv'), index=False)
-fold3 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files', 'val_fold_2.csv'), index=False)
-fold4 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files', 'val_fold_3.csv'), index=False)
-fold5 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files', 'val_fold_4.csv'), index=False)
+fold1 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'val_fold_0.csv'))
+fold2 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'val_fold_1.csv'))
+fold3 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'val_fold_2.csv'))
+fold4 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'val_fold_3.csv'))
+fold5 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'val_fold_4.csv'))
 
 age1 = fold1['age'].values
 age2 = fold2['age'].values
@@ -102,10 +60,56 @@ age3 = fold3['age'].values
 age4 = fold4['age'].values
 age5 = fold5['age'].values
 
-plot_age_curves(age1, age2, age3, age4, age5, '/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files')
+plot_age_curves(age1, age2, age3, age4, age5, '/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'age_curves')
 
-longitudinal_participant_ids = participant_df['participant_id'].unique()
-all_participants = pd.read_csv('/mimer/NOBACKUP/groups/brainage/data/oasis3/participants.tsv', sep='\t')
+# --- Load existing longitudinal folds ---
+longitudinal_train_folds = []
+longitudinal_val_folds = []
+for i in range(5):
+    fold_train = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', f'train_fold_{i}.csv'))
+    fold_val = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', f'val_fold_{i}.csv'))
+    longitudinal_train_folds.append(fold_train)
+    longitudinal_val_folds.append(fold_val)
+
+# --- Load new participants (cross-sectional) ---
+participants_cs = pd.read_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/participants_cs.csv')
+existing_ids = set(pd.concat(longitudinal_val_folds)['participant_id'])
+new_participants = participants_cs[~participants_cs['participant_id'].isin(existing_ids)].reset_index(drop=True)
+print(len(new_participants))
+
+# --- Split new participants into 5 folds ---
+age_values = new_participants['age'].values
+binned_age = pd.qcut(age_values, q=5, labels=False)
+
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=15)
+folds_cs = list(skf.split(new_participants, binned_age))
+
+# --- Append CS folds to longitudinal folds ---
+for i, (train_idx, val_idx) in enumerate(folds_cs):
+    train_fold = new_participants.iloc[train_idx].reset_index(drop=True)
+    val_fold = new_participants.iloc[val_idx].reset_index(drop=True)
+    train_fold = train_fold[['participant_id', 'sex', 'age']]
+    val_fold = val_fold[['participant_id', 'sex', 'age']]
+    combined_train = pd.concat([longitudinal_train_folds[i], train_fold]).reset_index(drop=True)
+    combined_train = combined_train[['participant_id', 'sex', 'age']]
+    combined_val = pd.concat([longitudinal_val_folds[i], val_fold]).reset_index(drop=True)
+    combined_val = combined_val[['participant_id', 'sex', 'age']]
+    combined_train.to_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', f'cs_train_fold_{i}.csv'), index=False)
+    combined_val.to_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', f'cs_val_fold_{i}.csv'), index=False)
+
+fold1 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'cs_val_fold_0.csv'))
+fold2 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'cs_val_fold_1.csv'))
+fold3 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'cs_val_fold_2.csv'))
+fold4 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'cs_val_fold_3.csv'))
+fold5 = pd.read_csv(os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'cs_val_fold_4.csv'))
+
+age1 = fold1['age'].values
+age2 = fold2['age'].values
+age3 = fold3['age'].values
+age4 = fold4['age'].values
+age5 = fold5['age'].values
+
+plot_age_curves(age1, age2, age3, age4, age5, '/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds', 'cs_age_curves')
 
 
 

@@ -1,0 +1,3 @@
+from medvae import medvae_finetune
+
+medvae_finetune experiment=medvae_4x_1c_3d_finetuning
