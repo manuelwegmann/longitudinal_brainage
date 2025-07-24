@@ -41,11 +41,12 @@ def scatter_plot_pred_target(predictions, targets, save_path, sex, name):
     min_val = min(predictions.min(), targets.min())
     max_val = max(predictions.max(), targets.max())
     plt.plot([min_val, max_val], [min_val, max_val], 'r--', label='y = x (optimal for healthy participants)')
-    plt.xlabel('Prediction (years)')
-    plt.ylabel('Target (years)')
-    plt.title('Target vs Prediction (' + name + '), ' + sex + ' participants')
+    plt.xlabel('Prediction (years)', fontsize=8)
+    plt.ylabel('Target (years)', fontsize=8)
+    plt.title('Target vs Prediction (' + name + '), ' + sex + ' participants', fontsize=8)
     plt.grid(True)
-    plt.legend
+    plt.tick_params(labelsize=6)
+    plt.legend(fontsize=6)
     plt.tight_layout()
     plot_path = os.path.join(save_path, sex + '_scatter_plot_pred_target.png')
     plt.savefig(plot_path)
@@ -58,11 +59,12 @@ def scatter_plot_ages_residuals(ages, residuals, save_path, sex, name):
     min_val = min(ages)
     max_val = max(ages)
     plt.plot([min_val, max_val], [0, 0], 'r--', label='y = 0 (optimal)')
-    plt.xlabel('Age (years)')
-    plt.ylabel('Residual')
-    plt.title('Age vs Residual (' + name + '), ' + sex + ' participants')
+    plt.xlabel('Age (years)', fontsize=8)
+    plt.ylabel('Residual', fontsize=8)
+    plt.title('Age vs Residual (' + name + '), ' + sex + ' participants', fontsize=8)
     plt.grid(True)
-    plt.legend()
+    plt.tick_params(labelsize=6)
+    plt.legend(fontsize=6)
     plt.tight_layout()
     plot_path = os.path.join(save_path, sex + '_scatter_plot_age_residuals.png')
     plt.savefig(plot_path)
@@ -75,11 +77,12 @@ def scatter_plot_targets_residuals(targets, residuals, save_path, sex, name):
     min_val = min(targets)
     max_val = max(targets)
     plt.plot([min_val, max_val], [0, 0], 'r--', label='y = 0 (optimal)')
-    plt.xlabel('Target (years)')
-    plt.ylabel('Residual')
-    plt.title('Targets vs Residual (' + name + '), ' + sex + ' participants')
+    plt.xlabel('Target (years)', fontsize=8)
+    plt.ylabel('Residual', fontsize=8)
+    plt.title('Targets vs Residual (' + name + '), ' + sex + ' participants', fontsize=8)
     plt.grid(True)
-    plt.legend()
+    plt.tick_params(labelsize=6)
+    plt.legend(fontsize=6)
     plt.tight_layout()
     plot_path = os.path.join(save_path, sex + '_scatter_plot_targets_residuals.png')
     plt.savefig(plot_path)
@@ -92,11 +95,12 @@ def scatter_plot_targets_pace(targets, pace, save_path, name):
     min_val = min(targets)
     max_val = max(targets)
     plt.plot([min_val, max_val], [1, 1], 'r--', label='y = 1 (optimal)')
-    plt.xlabel('Target (years)')
-    plt.ylabel('Pace of ageing')
-    plt.title('Targets vs Pace of ageing (' + name + ')')
+    plt.xlabel('Target (years)', fontsize=8)
+    plt.ylabel('Pace of ageing', fontsize=8)
+    plt.title('Targets vs Pace of ageing (' + name + ')', fontsize=8)
     plt.grid(True)
-    plt.legend()
+    plt.tick_params(labelsize=6)
+    plt.legend(fontsize=6)
     plt.tight_layout()
     plot_path = os.path.join(save_path, 'scatter_plot_targets_pace.png')
     plt.savefig(plot_path)
@@ -104,47 +108,38 @@ def scatter_plot_targets_pace(targets, pace, save_path, name):
 
 
 def boxplot_residuals_by_agegroup(ages, residuals, save_path, sex, name):
-    # Fixed bins: <60, 60-65, 65-70, >=70
     bins = [0, 60, 65, 70, 120]
     labels = ['<60', '60-65', '65-70', '70+']
     age_bins = pd.cut(ages, bins=bins, labels=labels, right=False)
     
     df = pd.DataFrame({'AgeBin': age_bins, 'Residuals': residuals})
     
-    # Plot
     plt.figure(figsize=(8, 6))
     df.boxplot(column='Residuals', by='AgeBin', grid=False)
     plt.axhline(0, color='red', linestyle='--')
-    plt.xlabel('Age Group')
-    plt.ylabel('Residual (Target - Prediction)')
-    plt.title(f'Residuals by Age Group ({name}, {sex} participants)')
+    plt.xlabel('Age Group', fontsize=8)
+    plt.ylabel('Residual (Target - Prediction)', fontsize=8)
+    plt.title(f'Residuals by Age Group ({name}, {sex} participants)', fontsize=8)
     plt.suptitle('')
+    plt.tick_params(labelsize=6)
     plt.tight_layout()
     
-    # Save
     plot_path = os.path.join(save_path, f'{sex}_boxplot_residuals_by_agegroup.png')
     plt.savefig(plot_path)
     plt.close()
 
 def boxplot_residuals_by_agegroup2(ages, residuals, save_path, sex, name):
-    # Fixed bins: <60, 60-65, 65-70, >=70
     bins = [0, 60, 65, 70, 120]
     labels = ['<60', '60-65', '65-70', '70+']
     age_bins = pd.cut(ages, bins=bins, labels=labels, right=False)
 
     df = pd.DataFrame({'AgeBin': age_bins, 'Residuals': residuals})
 
-    # Create the boxplot and capture the artists to find outliers
     plt.figure(figsize=(10, 6))
     ax = df.boxplot(column='Residuals', by='AgeBin', grid=False, return_type='axes')['Residuals']
-
-    # Add horizontal line for zero residual
     plt.axhline(0, color='red', linestyle='--')
 
-    # Count total points and outliers per bin
     counts = df.groupby('AgeBin').size()
-
-    # Calculate outliers manually
     outlier_counts = {}
     for i, label in enumerate(labels):
         data = df[df['AgeBin'] == label]['Residuals'].dropna()
@@ -159,21 +154,19 @@ def boxplot_residuals_by_agegroup2(ages, residuals, save_path, sex, name):
         outliers = data[(data < lower_bound) | (data > upper_bound)]
         outlier_counts[label] = len(outliers)
 
-    # Annotate with counts
     for i, label in enumerate(labels):
         n_total = counts.get(label, 0)
         n_outliers = outlier_counts.get(label, 0)
         text = f'n={n_total}\noutl={n_outliers}'
-        plt.text(i + 1, plt.ylim()[1] * 0.9, text, ha='center', fontsize=9, color='black')
+        plt.text(i + 1, plt.ylim()[1] * 0.9, text, ha='center', fontsize=6, color='black')
 
-    # Final plot settings
-    plt.xlabel('Age Group')
-    plt.ylabel('Residual (Target - Prediction)')
-    plt.title(f'Residuals by Age Group ({name}, {sex} participants)')
+    plt.xlabel('Age Group', fontsize=8)
+    plt.ylabel('Residual (Target - Prediction)', fontsize=8)
+    plt.title(f'Residuals by Age Group ({name}, {sex} participants)', fontsize=8)
     plt.suptitle('')
+    plt.tick_params(labelsize=6)
     plt.tight_layout()
 
-    # Save
     plot_path = os.path.join(save_path, f'2{sex}_boxplot_residuals_by_agegroup.png')
     plt.savefig(plot_path)
     plt.close()

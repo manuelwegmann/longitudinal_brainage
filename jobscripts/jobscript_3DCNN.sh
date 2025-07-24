@@ -16,6 +16,6 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
 python -u run_3DCNN.py --run_name CS_final_run \
     --max_epoch 30 \
-    --epoch_weight_decay 20 \
-    --dropout 0.1 \
+    --epoch_weight_decay 10 \
+    --dropout 0 \
     --lr 0.0001
