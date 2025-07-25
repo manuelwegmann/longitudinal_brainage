@@ -30,6 +30,7 @@ if __name__ == "__main__":
     idx_st = results[(results['Target'] >= 1) & (results['Target'] < 3)].index
     idx_mt = results[(results['Target'] >= 3) & (results['Target'] < 5)].index
     idx_lt = results[results['Target']>=5].index
+    idx_o1 = results[results['Target']>=1].index
 
     preds = results['Prediction'].values
     targets = results['Target'].values
@@ -96,20 +97,24 @@ if __name__ == "__main__":
     Analysis of pace of ageing.
     """
     eval_dict['Mean pace (>=1,>=3,>=5)'] = [np.mean(paces[idx_st]), np.mean(paces[idx_mt]), np.mean(paces[idx_lt])]
-    eval_dict['SD pace (all,>=1,>=5)'] = [np.std(paces[idx_st]), np.std(paces[idx_mt]), np.std(paces[idx_lt])]
+    eval_dict['SD pace (>=1,>=3,>=5)'] = [np.std(paces[idx_st]), np.std(paces[idx_mt]), np.std(paces[idx_lt])]
     r,p = pearsonr(paces[idx_mt], targets[idx_mt])
     eval_dict['PCC(pace,target), >= 1y'] = [r, np.nan, np.nan]
     eval_dict['p(pace,target), >= 1y'] = [p, np.nan, np.nan]
 
 
     """
-    Playground for future analysis.
+    Adjusted residuals.
     """
-    
-    adj_residuals= res[idx_lt]/targets[idx_lt]
-    print(len(adj_residuals))
-    r, p = pearsonr(targets[idx_lt], adj_residuals)
-    print(f"Pearson correlation between targets and adjusted residuals: r={r}, p={p}")
+    adj_res = res[idx_o1]/targets[idx_o1]
+    eval_dict['Mean adj residuals'] = [np.mean(adj_res),np.nan,np.nan]
+    eval_dict['SD adj residuals'] = [np.std(adj_res), np.nan, np.nan]
+    r, p = pearsonr(adj_res, ages[idx_o1])
+    eval_dict['r(adj_res,age), >= 1y'] = [r, np.nan, np.nan]
+    eval_dict['p'] = [p, np.nan, np.nan]
+    r, p = pearsonr(adj_res, targets[idx_o1])
+    eval_dict['r(adj_res,target), >= 1y'] = [r, np.nan, np.nan]
+    eval_dict['p'] = [p, np.nan, np.nan]
 
 
 
