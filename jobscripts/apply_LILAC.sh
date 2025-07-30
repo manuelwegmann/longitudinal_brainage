@@ -2,7 +2,7 @@
 
 #SBATCH -A NAISS2025-22-353     # project ID found via "projinfo"
 #SBATCH -p alvis                # what partition to use (usually not necessary)
-#SBATCH -t 02:00:00          # how long time it will take to run
+#SBATCH -t 05:00:00          # how long time it will take to run
 #SBATCH --gpus-per-node=V100:1    # choosing no. GPUs and their type
 
 # load modules
@@ -14,15 +14,27 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
-python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_final_run/run_details.json \
-    --model LILAC \
-    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_final_run/fold_2/val_fold.csv \
-    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_final_run/fold_2/model.pt
-python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_final_run/run_details.json \
-    --model LILAC \
-    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_final_run/fold_3/val_fold.csv \
-    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_final_run/fold_3/model.pt
-python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_final_run/run_details.json \
-    --model LILAC \
-    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_final_run/fold_4/val_fold.csv \
-    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_final_run/fold_4/model.pt
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/run_details.json \
+    --model LILAC_plus \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/fold_0/val_fold.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/fold_0/model.pt
+
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/run_details.json \
+    --model LILAC_plus \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/fold_1/val_fold.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/fold_1/model.pt
+
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/run_details.json \
+    --model LILAC_plus \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/fold_2/val_fold.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/fold_2/model.pt
+
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/run_details.json \
+    --model LILAC_plus \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/fold_3/val_fold.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/fold_3/model.pt
+
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/run_details.json \
+    --model LILAC_plus \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/fold_4/val_fold.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus_final_run/fold_4/model.pt

@@ -56,9 +56,8 @@ def load_CN_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oas
     df = check_folders_exist(df, folder_path) #delete participants that do not have a folder
     df = add_classification(df, folder_path) #add classification to the dataframe
     df = exclude_single_scan_participants(df)
-
     df = df[(df['class_at_baseline'] == 'CN') & (df['class_at_final'] == 'CN')]
-
+    
     #extract ages at baseline
     filtered_rows = []
     for _, row in df.iterrows():
@@ -105,10 +104,8 @@ def find_closest_match(age, duration, df):
 if __name__ == "__main__":
     
     CI_participants = load_CI_participants()
-    print(len(CI_participants))
-    print(CI_participants.head())
     CN_participants = load_CN_participants()
-
+    print(f"Num of scans CI = {np.sum(CI_participants['mr_sessions'])}" )
     CN_participants = CN_participants[CN_participants['mr_sessions'] <= 3]
 
     closest_rows = []
@@ -118,9 +115,13 @@ if __name__ == "__main__":
 
 
     closest_df = pd.concat(closest_rows, ignore_index=True)
-    print(closest_df.head())
-    print(len(closest_df))
+    print(f"Num of scans CN control = {np.sum(closest_df['mr_sessions'])}" )
     print(f"max error: {closest_df['error'].max()}, min error: {closest_df['error'].min()}, mean error: {closest_df['error'].mean()}")
 
-    CI_participants.to_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files/CI_participants.csv', index=False)
-    closest_df.to_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/participant_files/CN_controlgroup.csv', index=False)
+    all_clean_participants = pd.read_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/participants.csv')
+    ids_control = closest_df['participant_id']
+    filtered_clean_participants = all_clean_participants[~all_clean_participants['participant_id'].isin(ids_control)]
+
+    CI_participants.to_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/CI_participants.csv', index=False)
+    closest_df.to_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/CN_controlgroup.csv', index=False)
+    filtered_clean_participants.to_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/CN_training_for_CI.csv', index=False)

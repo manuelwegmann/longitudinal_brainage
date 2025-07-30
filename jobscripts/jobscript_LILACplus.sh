@@ -14,8 +14,10 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
-python -u run_LILAC.py --run_name LILAC_plus_final_run \
+python -u run_LILAC.py --run_name LILAC_plus_CI \
     --model LILAC_plus \
     --max_epoch 35 \
     --epoch_weight_decay 25 \
-    --dropout 0
+    --dropout 0 \
+    --optional_meta sex_M \
+    --CI_comparison yes

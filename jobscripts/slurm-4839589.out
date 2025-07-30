@@ -1,0 +1,39 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/4839589
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 1983 image pairs.
+Loaded 1983 rows of metadata.
+Loaded 1983 targets.
+Loaded 65 image pairs.
+Loaded 65 rows of metadata.
+Loaded 65 targets.
+Epoch:  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)

@@ -1,0 +1,27 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/4839578
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Traceback (most recent call last):
+  File "/mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts/run_LILAC.py", line 286, in <module>
+    val_fold = pd.read_csv(os.path.join(opt.folds_dir, 'CN_controlgroup'))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/apps/Arch/software/SciPy-bundle/2024.05-gfbf-2024a/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/apps/Arch/software/SciPy-bundle/2024.05-gfbf-2024a/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/apps/Arch/software/SciPy-bundle/2024.05-gfbf-2024a/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/apps/Arch/software/SciPy-bundle/2024.05-gfbf-2024a/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/apps/Arch/software/SciPy-bundle/2024.05-gfbf-2024a/lib/python3.12/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/CN_controlgroup'

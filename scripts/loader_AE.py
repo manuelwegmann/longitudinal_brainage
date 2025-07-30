@@ -85,7 +85,6 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
             age = scan1_session.iloc[0]['age']
 
             if np.isnan(age): #skip if age is not available
-                print(f"No age available for participant {participant_id} in session {scan1_id}. Skipping this session.")
                 continue
 
             for j in range(i+1, num_sessions):
@@ -97,10 +96,8 @@ def build_participant_block(participant_id, sex, folder_path='/mimer/NOBACKUP/gr
                 time_difference = (scan2_time - scan1_time)/365
 
                 if field_strength1 is None or field_strength2 is None:
-                    print(f"Warning: Field strength not found for participant {participant_id} in session(s) {scan1_id} or {scan2_id}. Skipping this pair.")
                     continue
                 if field_strength1 < 2 or field_strength2 < 2:
-                    print(f"Warning: Participant {participant_id} has a field strength below 2 Tesla in session(s) {scan1_id} or {scan2_id}. Skipping this pair.")
                     continue
 
                 scan1_list.append(scan1_id)

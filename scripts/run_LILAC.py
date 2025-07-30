@@ -52,6 +52,8 @@ def parse_args():
     parser.add_argument('--output_directory', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results', type=str, help="directory path for saving model and outputs")
     parser.add_argument('--run_name', default='test_run', type=str, help="name of the run")
 
+    parser.add_argument('--CI_comparison', default='no', type=str, help="change to yes if plan is to run model for comparison between CN and CI")
+
 
     args = parser.parse_args()
 
@@ -212,6 +214,9 @@ if __name__ == "__main__":
     save_args_to_json(opt, os.path.join(output_dir,'run_details.json'))
 
     for i in range(opt.folds):
+        if opt.CI_comparison == 'yes':
+            print("Model will be trained for CI task.")
+            continue
 
         if i in opt.ignore_folds:
             print(f"Skipping fold {i} as per ignore_folds list.")
@@ -272,3 +277,62 @@ if __name__ == "__main__":
         plt.savefig(plot_path)
         plt.close()
         print(f"MAE plot saved to: {plot_path}")
+
+
+    if opt.CI_comparison == 'yes':
+        print("Model will be trained for CI task.")
+
+        train_fold = pd.read_csv(os.path.join(opt.folds_dir,'CN_training_for_CI.csv'))
+        val_fold = pd.read_csv(os.path.join(opt.folds_dir, 'CN_controlgroup.csv'))
+        train_fold = train_fold[['participant_id', 'sex']]
+        val_fold = val_fold[['participant_id', 'sex']]
+
+        # Set output directory and save CSVs
+        os.makedirs(os.path.join(opt.output_directory, opt.run_name), exist_ok=True)
+
+        train_fold.to_csv((os.path.join(opt.output_directory, opt.run_name, 'train_fold.csv')), index=False)
+        val_fold.to_csv((os.path.join(opt.output_directory, opt.run_name, 'val_fold.csv')), index=False)
+
+        # Train
+        trained_model, train_losses, train_mae, val_losses, val_mae = train(opt, train_fold, val_fold)
+
+        training_metrics = pd.DataFrame({
+            'train_loss': train_losses,
+            'train_mae': train_mae,
+            'val_loss': val_losses,
+            'val_mae': val_mae
+        })
+
+        # Define directory and file path
+        csv_path = os.path.join(opt.output_directory, opt.run_name, 'training_metrics.csv')
+        training_metrics.to_csv(csv_path, index=False)
+
+        # Plot training and validation losses
+        plt.figure(figsize=(10, 6))
+        plt.plot(train_losses, label='Training Loss')
+        plt.plot(val_losses, label='Validation Loss')
+        plt.xlabel('Epoch')
+        plt.ylabel('Loss')
+        plt.title('Training and Validation Loss')
+        plt.legend()
+        plt.grid(True)
+        plot_path = os.path.join(opt.output_directory, opt.run_name, 'loss_plot.png')
+        plt.savefig(plot_path)
+        plt.close()
+        print(f"Loss plot saved to: {plot_path}")
+
+        # Plot and save training/validation mae curves
+        plt.figure(figsize=(10, 6))
+        plt.plot(train_mae, label='Training MAE')
+        plt.plot(val_mae, label='Validation MAE')
+        plt.xlabel('Epoch')
+        plt.ylabel('MAE (years)')
+        plt.title('Training and Validation Mean Absolute Error')
+        plt.legend()
+        plt.grid(True)
+        plot_path = os.path.join(opt.output_directory, opt.run_name, 'mae_plot.png')
+        plt.savefig(plot_path)
+        plt.close()
+        print(f"MAE plot saved to: {plot_path}")
+
+
