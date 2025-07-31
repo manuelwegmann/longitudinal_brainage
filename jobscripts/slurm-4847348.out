@@ -97,3 +97,7 @@ Avg Train Loss/MAE = 0.9638 / 0.7671. Weights were updated.
 Avg Val Loss/MAE = 2.0237 / 1.1564
 Current learning rate: 0.0001
 Epoch:  15
+Avg Train Loss/MAE = 0.8220 / 0.7105. Weights were updated.
+Avg Val Loss/MAE = 2.1073 / 1.1521
+Current learning rate: 0.0001
+Epoch:  16

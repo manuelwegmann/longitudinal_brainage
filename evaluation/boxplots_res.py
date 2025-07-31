@@ -103,6 +103,7 @@ for (model, age_group), group in grouped:
     iqr = q3 - q1
     lower_bound = q1 - 1.5 * iqr
     upper_bound = q3 + 1.5 * iqr
+    mean_residual = group['Residual'].mean()
 
     # Count outliers
     over = (group['Residual'] > upper_bound).sum()
@@ -116,6 +117,7 @@ for (model, age_group), group in grouped:
         'Q1': q1,
         'Q3': q3,
         'IQR': iqr,
+        'Mean Residual': mean_residual,
         'Underestimating Outliers': under,
         'Overestimating Outliers': over,
         'Total Outliers': total,
@@ -127,7 +129,7 @@ for (model, age_group), group in grouped:
 
 outlier_df = pd.DataFrame(outlier_stats)
 print(outlier_df.sort_values(['Age Group', 'Model']))
-outlier_df.to_csv('stats/age_residual_analysis.csv')
+outlier_df.to_csv('stats/age_residual_analysis.csv', index=False)
 
 
 # Compute IQR outlier thresholds and counts for Target (Interval Group)
@@ -141,6 +143,7 @@ for (model, interval_group), group in grouped_interval:
     iqr = q3 - q1
     lower_bound = q1 - 1.5 * iqr
     upper_bound = q3 + 1.5 * iqr
+    mean_residual = group['Residual'].mean()
 
     # Count outliers
     over = (group['Residual'] > upper_bound).sum()
@@ -154,6 +157,7 @@ for (model, interval_group), group in grouped_interval:
         'Q1': q1,
         'Q3': q3,
         'IQR': iqr,
+        'Mean Residual': mean_residual,
         'Underestimating Outliers': under,
         'Overestimating Outliers': over,
         'Total Outliers': total,
@@ -165,5 +169,5 @@ for (model, interval_group), group in grouped_interval:
 
 interval_outlier_df = pd.DataFrame(interval_outlier_stats)
 print(interval_outlier_df.sort_values(['Target Interval Group', 'Model']))
-interval_outlier_df.to_csv('stats/target_residual_analysis.csv')
+interval_outlier_df.to_csv('stats/target_residual_analysis.csv', index=False)
 
