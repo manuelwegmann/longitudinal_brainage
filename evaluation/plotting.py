@@ -5,7 +5,6 @@ from matplotlib import font_manager
 import os
 
 
-#%%
 def get_figures(n_rows,n_cols,figsize=(10,10),sharex=True,sharey=True):
     """ Get figure and axes object
     args:

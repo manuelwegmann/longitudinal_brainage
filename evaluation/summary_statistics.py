@@ -37,6 +37,7 @@ if __name__ == "__main__":
     targets = results['Target'].values
     res = targets - preds
     ages = results['Age'].values
+    adj_res = (targets - preds)/targets
     paces = preds / targets
 
     #save results in eval_dict to export later
@@ -115,15 +116,7 @@ if __name__ == "__main__":
     """
     Adjusted residuals.
     """
-    adj_res = res[idx_o1]/targets[idx_o1]
-    eval_dict['Mean adj residuals'] = [np.mean(adj_res),np.nan,np.nan]
-    eval_dict['SD adj residuals'] = [np.std(adj_res), np.nan, np.nan]
-    r, p = pearsonr(adj_res, ages[idx_o1])
-    eval_dict['r(adj_res,age), >= 1y'] = [r, np.nan, np.nan]
-    eval_dict['p'] = [p, np.nan, np.nan]
-    r, p = pearsonr(adj_res, targets[idx_o1])
-    eval_dict['r(adj_res,target), >= 1y'] = [r, np.nan, np.nan]
-    eval_dict['p'] = [p, np.nan, np.nan]
+    eval_dict['Adjusted res (>=1,>=3,>=5)'] = [np.mean(adj_res[idx_st]), np.mean(adj_res[idx_mt]), np.mean(adj_res[idx_lt])]
 
 
 

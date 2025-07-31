@@ -74,6 +74,9 @@ if __name__ == "__main__":
         res = id_df.iloc[0]['Prediction'] - id_df.iloc[0]['Target']
         res_w.append(res)
 
+    res_wo = np.array(res_wo)
+    res_w = np.array(res_w)
+    res_diff = res_wo - res_w
     error_wo = np.abs(res_wo)
     error_w = np.abs(res_w)
     error_diff = error_wo - error_w
