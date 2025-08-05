@@ -25,6 +25,7 @@ def parse_args():
     parser.add_argument('--participants_file', default = 'blank', type=str, help = "participants file csv")
     parser.add_argument('--model_state', default = 'blank', type=str, help = "path to model state")
     parser.add_argument('--model', default = 'blank', type=str, help = "LILAC_plus or LILAC")
+    parser.add_argument('--CI', default = 'no', type = str, help = "yes/no if model is applied for the CI evaluation.")
 
     args = parser.parse_args()
 
@@ -49,9 +50,10 @@ def decide_type_of_result(filepath):
         name = 'val'
     elif 'test_fold' in filepath.lower():
         name = 'test'
-    else:
-        print("Error in naming of file.")
-        name = 'error'
+    elif 'ci_participants' in filepath.lower():
+        name = 'CI'
+    elif 'cn_controlgroup' in filepath.lower():
+        name = 'CN'
     print(f"We are looking at {name} data.")
     return name
 
@@ -170,8 +172,22 @@ if __name__ == "__main__":
     folder_path = os.path.dirname(args.participants_file)
     file_name = f"predictions_{name}.csv"
     full_path = os.path.join(folder_path, file_name)
-    results.to_csv(full_path, index=False)
-    print(f"Saved results to CSV to: {full_path}.") 
+    try:
+        results.to_csv(full_path, index=False)
+        print(f"Saved results to CSV to: {full_path}.")
+    except Exception as e:
+        print(f"⚠️ Failed to save file: {e}")
+
+    if args.CI == 'yes':
+        folder_path = os.path.dirname(args.json)
+        file_name = f"predictions_{name}.csv"
+        full_path = os.path.join(folder_path, file_name)
+        try:
+            results.to_csv(full_path, index=False)
+            print(f"Saved results to CSV to: {full_path}.")
+        except Exception as e:
+            print(f"⚠️ Failed to save file: {e}")
+
 
 
 

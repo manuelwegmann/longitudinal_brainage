@@ -93,7 +93,7 @@ if __name__ == "__main__":
     axes[1].set_ylabel("Density")
     axes[1].axvline(0, color='black', label='x = 0', linestyle='--', linewidth=1)
     axes[1].legend()
-    fig.suptitle(f"Pairwise absolute error (AE) difference for {opt.model_name} w/wo age meta", fontsize=12)
+    fig.suptitle(f"{opt.model_name}", fontsize=12)
 
     fig = set_style_ax(fig, axes, both_axes=False)
     fig = set_size(fig, 6, 3)

@@ -1,5 +1,0 @@
-This job can be monitored from: https://job.c3se.chalmers.se/alvis/4846237
-usage: apply_LILAC.py [-h] [--json JSON]
-                      [--participants_file PARTICIPANTS_FILE]
-                      [--model_state MODEL_STATE] [--model MODEL]
-apply_LILAC.py: error: argument --participants_file: expected one argument

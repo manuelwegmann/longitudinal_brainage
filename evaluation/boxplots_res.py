@@ -19,13 +19,13 @@ paths = {
     'CS CNN': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_CNN/longitudinal_predictions.csv',
     'LILAC': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC/predictions_all_folds.csv',
     'LILAC+': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus/predictions_all_folds.csv',
-    'AE4 (age)': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/AE_age_4/predictions_all_folds.csv',
+    'AEM-4 (age)': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/AE_age_4/predictions_all_folds.csv',
 }
 
 # Load data
 results = {name: pd.read_csv(path) for name, path in paths.items()}
 
-selected_models = ['CS CNN', 'LILAC', 'LILAC+', 'AE4 (age)']
+selected_models = ['CS CNN', 'LILAC', 'LILAC+', 'AEM-4 (age)']
 
 # Combine residuals and age into a single DataFrame
 all_data = []
@@ -40,10 +40,10 @@ combined_df = pd.concat(all_data, ignore_index=True)
 
 # Define age bins
 bins = [0, 60, 65, 70, 200]
-labels = ['<60', '60-65', '65-70', '70+']
+labels = ['<60 (n=427)', '60-65 (n=350)', '65-70 (n=532)', '70+ (n=730)']
 combined_df['Age Group'] = pd.cut(combined_df['Age'], bins=bins, labels=labels, right=False)
 
-set_r_params()
+set_r_params(small=8)
 
 fig, axes = get_figures(n_rows=2, n_cols=1, figsize=(6, 6), sharex=False, sharey=False)
 # Top subplot: boxplot of residuals by age group
@@ -59,12 +59,12 @@ sns.boxplot(
 
 axes[0].set_ylabel('Residual [years]')
 axes[0].set_xlabel('Age Group [years]')
-axes[0].legend(loc='upper left', ncol=4, fontsize=6, title='Model')
+axes[0].legend(loc='upper left', ncol=4, title='Model')
 axes[0].set_title('Residuals by Age Group')
 
 # Define interval target bins
 interval_bins = [0, 1, 3, 5, 100]
-interval_labels = ['<1', '1–3', '3–5', '5+']
+interval_labels = ['<1 (n=173)', '1–3 (n=570)', '3–5 (n=591)', '5+ (n=705)']
 combined_df['Interval Group'] = pd.cut(combined_df['Target'], bins=interval_bins, labels=interval_labels, right=False)
 
 # Bottom subplot: boxplot of residuals by target interval

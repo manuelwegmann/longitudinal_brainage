@@ -15,7 +15,14 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
 
-python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_CI/run_details.json \
-    --model LILAC_plus \
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI/run_details.json \
+    --model LILAC \
     --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/CI_participants.csv \
-    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_CI/model.pt
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI/model.pt \
+    --CI yes
+
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI/run_details.json \
+    --model LILAC \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/CN_controlgroup.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI/model.pt \
+    --CI yes

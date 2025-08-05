@@ -6,11 +6,16 @@ This script is used to understand the process of data cleaning and preparation f
 import pandas as pd
 import numpy as np
 import os
-
-from loader import loader3D
-from loader_all_fs import all_fs_loader3D
+import sys
 import json
 from argparse import Namespace
+
+scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+tools_path =os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'tools'))
+sys.path.append(scripts_path)
+sys.path.append(tools_path)
+from loader import loader3D
+from loader_all_fs import all_fs_loader3D
 
 
 """
