@@ -1,9 +1,0 @@
-session_id,age,days_from_baseline,days_to_diagnosis,cognitiveyly_normal
-ses-d0865,65.28,865,0,True
-ses-d1871,68.03,1871,1834,True
-ses-d3483,72.44,3483,3406,True
-ses-d3487,72.45,3487,3406,True
-ses-d3843,73.43890410958905,3843,3798,True
-ses-d4197,74.4,4197,4131,True
-ses-d4844,76.1813698630137,4844,4806,True
-ses-d5621,78.31013698630137,5621,5525,True

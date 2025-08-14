@@ -282,8 +282,8 @@ if __name__ == "__main__":
     if opt.CI_comparison == 'yes':
         print("Model will be trained for CI task.")
 
-        train_fold = pd.read_csv(os.path.join(opt.folds_dir,'CN_training_for_CI.csv'))
-        val_fold = pd.read_csv(os.path.join(opt.folds_dir, 'CN_controlgroup.csv'))
+        train_fold = pd.read_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/CI_CN_groups/CN_training_for_CI.csv')
+        val_fold = pd.read_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/CI_CN_groups/CN_participants.csv')
         train_fold = train_fold[['participant_id', 'sex']]
         val_fold = val_fold[['participant_id', 'sex']]
 

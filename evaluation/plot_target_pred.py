@@ -12,7 +12,7 @@ from plotting import (
 )
 
 # Set plotting parameters (font, sizes, etc.)
-set_r_params()
+set_r_params(small = 8)
 # Create figure with shared axes
 fig, axes = get_figures(n_rows=3, n_cols=2, figsize=(10, 10), sharex=True, sharey=True)
 
@@ -24,8 +24,8 @@ paths = {
     'LILAC': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC/predictions_all_folds.csv',
     'LILAC+': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus/predictions_all_folds.csv',
     'LILAC+ (age)': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus/predictions_all_folds.csv',
-    'AE4': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/AE_4/predictions_all_folds.csv',
-    'AE4 (age)': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/AE_age_4/predictions_all_folds.csv',
+    'AM': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/AE_4/predictions_all_folds.csv',
+    'AM (age)': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/AE_age_4/predictions_all_folds.csv',
 }
 
 # Load data
@@ -41,8 +41,8 @@ model_order = [
     ('LILAC+', (1, 0)),
     ('LILAC+ (age)', (1, 1)),
     ('CS CNN', (0, 0)),
-    ('AE4', (2, 0)),
-    ('AE4 (age)', (2, 1)),
+    ('AM', (2, 0)),
+    ('AM (age)', (2, 1)),
 ]
 
 for model_name, (i, j) in model_order:

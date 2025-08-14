@@ -77,7 +77,7 @@ sns.boxplot(
     palette='Set2',
     fliersize=1
 )
-axes[1].set_ylabel('Residual')
+axes[1].set_ylabel('Residual [years]')
 axes[1].set_xlabel('Target [years]')
 axes[1].legend_.remove()
 axes[1].set_title('Residuals by Target Group')

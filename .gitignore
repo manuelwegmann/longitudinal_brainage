@@ -1,3 +1,4 @@
 results/**/*.pt
+results_archive/**/*.pt
 archive/**/*.pt
 data/**/*.pt

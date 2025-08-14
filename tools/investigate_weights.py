@@ -1,13 +1,18 @@
 import torch
 import torch.nn as nn
-from LILAC import LILAC
-from LILAC_plus import LILAC_plus
 import json
 from argparse import Namespace
+import sys
+import os
+
+scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+sys.path.append(scripts_path)
+from LILAC import LILAC
+from LILAC_plus import LILAC_plus
 
 # Set paths
-path_to_json = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/AE_try/run_details.json'
-path_to_best_model = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/AE_try/fold_0/model.pt'
+path_to_json = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus/run_details.json'
+path_to_best_model = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus/fold_1/model.pt'
 
 # Load args from JSON
 with open(path_to_json, 'r') as f:
@@ -19,7 +24,7 @@ device = torch.device("cpu")
 print(f"Using device: {device}")
 
 # Initialize model on CPU
-model = LILAC(args).to(device)
+model = LILAC_plus(args).to(device)
 
 # Load checkpoint onto CPU
 checkpoint = torch.load(path_to_best_model, map_location=device)

@@ -52,7 +52,7 @@ def decide_type_of_result(filepath):
         name = 'test'
     elif 'ci_participants' in filepath.lower():
         name = 'CI'
-    elif 'cn_controlgroup' in filepath.lower():
+    elif 'cn_participants' in filepath.lower():
         name = 'CN'
     print(f"We are looking at {name} data.")
     return name
@@ -179,11 +179,15 @@ if __name__ == "__main__":
         print(f"⚠️ Failed to save file: {e}")
 
     if args.CI == 'yes':
+        # one row per Participant_ID, picking the row with the max Target
+        idx = results.groupby('Participant_ID')['Target'].idxmax()
+        valid_rows = results.loc[idx].reset_index(drop=True)
+
         folder_path = os.path.dirname(args.json)
         file_name = f"predictions_{name}.csv"
         full_path = os.path.join(folder_path, file_name)
         try:
-            results.to_csv(full_path, index=False)
+            valid_rows.to_csv(full_path, index=False)
             print(f"Saved results to CSV to: {full_path}.")
         except Exception as e:
             print(f"⚠️ Failed to save file: {e}")

@@ -20,7 +20,7 @@ def load_args_from_json(filepath):
 
     return args
 
-opt = load_args_from_json('/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_final_run/run_details.json')
+opt = load_args_from_json('/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC/run_details.json')
 
 """
 Average prediction model
@@ -64,14 +64,23 @@ combined_df.to_csv(os.path.join(output_dir, 'predictions_all_folds.csv'))
 targets = combined_df['Target']
 predictions = combined_df['Prediction']
 
+mse = mean_squared_error(targets, predictions)
+mae = mean_absolute_error(targets, predictions)
+
+SSR = np.sum((targets - predictions) ** 2)
+complete_avg = np.mean(targets)
+complete_SSR = np.sum((targets - complete_avg) ** 2)
+
 metrics = pd.DataFrame({
-    'val_loss': [np.mean((targets - predictions) ** 2)],
-    'val_mae': [np.mean(np.abs(targets - predictions))]
+    'val_loss': [mse],
+    'val_mae': [mae],
+    'R2': [1 - SSR / complete_SSR]
 })
 
 # Define directory and file path
 csv_path = os.path.join(output_dir, 'metrics.csv')
 metrics.to_csv(csv_path, index=False)
+
 
 """
 Regression model
@@ -128,9 +137,14 @@ predictions = combined_df['Prediction']
 mse = mean_squared_error(targets, predictions)
 mae = mean_absolute_error(targets, predictions)
 
+SSR = np.sum((targets - predictions) ** 2)
+complete_avg = np.mean(targets)
+complete_SSR = np.sum((targets - complete_avg) ** 2)
+
 metrics = pd.DataFrame({
     'val_loss': [mse],
-    'val_mae': [mae]
+    'val_mae': [mae],
+    'R2': [1 - SSR / complete_SSR]
 })
 
 # Define directory and file path

@@ -2,7 +2,7 @@
 
 #SBATCH -A NAISS2025-22-353     # project ID found via "projinfo"
 #SBATCH -p alvis                # what partition to use (usually not necessary)
-#SBATCH -t 05:00:00          # how long time it will take to run
+#SBATCH -t 00:30:00          # how long time it will take to run
 #SBATCH --gpus-per-node=V100:1    # choosing no. GPUs and their type
 
 # load modules
@@ -15,14 +15,15 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
 
-python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI/run_details.json \
-    --model LILAC \
-    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/CI_participants.csv \
-    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI/model.pt \
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_CI/run_details.json \
+    --model LILAC_plus \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/CI_CN_groups/CI_participants.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_CI/model.pt \
     --CI yes
 
-python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI/run_details.json \
-    --model LILAC \
-    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/folds/CN_controlgroup.csv \
-    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI/model.pt \
+python -u apply_LILAC.py --json /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_CI/run_details.json \
+    --model LILAC_plus \
+    --participants_file /mimer/NOBACKUP/groups/brainage/thesis_brainage/CI_CN_groups/CN_participants.csv \
+    --model_state /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_CI/model.pt \
     --CI yes
+

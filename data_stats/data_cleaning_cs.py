@@ -102,6 +102,11 @@ if __name__ == "__main__":
     
     df_M = loader(args, df_M).demo
     df_F = loader(args, df_F).demo
+    df_all = loader(args, clean_participants).demo
+    min = df_all['age'].min()
+    max = df_all['age'].max()
+    mean = df_all['age'].mean()
+
 
     """
     Print the results of the cleaning process.
@@ -111,3 +116,4 @@ if __name__ == "__main__":
     print(f"Number of female clean participants: {num_of_clean_F_participants}")
     print(f"Number of male clean participants: {num_of_clean_M_participants}")
     print(f"Filtering field strenght results in {len(df_M)} male data and {len(df_F)} female data. Total : {len(df_M) + len(df_F)} data.")
+    print(f"Minimum age: {min}, Maximum age: {max}, Mean age: {mean}")

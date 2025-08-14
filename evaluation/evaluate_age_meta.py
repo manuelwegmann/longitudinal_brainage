@@ -85,15 +85,14 @@ if __name__ == "__main__":
     fig, axes = get_figures(n_rows=1, n_cols=2, figsize=(10, 10), sharex=False, sharey=False)
     
     stats.probplot(error_diff, dist="norm", plot=axes[0])
-    axes[0].set_title(f'QQ-plot AE difference')
+    axes[0].set_title(f'{opt.model_name} QQ-plot Error Difference')
     
     sns.kdeplot(error_diff, fill = True, ax = axes[1])
-    axes[1].set_title(f"Density plot AE difference")
-    axes[1].set_xlabel(f"AE difference")
+    axes[1].set_title(f"{opt.model_name} Error Difference Density")
+    axes[1].set_xlabel(f"Error Difference [years]")
     axes[1].set_ylabel("Density")
     axes[1].axvline(0, color='black', label='x = 0', linestyle='--', linewidth=1)
     axes[1].legend()
-    fig.suptitle(f"{opt.model_name}", fontsize=12)
 
     fig = set_style_ax(fig, axes, both_axes=False)
     fig = set_size(fig, 6, 3)

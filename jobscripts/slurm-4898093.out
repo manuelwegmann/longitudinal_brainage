@@ -1,0 +1,19 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/4898093
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Traceback (most recent call last):
+  File "/mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts/run_LILAC.py", line 288, in <module>
+    val_fold = val_fold[['participant_id', 'sex']]
+               ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/apps/Arch/software/SciPy-bundle/2024.05-gfbf-2024a/lib/python3.12/site-packages/pandas/core/frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/apps/Arch/software/SciPy-bundle/2024.05-gfbf-2024a/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/apps/Arch/software/SciPy-bundle/2024.05-gfbf-2024a/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['sex'] not in index"

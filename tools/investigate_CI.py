@@ -89,12 +89,13 @@ def load_CN_participants(folder_path = '/mimer/NOBACKUP/groups/brainage/data/oas
         
     return df
 
-def find_closest_match(age, duration, df):
+def find_closest_match(age, duration, sex, df, used_ids):
     error = np.inf
     closest_row = None
-    for _, row in df.iterrows():
+    df_gender = df[df['sex']==sex]
+    for _, row in df_gender.iterrows():
         error_new = (age-row['age'])**2 + (duration-row['duration'])**2
-        if error_new < error:
+        if error_new < error and row['participant_id'] not in used_ids:
             error = error_new
             closest_row = row.copy()
             closest_row['error'] = error_new
@@ -106,12 +107,13 @@ if __name__ == "__main__":
     CI_participants = load_CI_participants()
     CN_participants = load_CN_participants()
     print(f"Num of scans CI = {np.sum(CI_participants['mr_sessions'])}" )
-    CN_participants = CN_participants[CN_participants['mr_sessions'] <= 3]
 
     closest_rows = []
+    used_participants = []
     for _, row in CI_participants.iterrows():
-        closest_row = find_closest_match(row['age'], row['duration'], CN_participants)
+        closest_row = find_closest_match(row['age'], row['duration'], row['sex'], CN_participants, used_participants)
         closest_rows.append(closest_row)
+        used_participants.append(closest_row['participant_id'].values[0])
 
 
     closest_df = pd.concat(closest_rows, ignore_index=True)

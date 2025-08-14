@@ -1,0 +1,18 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/4890372
+usage: run_LILAC.py [-h] [--data_directory DATA_DIRECTORY]
+                    [--project_data_dir PROJECT_DATA_DIR]
+                    [--folds_dir FOLDS_DIR] [--model {LILAC,LILAC_plus}]
+                    [--image_size IMAGE_SIZE IMAGE_SIZE IMAGE_SIZE]
+                    [--image_channel IMAGE_CHANNEL]
+                    [--target_name TARGET_NAME]
+                    [--optional_meta OPTIONAL_META [OPTIONAL_META ...]]
+                    [--n_of_blocks N_OF_BLOCKS]
+                    [--initial_channel INITIAL_CHANNEL]
+                    [--kernel_size KERNEL_SIZE] [--dropout DROPOUT]
+                    [--epoch_weight_decay EPOCH_WEIGHT_DECAY] [--lr LR]
+                    [--batchsize BATCHSIZE] [--max_epoch MAX_EPOCH]
+                    [--epoch EPOCH]
+                    [--ignore_folds IGNORE_FOLDS [IGNORE_FOLDS ...]]
+                    [--folds FOLDS] [--output_directory OUTPUT_DIRECTORY]
+                    [--run_name RUN_NAME] [--CI_comparison CI_COMPARISON]
+run_LILAC.py: error: argument --optional_meta: expected at least one argument

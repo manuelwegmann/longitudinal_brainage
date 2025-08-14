@@ -18,7 +18,7 @@ def parse_args():
 
     parser.add_argument('--model_folder1', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI', type=str, help="Path to folder with predictions on CN/CI for model 1")
     parser.add_argument('--model_name1', default='LILAC', type=str, help="Name of the first model")
-    parser.add_argument('--model_folder2', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_CI', type=str, help="Path to folder with predictions on CN/CI for model 2")
+    parser.add_argument('--model_folder2', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI', type=str, help="Path to folder with predictions on CN/CI for model 2")
     parser.add_argument('--model_name2', default='LILAC+', type=str, help="Name of the second model")
 
     return parser.parse_args()
@@ -30,42 +30,17 @@ def load_residuals(folder):
     res_CN = results_CN['Target'].values - results_CN['Prediction'].values
     return res_CI, res_CN
 
-import numpy as np
-
-def permutation_test(x, y, num_permutations=100000, statistic='mean', alternative='two-sided', seed=None):
-    if seed is not None:
-        np.random.seed(seed)
-    
-    x = np.array(x)
-    y = np.array(y)
-    
-    observed_diff = np.mean(x) - np.mean(y) if statistic == 'mean' else np.median(x) - np.median(y)
-    
-    combined = np.concatenate([x, y])
-    count = 0
-    perm_diffs = []
-
-    for _ in range(num_permutations):
-        np.random.shuffle(combined)
-        new_x = combined[:len(x)]
-        new_y = combined[len(x):]
-        diff = np.mean(new_x) - np.mean(new_y) if statistic == 'mean' else np.median(new_x) - np.median(new_y)
-        perm_diffs.append(diff)
-
-        if alternative == 'two-sided':
-            count += abs(diff) >= abs(observed_diff)
-        elif alternative == 'greater':
-            count += diff >= observed_diff
-        elif alternative == 'less':
-            count += diff <= observed_diff
-
-    p_value = count / num_permutations
-    return observed_diff, p_value, np.array(perm_diffs)
+def load_pace(folder):
+    results_CI = pd.read_csv(os.path.join(folder, 'predictions_CI.csv'))
+    results_CN = pd.read_csv(os.path.join(folder, 'predictions_CN.csv'))
+    pace_CI = results_CI['Prediction'].values / results_CI['Target'].values
+    pace_CN = results_CN['Prediction'].values / results_CN['Target'].values
+    return pace_CI, pace_CN
 
 if __name__ == "__main__":
 
     opt = parse_args()
-    set_r_params(small =8)
+    set_r_params(small = 8)
 
     # Load residuals for both models
     res_CI_1, res_CN_1 = load_residuals(opt.model_folder1)
@@ -112,25 +87,55 @@ if __name__ == "__main__":
         u_stat, p_value = stats.mannwhitneyu(res_CN, res_CI, alternative='greater')
         print(f"[{model_name}] Mann–Whitney U test: U = {u_stat:.2f}, p = {p_value:.4f}")
 
-    #Logistic option
-    res = np.concatenate([res_CI_1, res_CN_1])
-    is_ci = np.concatenate([np.ones(len(res_CI_1)), np.zeros(len(res_CN_1))])
 
+    """
+    Analysis by pace
+    """
 
-    import statsmodels.formula.api as smf
+    opt = parse_args()
+    set_r_params(small = 8)
 
-    # Assume you have:
-    # res    → predictions or some model-derived feature (length N)
-    # is_cn  → binary labels (1 = CI, 0 = CN)
+    # Load residuals for both models
+    pace_CI_1, pace_CN_1 = load_pace(opt.model_folder1)
+    pace_CI_2, pace_CN_2 = load_pace(opt.model_folder2)
+    print(f"{opt.model_name1} mean pace CN: {np.mean(pace_CN_1)}, CI: {np.mean(pace_CI_1)}")
+    print(f"{opt.model_name2} mean pace CN: {np.mean(pace_CN_2)}, CI: {np.mean(pace_CI_2)}")
 
-    # Build DataFrame
-    df = pd.DataFrame({
-        "Prediction": res,
-        "Group": is_ci
+    # Prepare plot
+    fig, axes = get_figures(n_rows=1, n_cols=2, figsize=(10, 4), sharex=True, sharey=True)
+
+    # Model 1 plot
+    data1 = pd.DataFrame({
+        'Pace': list(pace_CN_1) + list(pace_CI_1),
+        'Group': ['CN'] * len(pace_CN_1) + ['CI'] * len(pace_CI_1)
     })
+    sns.boxplot(data=data1, x='Group', y='Pace', ax=axes[0], palette='pastel')
+    axes[0].set_title(opt.model_name1)
+    axes[0].set_ylabel('Pace (Prediction/Target)')
+    axes[0].set_xlabel('')
 
-    # Fit logistic regression: predict Group using Prediction
-    model = smf.logit("Group ~ Prediction", data=df).fit(maxiter=100)
+    # Model 2 plot
+    data2 = pd.DataFrame({
+        'Pace': list(pace_CN_2) + list(pace_CI_2),
+        'Group': ['CN'] * len(pace_CN_2) + ['CI'] * len(pace_CI_2)
+    })
+    sns.boxplot(data=data2, x='Group', y='Pace', ax=axes[1], palette='pastel')
+    axes[1].set_title(opt.model_name2)
+    axes[1].set_ylabel('')
+    axes[1].set_xlabel('')
 
-    # Summary of the model
-    print(model.summary())
+    # Styling
+    fig = set_style_ax(fig, axes, both_axes=False)
+    fig = set_size(fig, 6, 3)
+
+    os.makedirs('figures', exist_ok=True)
+    save_figure(fig, f'figures/pace_CI_boxplot_{opt.model_name1}_{opt.model_name2}.png')
+
+    # Mann–Whitney U tests
+    for model_name, pace_CI, pace_CN in zip(
+        [opt.model_name1, opt.model_name2],
+        [pace_CI_1, pace_CI_2],
+        [pace_CN_1, pace_CN_2]
+    ):  
+        u_stat, p_value = stats.mannwhitneyu(pace_CI, pace_CN, alternative='greater')
+        print(f"Pace [{model_name}] Mann–Whitney U test: U = {u_stat:.2f}, p = {p_value:.4f}")
