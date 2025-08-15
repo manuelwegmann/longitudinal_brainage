@@ -1,0 +1,16 @@
+{
+    "data_directory": "/mimer/NOBACKUP/groups/brainage/data/oasis3",
+    "project_data_dir": "/mimer/NOBACKUP/groups/brainage/thesis_brainage/data",
+    "folds_dir": "/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds",
+    "compression": 4,
+    "image_channel": 1,
+    "target_name": "duration",
+    "optional_meta": [
+        "sex_M",
+        "age"
+    ],
+    "folds": 5,
+    "ignore_folds": [],
+    "output_directory": "/mimer/NOBACKUP/groups/brainage/thesis_brainage/results",
+    "run_name": "AE_age_4"
+}

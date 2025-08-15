@@ -1,3 +1,7 @@
+"""
+Script to plot averaged training losses from multiple folds.
+"""
+
 import os
 import pandas as pd
 import numpy as np
@@ -51,7 +55,7 @@ def plot_and_save_avg_metrics(metrics_dict, save_dir, name=''):
     set_r_params(small = 8)
     fig, ax = get_figures(n_rows = 1, n_cols = 2, figsize=(4, 3), sharex=True, sharey=False)
 
-    # --- Plot Loss ---
+    #MSE
     ax[0].plot(epochs, means[:, 0], label='Train MSE', color='blue')
     ax[0].fill_between(epochs, means[:, 0] - stds[:, 0], means[:, 0] + stds[:, 0], color='blue', alpha=0.2)
     ax[0].plot(epochs, means[:, 2], label='Val MSE', color='orange')
@@ -61,7 +65,7 @@ def plot_and_save_avg_metrics(metrics_dict, save_dir, name=''):
     ax[0].set_ylabel('Loss')
     ax[0].legend(loc='upper right')
 
-    # --- Plot MAE ---
+    #MAE
     ax[1].plot(epochs, means[:, 1], label='Train MAE', color='green')
     ax[1].fill_between(epochs, means[:, 1] - stds[:, 1], means[:, 1] + stds[:, 1], color='green', alpha=0.2)
     ax[1].plot(epochs, means[:, 3], label='Val MAE', color='red')
@@ -71,7 +75,7 @@ def plot_and_save_avg_metrics(metrics_dict, save_dir, name=''):
     ax[1].set_ylabel('MAE')
     ax[1].legend(loc='upper right')
 
-    # Style both axes
+    # Style axes
     fig = set_style_ax(fig, ax)
 
     # Resize
@@ -79,8 +83,6 @@ def plot_and_save_avg_metrics(metrics_dict, save_dir, name=''):
     path = os.path.join(save_dir, 'averaged_losses.png')
     plt.savefig(path, dpi=300)
     plt.close()
-
-    print(f"Plots saved:\n- {path}")
 
 if __name__ == "__main__":
     args = parse_args()

@@ -1,3 +1,7 @@
+"""
+Script to train CS CNN for the cross-sectional brain age task.
+"""
+
 from loader_CS import loader3D
 from CS_3DCNN import CS_CNN
 

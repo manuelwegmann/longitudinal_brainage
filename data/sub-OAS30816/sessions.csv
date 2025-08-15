@@ -1,0 +1,5 @@
+session_id,age,days_from_baseline,days_to_diagnosis,cognitiveyly_normal
+ses-d0530,60.47,530,0,True
+ses-d3379,68.27,3379,3328,True
+ses-d4576,71.55493150684931,4576,4492,True
+ses-d4583,71.5741095890411,4583,4492,True

@@ -1,3 +1,7 @@
+"""
+Script to train and fit baseline models for the longitudinal brain age task.
+"""
+
 import pandas as pd
 import numpy as np
 import os

@@ -1,3 +1,7 @@
+"""
+Script to compute summary statistics for models
+"""
+
 import numpy as np
 from scipy.stats import pearsonr
 import pandas as pd
@@ -70,9 +74,9 @@ if __name__ == "__main__":
     r_F,p_F = pearsonr(preds[idx_F], targets[idx_F])
     eval_dict['PCC(pred,target)'] = [r, r_M, r_F]
     eval_dict['p(pred,target)'] = [p, p_M, p_F]
-    R2 = r2_score(preds, targets)
-    R2_M = r2_score(preds[idx_M], targets[idx_M])
-    R2_F = r2_score(preds[idx_F], targets[idx_F])
+    R2 = r2_score(targets, preds)
+    R2_M = r2_score(targets[idx_M], preds[idx_M])
+    R2_F = r2_score(targets[idx_F], preds[idx_F])
     eval_dict['R2'] = [R2,R2_M,R2_F]
 
 

@@ -1,3 +1,7 @@
+"""
+Script to train and fit AM for the longitudinal brain age task.
+"""
+
 from loader_AE import loader3D
 import numpy as np
 import os

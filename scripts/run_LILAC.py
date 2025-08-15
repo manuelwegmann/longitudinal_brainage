@@ -1,3 +1,7 @@
+"""
+Script to train LILAC/LILAC+ for the longitudinal brain age task.
+"""
+
 from loader import loader3D
 from LILAC import LILAC
 from LILAC_plus import LILAC_plus

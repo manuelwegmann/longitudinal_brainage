@@ -66,9 +66,7 @@ if __name__ == "__main__":
     """
     Load the arguments from the json file.
     """
-    args = load_args_from_json('/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age/run_details.json')
-    args.project_data_dir = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/data'
-    args.optional_meta = ['sex_M']
+    args = load_args_from_json('/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC/run_details.json')
 
     """
     Load the participants file and extract the complete number of participants.
@@ -80,6 +78,8 @@ if __name__ == "__main__":
     Add classification to the dataframe and remove CI participants.
     """
     df = add_classification(df, args.project_data_dir)
+    df_switch = df[(df['class_at_baseline'] == 'CN') & (df['class_at_final'] == 'CI')]
+    print(f"Number of participants with switch from CN to CI: {len(df_switch)}")
     df = df[(df['class_at_baseline'] == 'CN') & (df['class_at_final'] == 'CN')] # Exclude CI participants
     num_before_single_scan_removal = len(df)
 
@@ -101,7 +101,7 @@ if __name__ == "__main__":
 
 
     clean_participants = pd.concat([df_M, df_F], ignore_index=True)
-    clean_participants.to_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/further_analysis_results/clean_participants.csv', index=False)
+    clean_participants.to_csv('/mimer/NOBACKUP/groups/brainage/thesis_brainage/archive/further_analysis_results/cp.csv', index=False)
 
     df_all_fs_M = all_fs_loader3D(args, df_M)
     df_all_fs_F = all_fs_loader3D(args, df_F)

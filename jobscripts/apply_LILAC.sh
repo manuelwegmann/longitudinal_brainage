@@ -3,7 +3,7 @@
 #SBATCH -A NAISS2025-22-353     # project ID found via "projinfo"
 #SBATCH -p alvis                # what partition to use (usually not necessary)
 #SBATCH -t 00:30:00          # how long time it will take to run
-#SBATCH --gpus-per-node=V100:1    # choosing no. GPUs and their type
+#SBATCH --gpus-per-node=A40:1    # choosing no. GPUs and their type
 
 # load modules
 module load virtualenv/20.26.2-GCCcore-13.3.0

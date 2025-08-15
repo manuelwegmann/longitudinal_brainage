@@ -1,3 +1,7 @@
+"""
+Script to check for model capabilties to differentiate CN and CI groups.
+"""
+
 import numpy as np
 import pandas as pd
 import os
@@ -18,17 +22,11 @@ def parse_args():
 
     parser.add_argument('--model_folder1', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI', type=str, help="Path to folder with predictions on CN/CI for model 1")
     parser.add_argument('--model_name1', default='LILAC', type=str, help="Name of the first model")
-    parser.add_argument('--model_folder2', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_CI', type=str, help="Path to folder with predictions on CN/CI for model 2")
+    parser.add_argument('--model_folder2', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus_CI', type=str, help="Path to folder with predictions on CN/CI for model 2")
     parser.add_argument('--model_name2', default='LILAC+', type=str, help="Name of the second model")
 
     return parser.parse_args()
 
-def load_residuals(folder):
-    results_CI = pd.read_csv(os.path.join(folder, 'predictions_CI.csv'))
-    results_CN = pd.read_csv(os.path.join(folder, 'predictions_CN.csv'))
-    res_CI = results_CI['Target'].values - results_CI['Prediction'].values
-    res_CN = results_CN['Target'].values - results_CN['Prediction'].values
-    return res_CI, res_CN
 
 def load_pace(folder):
     results_CI = pd.read_csv(os.path.join(folder, 'predictions_CI.csv'))
@@ -38,56 +36,6 @@ def load_pace(folder):
     return pace_CI, pace_CN
 
 if __name__ == "__main__":
-
-    opt = parse_args()
-    set_r_params(small = 8)
-
-    # Load residuals for both models
-    res_CI_1, res_CN_1 = load_residuals(opt.model_folder1)
-    res_CI_2, res_CN_2 = load_residuals(opt.model_folder2)
-    print(f"{opt.model_name1} mean residual CN: {np.mean(res_CN_1)}, CI: {np.mean(res_CI_1)}")
-    print(f"{opt.model_name2} mean residual CN: {np.mean(res_CN_2)}, CI: {np.mean(res_CI_2)}")
-
-    # Prepare plot
-    fig, axes = get_figures(n_rows=1, n_cols=2, figsize=(10, 4), sharex=True, sharey=True)
-
-    # Model 1 plot
-    data1 = pd.DataFrame({
-        'Residual': list(res_CI_1) + list(res_CN_1),
-        'Group': ['CI'] * len(res_CI_1) + ['CN'] * len(res_CN_1)
-    })
-    sns.boxplot(data=data1, x='Group', y='Residual', ax=axes[0], palette='pastel')
-    axes[0].set_title(opt.model_name1)
-    axes[0].set_ylabel('Residual (Target - Prediction)')
-    axes[0].set_xlabel('')
-
-    # Model 2 plot
-    data2 = pd.DataFrame({
-        'Residual': list(res_CI_2) + list(res_CN_2),
-        'Group': ['CI'] * len(res_CI_2) + ['CN'] * len(res_CN_2)
-    })
-    sns.boxplot(data=data2, x='Group', y='Residual', ax=axes[1], palette='pastel')
-    axes[1].set_title(opt.model_name2)
-    axes[1].set_ylabel('')
-    axes[1].set_xlabel('')
-
-    # Styling
-    fig = set_style_ax(fig, axes, both_axes=False)
-    fig = set_size(fig, 6, 3)
-
-    os.makedirs('figures', exist_ok=True)
-    save_figure(fig, f'figures/CI_boxplot_{opt.model_name1}_{opt.model_name2}.png')
-
-    # Mann–Whitney U tests
-    for model_name, res_CI, res_CN in zip(
-        [opt.model_name1, opt.model_name2],
-        [res_CI_1, res_CI_2],
-        [res_CN_1, res_CN_2]
-    ):  
-        u_stat, p_value = stats.mannwhitneyu(res_CN, res_CI, alternative='greater')
-        print(f"[{model_name}] Mann–Whitney U test: U = {u_stat:.2f}, p = {p_value:.4f}")
-
-
     """
     Analysis by pace
     """

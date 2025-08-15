@@ -1,3 +1,7 @@
+"""
+Script to reconstruct missing data in orginal session files.
+"""
+
 import os
 import pandas as pd
 import numpy as np
