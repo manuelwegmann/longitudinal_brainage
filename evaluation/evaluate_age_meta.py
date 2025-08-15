@@ -1,3 +1,7 @@
+"""
+Script to evaluate the impact of age on model predictions by comparing predictions with and without age as a feature.
+"""
+
 import numpy as np
 import pandas as pd
 import scipy.stats as stats

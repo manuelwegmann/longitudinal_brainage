@@ -1,7 +1,11 @@
+"""
+Script to concatenate predictions from multiple folds into a single DataFrame for evaluation
+"""
+
 import os
 import pandas as pd
 
-path_to_folds = '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus'
+path_to_folds = 'blank'  # Replace with  actual path to folds dir
 
 # List to store individual DataFrames
 dfs = []
@@ -14,7 +18,7 @@ for folder_name in os.listdir(path_to_folds):
         
         if os.path.isfile(csv_path):
             df = pd.read_csv(csv_path)
-            df['fold'] = folder_name  # Optionally tag the fold
+            df['fold'] = folder_name
             dfs.append(df)
 
 # Combine all DataFrames into one

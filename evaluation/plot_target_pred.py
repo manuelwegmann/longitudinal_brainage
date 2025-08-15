@@ -1,3 +1,7 @@
+"""
+Script to plot target vs prediction for all models.
+"""
+
 import numpy as np
 import os
 import pandas as pd

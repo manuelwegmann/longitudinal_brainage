@@ -42,5 +42,5 @@ For the autoencoder model, step 2 is redundant.
 
 ## Detailed evaluation
 
-Further scripts for evaluating difference in model performance  via statitical tests with regards to optional meta data that is included in the model can be found under evaluation.
+Further scripts for evaluating difference in model performance via statitical tests with regards to optional meta data that is included in the model can be found under evaluation.
 

@@ -1,3 +1,8 @@
+
+"""
+Script to evaluate performance differences between the sexes.
+"""
+
 import numpy as np
 import pandas as pd
 import scipy.stats as stats

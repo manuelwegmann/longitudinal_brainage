@@ -46,7 +46,7 @@ combined_df['Age Group'] = pd.cut(combined_df['Age'], bins=bins, labels=labels, 
 set_r_params(small=8)
 
 fig, axes = get_figures(n_rows=2, n_cols=1, figsize=(6, 6), sharex=False, sharey=False)
-# Top subplot: boxplot of residuals by age group
+# Boxplot of residuals by age group
 sns.boxplot(
     data=combined_df,
     x='Age Group',
@@ -67,7 +67,7 @@ interval_bins = [0, 1, 3, 5, 100]
 interval_labels = ['<1 (n=173)', '1–3 (n=570)', '3–5 (n=591)', '5+ (n=705)']
 combined_df['Interval Group'] = pd.cut(combined_df['Target'], bins=interval_bins, labels=interval_labels, right=False)
 
-# Bottom subplot: boxplot of residuals by target interval
+# Boxplot of residuals by target interval
 sns.boxplot(
     data=combined_df,
     x='Interval Group',
@@ -83,16 +83,16 @@ axes[1].legend_.remove()
 axes[1].set_title('Residuals by Target Group')
 
 
-# Style both axes
+# Style axes
 fig = set_style_ax(fig, axes, both_axes=False)
 
-# Optionally resize if needed (here it matches figsize, but just to show usage)
+# Resize
 fig = set_size(fig, 6, 6)
 
 os.makedirs("figures", exist_ok=True)
 save_figure(fig, "figures/boxplots_res.png")
 
-# Compute IQR outlier thresholds and counts for Age Group
+# Compute IQR outlier thresholds and counts for Age
 outlier_stats = []
 
 grouped = combined_df.groupby(['Model', 'Age Group'])
@@ -132,7 +132,7 @@ print(outlier_df.sort_values(['Age Group', 'Model']))
 outlier_df.to_csv('stats/age_residual_analysis.csv', index=False)
 
 
-# Compute IQR outlier thresholds and counts for Target (Interval Group)
+# Compute IQR outlier thresholds and counts for Target
 interval_outlier_stats = []
 
 grouped_interval = combined_df.groupby(['Model', 'Interval Group'])
