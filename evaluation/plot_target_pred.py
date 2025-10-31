@@ -16,9 +16,9 @@ from plotting import (
 )
 
 # Set plotting parameters (font, sizes, etc.)
-set_r_params(small = 8)
+set_r_params(small = 10, medium = 14, big =14)
 # Create figure with shared axes
-fig, axes = get_figures(n_rows=3, n_cols=2, figsize=(10, 10), sharex=True, sharey=True)
+fig, axes = get_figures(n_rows=2, n_cols=2, figsize=(10, 10), sharex=True, sharey=True)
 
 """
 Load Data
@@ -27,9 +27,7 @@ paths = {
     'CS CNN': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_CNN/longitudinal_predictions.csv',
     'LILAC': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC/predictions_all_folds.csv',
     'LILAC+': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_plus/predictions_all_folds.csv',
-    'LILAC+ (age)': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/LILAC_age_plus/predictions_all_folds.csv',
     'AM': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/AE_4/predictions_all_folds.csv',
-    'AM (age)': '/mimer/NOBACKUP/groups/brainage/thesis_brainage/results/AE_age_4/predictions_all_folds.csv',
 }
 
 # Load data
@@ -41,12 +39,10 @@ preds = {name: df['Prediction'] for name, df in results.items()}
 
 # Map model names to subplot positions (row, col)
 model_order = [
-    ('LILAC', (0, 1)),
+    ('LILAC', (0, 0)),
     ('LILAC+', (1, 0)),
-    ('LILAC+ (age)', (1, 1)),
-    ('CS CNN', (0, 0)),
-    ('AM', (2, 0)),
-    ('AM (age)', (2, 1)),
+    ('CS CNN', (0, 1)),
+    ('AM', (1, 1)),
 ]
 
 for model_name, (i, j) in model_order:
@@ -72,15 +68,14 @@ for model_name, (i, j) in model_order:
 axes[0,0].set_ylabel('Prediction [years]')
 axes[0,0].legend(loc='upper left')
 axes[1,0].set_ylabel('Prediction [years]')
-axes[2,0].set_ylabel('Prediction [years]')
 
 # Style both axes
 fig = set_style_ax(fig, axes)
 
 # Optionally resize if needed (here it matches figsize, but just to show usage)
-fig = set_size(fig, 6.9, 8)
+fig = set_size(fig, 6.9, 5.5)
 
 os.makedirs("figures", exist_ok=True)
-save_figure(fig, "figures/target_pred.png")
+save_figure(fig, "figures/target_pred_paper.png")
 
 fig.show()

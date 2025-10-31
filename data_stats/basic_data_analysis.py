@@ -29,12 +29,16 @@ if __name__ == "__main__":
     
     df_CN = df[df['class_at_baseline'] == 'CN']
     df_CI = df[df['class_at_baseline'] == 'CI']
+    df_UD = df[df['class_at_baseline'] == 'U']
     print(f"Number of participants in OASIS-3 dataset with CN/CI at baseline: {len(df_CN)}, {len(df_CI)}")
+    print(f"Number of participants without classification: {len(df_UD)}")
     print("CN:", df_CN['sex'].value_counts())
     print("CI:", df_CI['sex'].value_counts())
+    print("U:", df_UD['sex'].value_counts())
 
     print(f"Mean age CN: {df_CN['age'].mean(), df_CN['age'].std()}")
     print(f"Mean age CI: {df_CI['age'].mean(), df_CI['age'].std()}")
+    print(f"Mean age U: {df_UD['age'].mean(), df_UD['age'].std()}")
     print(f"Mean age total: {df['age'].mean(), df['age'].std()}")
 
     print(f"Mean education CN: {df_CN['education'].mean(), df_CN['education'].std()}")

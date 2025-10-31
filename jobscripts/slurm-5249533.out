@@ -1,0 +1,35 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/5249533
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Model will be trained for CI task.
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: 'scans.tsv' file not found for participant sub-OAS30807 in session ses-d1492. Skipping this session.
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 1648 images.
+Loaded 1648 rows of metadata.
+Loaded 1648 targets.
+Loaded 108 images.
+Loaded 108 rows of metadata.
+Loaded 108 targets.
+Epoch:  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Avg Train Loss/MAE = 2448.7248 / 47.0870. Weights were updated.
+Avg Val Loss/MAE = 1230.1592 / 34.6560
+Current learning rate: 0.0001
+Epoch:  1
+Avg Train Loss/MAE = 280.8608 / 13.9647. Weights were updated.
+Avg Val Loss/MAE = 161.3553 / 11.6761
+Current learning rate: 0.0001
+Epoch:  2
+slurmstepd: error: *** JOB 5249533 ON alvis1-03 CANCELLED AT 2025-10-27T10:20:18 ***

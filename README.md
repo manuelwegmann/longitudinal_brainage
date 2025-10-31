@@ -1,6 +1,6 @@
 # Brain Age Prediction with Longitudinal MRI
 
-This repository contains the code for a thesis project focused on developing and evaluating machine learning models to predict changes in brain age using longitudinal brain imaging data. Oasis-3 (https://sites.wustl.edu/oasisbrains/) was used as the brain MRI dataset for training and validation.
+This repository contains code for developing and evaluating machine learning models to predict changes in brain age using longitudinal brain imaging data. Oasis-3 (https://sites.wustl.edu/oasisbrains/) was used as the brain MRI dataset for training and validation.
 
 The foundation for this work is based on the [LILAC model](https://github.com/heejong-kim/LILAC).
 
@@ -24,7 +24,7 @@ source my_venv/bin/activate
 ## Data Preperation and Cleaning
 Some participants in the original dataset had missing age information for some scan sessions. These were reconstructed, where possible, with the generate_new_session_files.py script found under tools.
 
-Custom dataloaders for the respective models are found under loader.py (LILAC/LILAC+), loader_CS,py (cross-sectional CNN) and loader_AE.py (autoencoder model). Latent representations via MedVAE for the autoencoder model were computed beforehand and saved under data.
+Custom dataloaders for the respective models are found under loader.py (LILAC/LILAC+), loader_CS.py (cross-sectional CNN) and loader_AE.py (autoencoder model). Latent representations via MedVAE for the autoencoder model were computed beforehand and saved under data.
 
 ## Workflow
 

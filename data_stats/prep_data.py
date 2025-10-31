@@ -11,12 +11,12 @@ def load_basic_overview(file_path = '/mimer/NOBACKUP/groups/brainage/data/oasis3
 
 
 # For a given participant ID, find their actual age at baseline
-def extract_age_at_baseline(participant_id, folder_path='/mimer/NOBACKUP/groups/brainage/data/oasis3'):
-    file_path = os.path.join(folder_path, str(participant_id), 'sessions.tsv')
-    return pd.read_csv(file_path, sep='\t').iloc[0]['age']
+def extract_age_at_baseline(participant_id, folder_path='/mimer/NOBACKUP/groups/brainage/thesis_brainage/data'):
+    file_path = os.path.join(folder_path, str(participant_id), 'sessions.csv')
+    return pd.read_csv(file_path).iloc[0]['age']
 
 # Update the whole dataset with correct ages at baseline
-def add_ages(df, folder_path='/mimer/NOBACKUP/groups/brainage/data/oasis3'):  # df is the DataFrame, and folder_path points to the OASIS-3 folder
+def add_ages(df, folder_path='/mimer/NOBACKUP/groups/brainage/thesis_brainage/data'):  # df is the DataFrame, and folder_path points to the OASIS-3 folder
     df['age'] = df['participant_id'].apply(lambda participant_id: extract_age_at_baseline(participant_id, folder_path))
     return df
 
@@ -24,18 +24,23 @@ def add_ages(df, folder_path='/mimer/NOBACKUP/groups/brainage/data/oasis3'):  # 
 
 # For a given participant ID, find CN/CI classification at baseline and final session
 def extract_class_at_baseline(participant_id, folder_path='/mimer/NOBACKUP/groups/brainage/data/oasis3'):
-    classification = "CN"
     file_path = os.path.join(folder_path, str(participant_id), 'sessions.tsv')
     if pd.read_csv(file_path, sep='\t').iloc[0]['cognitiveyly_normal'] == False:
         classification = "CI"
+    elif pd.read_csv(file_path, sep='\t').iloc[0]['cognitiveyly_normal'] == True:
+        classification = "CN"
+    else:
+        classification = "U"
     return classification
 
 def extract_class_at_final(participant_id, folder_path='/mimer/NOBACKUP/groups/brainage/data/oasis3'):
-    classification = "CN"
+    classification = "U"
     file_path = os.path.join(folder_path, str(participant_id), 'sessions.tsv')
     session_file = pd.read_csv(file_path, sep='\t')
     if session_file.iloc[session_file.shape[0] - 1]['cognitiveyly_normal'] == False:
         classification = "CI"
+    if session_file.iloc[session_file.shape[0] - 1]['cognitiveyly_normal'] == True:
+        classification = "CN"
     return classification
 
 # Update the whole dataset with correct classifications at baseline and final session
