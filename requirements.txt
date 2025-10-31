@@ -1,4 +1,8 @@
+absl-py==2.2.2
+accelerate==1.7.0
 alabaster @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/alabaster/alabaster-0.7.16
+annotated-types==0.7.0
+antlr4-python3-runtime==4.9.3
 appdirs @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/appdirs/appdirs-1.4.4
 asn1crypto @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/asn1crypto/asn1crypto-1.5.1
 atomicwrites @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/atomicwrites/atomicwrites-1.4.1
@@ -6,6 +10,9 @@ attrs @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/attrs/attrs-23.2
 Babel @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/Babel/babel-2.15.0
 backports.entry_points_selectable @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/backportsentrypointsselectable/backports.entry_points_selectable-1.3.0
 backports.functools_lru_cache @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/backportsfunctoolslrucache/backports.functools_lru_cache-2.0.0
+batchgenerators==0.25.1
+batchgeneratorsv2==0.3.0
+beautifulsoup4==4.13.4
 beniget @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/beniget/beniget-0.4.1
 bitarray @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/bitarray/bitarray-2.9.2
 bitstring @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/bitstring/bitstring-4.2.3
@@ -21,6 +28,7 @@ cleo @ file:///apps/sources/p/Python-bundle-PyPI/extensions/cleo-2.1.0-py3-none-
 click @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/click/click-8.1.7
 cloudpickle @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/cloudpickle/cloudpickle-3.0.0
 colorama @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/colorama/colorama-0.4.6
+colorlog==6.9.0
 commonmark @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/commonmark/commonmark-0.9.1
 contourpy @ file:///dev/shm/matplotlib/3.9.2/gfbf-2024a/contourpy/contourpy-1.3.0
 crashtest @ file:///apps/sources/p/Python-bundle-PyPI/extensions/crashtest-0.4.1-py3-none-any.whl#sha256=8d23eac5fa660409f57472e3851dab7ac18aba459a8d19cbbba86d3d5aecd2a5
@@ -28,6 +36,8 @@ cryptography @ file:///dev/shm/cryptography/42.0.8/GCCcore-13.3.0/cryptography-4
 cycler @ file:///dev/shm/matplotlib/3.9.2/gfbf-2024a/Cycler/cycler-0.12.1
 deap @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/deap/deap-1.4.1
 decorator @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/decorator/decorator-5.1.1
+Deprecated==1.2.18
+dicom2nifti==2.6.1
 distlib @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/distlib/distlib-0.3.8
 distro @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/distro/distro-1.9.0
 docopt @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/docopt/docopt-0.6.2
@@ -36,17 +46,31 @@ doit @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/doit/doit-0.36.0
 dulwich @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/dulwich/dulwich-0.22.1
 ecdsa @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/ecdsa/ecdsa-0.19.0
 editables @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/editables/editables-0.5
+einops==0.8.1
 exceptiongroup @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/exceptiongroup/exceptiongroup-1.2.1
 execnet @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/execnet/execnet-2.1.1
+fft-conv-pytorch==1.2.0
 filelock @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/filelock/filelock-3.15.1
 flit_core @ file:///dev/shm/Python/3.12.3/GCCcore-13.3.0/flit_core/flit_core-3.9.0
 fonttools @ file:///dev/shm/matplotlib/3.9.2/gfbf-2024a/fonttools/fonttools-4.53.1
 fsspec @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/fsspec/fsspec-2024.6.0
+ftfy==6.3.1
 future @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/future/future-1.0.0
 gast @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/gast/gast-0.5.4
+gdown==5.2.0
+gitdb==4.0.12
+GitPython==3.1.44
 glob2 @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/glob2/glob2-0.7
+grpcio==1.71.0
+hf-xet==1.1.4
 html5lib @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/html5lib/html5lib-1.1
+huggingface-hub==0.33.0
+humanize==4.12.2
+hydra-colorlog==1.2.0
+hydra-core==1.3.2
 idna @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/idna/idna-3.7
+imagecodecs==2025.3.30
+imageio==2.37.0
 imagesize @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/imagesize/imagesize-1.4.1
 importlib_metadata @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/importlibmetadata/importlib_metadata-7.1.0
 importlib_resources @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/importlibresources/importlib_resources-6.4.0
@@ -64,25 +88,52 @@ jsonschema-specifications @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.
 keyring @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/keyring/keyring-24.3.1
 keyrings.alt @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/keyringsalt/keyrings.alt-5.0.1
 kiwisolver @ file:///dev/shm/matplotlib/3.9.2/gfbf-2024a/kiwisolver/kiwisolver-1.4.5
+lazy_loader==0.4
 liac-arff @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/liacarff/liac-arff-2.5.0
+lightning-utilities==0.14.3
+linecache2==1.0.0
 lockfile @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/lockfile/lockfile-0.12.2
+lxml==5.4.0
+Markdown==3.8
 markdown-it-py @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/markdownitpy/markdown-it-py-3.0.0
 MarkupSafe @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/MarkupSafe/MarkupSafe-2.1.5
 matplotlib @ file:///dev/shm/matplotlib/3.9.2/gfbf-2024a/matplotlib/matplotlib-3.9.2
 mdurl @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/mdurl/mdurl-0.1.2
+medvae==0.1.1
 mock @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/mock/mock-5.1.0
+monai==1.5.0
 more-itertools @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/moreitertools/more-itertools-10.3.0
 mpmath @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/mpmath/mpmath-1.3.0
 msgpack @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/msgpack/msgpack-1.0.8
 netaddr @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/netaddr/netaddr-1.3.0
 netifaces @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/netifaces/netifaces-0.11.0
+networkx==3.4.2
+nibabel==5.3.2
+nilearn==0.11.1
 numexpr @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/numexpr/numexpr-2.10.0
 numpy @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/numpy/numpy-1.26.4
+nvidia-cublas-cu12==12.4.5.8
+nvidia-cuda-cupti-cu12==12.4.127
+nvidia-cuda-nvrtc-cu12==12.4.127
+nvidia-cuda-runtime-cu12==12.4.127
+nvidia-cudnn-cu12==9.1.0.70
+nvidia-cufft-cu12==11.2.1.3
+nvidia-curand-cu12==10.3.5.147
+nvidia-cusolver-cu12==11.6.1.9
+nvidia-cusparse-cu12==12.3.1.170
+nvidia-cusparselt-cu12==0.6.2
+nvidia-nccl-cu12==2.21.5
+nvidia-nvjitlink-cu12==12.4.127
+nvidia-nvtx-cu12==12.4.127
+omegaconf==2.3.0
+open-clip-torch==2.24.0
 packaging @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/packaging/packaging-24.1
 pandas @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/pandas/pandas-2.2.2
 pastel @ file:///apps/sources/p/Python-bundle-PyPI/extensions/pastel-0.2.1-py2.py3-none-any.whl#sha256=4349225fcdf6c2bb34d483e523475de5bb04a5c10ef711263452cb37d7dd4364
+pathlib==1.0.1
 pathlib2 @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pathlib2/pathlib2-2.3.7.post1
 pathspec @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pathspec/pathspec-0.12.1
+patsy==1.0.1
 pbr @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pbr/pbr-6.0.0
 pexpect @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pexpect/pexpect-4.9.0
 pillow @ file:///dev/shm/PillowSIMD/10.4.0/GCCcore-13.3.0/pillow-simd-10.4.0
@@ -90,7 +141,9 @@ pkginfo @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pkginfo/pkginf
 platformdirs @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/platformdirs/platformdirs-4.2.2
 pluggy @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pluggy/pluggy-1.5.0
 ply @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/ply/ply-3.11
+polars==0.19.10
 pooch @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pooch/pooch-1.8.2
+protobuf==6.30.2
 psutil @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/psutil/psutil-5.9.8
 ptyprocess @ file:///apps/sources/p/Python-bundle-PyPI/extensions/ptyprocess-0.7.0-py2.py3-none-any.whl#sha256=4b41f3967fce3af57cc7e94b888626c18bf37a083e3651ca8feeb66d492fef35
 py @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/py/py-1.11.0
@@ -99,18 +152,26 @@ pyasn1 @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pyasn1/pyasn1-0
 pybind11 @ file:///dev/shm/pybind11/2.12.0/GCC-13.3.0/pybind11-2.12.0
 pycparser @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pycparser/pycparser-2.22
 pycryptodome @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pycryptodome/pycryptodome-3.20.0
+pydantic==2.11.7
+pydantic_core==2.33.2
 pydevtool @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pydevtool/pydevtool-0.3.0
+pydicom==3.0.1
 Pygments @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/Pygments/pygments-2.18.0
 pylev @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pylev/pylev-1.4.0
 PyNaCl @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/PyNaCl/PyNaCl-1.5.0
 pyparsing @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pyparsing/pyparsing-3.1.2
+pyrootutils==1.0.4
 pyrsistent @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pyrsistent/pyrsistent-0.20.0
+PySocks==1.7.1
 pytest @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pytest/pytest-8.2.2
 pytest-xdist @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pytestxdist/pytest_xdist-3.6.1
 python-dateutil @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pythondateutil/python-dateutil-2.9.0.post0
+python-dotenv==1.1.0
+python-gdcm==3.0.25
 pythran @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/pythran/pythran-0.16.1
 pytoml @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pytoml/pytoml-0.1.21
 pytz @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/pytz/pytz-2024.1
+PyYAML==6.0.2
 rapidfuzz @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/rapidfuzz/rapidfuzz-3.9.3
 referencing @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/referencing/referencing-0.35.1
 regex @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/regex/regex-2024.5.15
@@ -119,19 +180,28 @@ requests-toolbelt @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/requ
 rich @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/rich/rich-13.7.1
 rich-click @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/richclick/rich_click-1.8.3
 rpds-py @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/rpdspy/rpds_py-0.18.1
+safetensors==0.5.3
 scandir @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/scandir/scandir-1.10.0
+scikit-image==0.25.2
+scikit-learn==1.6.1
 scipy==1.13.1
 seaborn==0.13.2
 SecretStorage @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/SecretStorage/SecretStorage-3.3.3
 semantic_version @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/semanticversion/semantic_version-2.10.0
+sentencepiece==0.2.0
+sentry-sdk==2.30.0
+setproctitle==1.3.6
 setuptools @ file:///dev/shm/Python/3.12.3/GCCcore-13.3.0/setuptools/setuptools-70.0.0
 setuptools-scm @ file:///dev/shm/Python/3.12.3/GCCcore-13.3.0/setuptools_scm/setuptools_scm-8.1.0
 shellingham @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/shellingham/shellingham-1.5.4
 simplegeneric @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/simplegeneric/simplegeneric-0.8.1
+SimpleITK==2.4.1
 simplejson @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/simplejson/simplejson-3.19.2
 six @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/six/six-1.16.0
+smmap==5.0.2
 snowballstemmer @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/snowballstemmer/snowballstemmer-2.2.0
 sortedcontainers @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/sortedcontainers/sortedcontainers-2.4.0
+soupsieve==2.7
 Sphinx @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/Sphinx/sphinx-7.3.7
 sphinx-bootstrap-theme @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/sphinxbootstraptheme/sphinx-bootstrap-theme-0.8.1
 sphinxcontrib-applehelp @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/sphinxcontribapplehelp/sphinxcontrib_applehelp-1.0.8
@@ -141,21 +211,41 @@ sphinxcontrib-jsmath @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/s
 sphinxcontrib-qthelp @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/sphinxcontribqthelp/sphinxcontrib_qthelp-1.0.7
 sphinxcontrib-serializinghtml @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/sphinxcontribserializinghtml/sphinxcontrib_serializinghtml-1.1.10
 sphinxcontrib-websupport @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/sphinxcontribwebsupport/sphinxcontrib_websupport-1.2.7
+statsmodels==0.14.5
+sympy==1.13.1
 tabulate @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/tabulate/tabulate-0.9.0
+tensorboard==2.19.0
+tensorboard-data-server==0.7.2
 threadpoolctl @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/threadpoolctl/threadpoolctl-3.5.0
+tifffile==2025.6.11
+timm==1.0.15
 toml @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/toml/toml-0.10.2
 tomli @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/tomli/tomli-2.0.1
 tomli_w @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/tomliw/tomli_w-1.0.0
 tomlkit @ file:///apps/sources/p/Python-bundle-PyPI/extensions/tomlkit-0.12.5-py3-none-any.whl#sha256=af914f5a9c59ed9d0762c7b64d3b5d5df007448eb9cd2edc8a46b1eafead172f
-typing_extensions @ file:///dev/shm/Python/3.12.3/GCCcore-13.3.0/typing_extensions/typing_extensions-4.11.0
+torch==2.6.0
+torchio==0.20.6
+torchmetrics==1.7.3
+torchvision==0.21.0
+tqdm==4.67.1
+traceback2==1.4.0
+triton==3.2.0
+typer==0.15.2
+typing-inspection==0.4.1
+typing_extensions==4.14.0
 tzdata @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/tzdata/tzdata-2024.1
 ujson @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/ujson/ujson-5.10.0
+unittest2==1.1.0
 urllib3 @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/urllib3/urllib3-2.2.1
 versioneer @ file:///dev/shm/SciPybundle/2024.05/gfbf-2024a/versioneer/versioneer-0.29
 virtualenv @ file:///dev/shm/virtualenv/20.26.2/GCCcore-13.3.0/virtualenv/virtualenv-20.26.2
+wandb==0.20.1
 wcwidth @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/wcwidth/wcwidth-0.2.13
 webencodings @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/webencodings/webencodings-0.5.1
+Werkzeug==3.1.3
 wheel @ file:///dev/shm/Python/3.12.3/GCCcore-13.3.0/wheel/wheel-0.43.0
+wrapt==1.17.2
 xlrd @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/xlrd/xlrd-2.0.1
+yacs==0.1.8
 zipfile36 @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/zipfile36/zipfile36-0.1.3
 zipp @ file:///dev/shm/PythonbundlePyPI/2024.06/GCCcore-13.3.0/zipp/zipp-3.19.2
