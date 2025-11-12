@@ -47,9 +47,11 @@ if __name__ == "__main__":
 
     df_long = df[df['mr_sessions'] > 1]
     df_long = add_duration(df_long)
+    df_CN = add_duration(df_CN)
     df_long_CN = df_long[df_long['class_at_baseline'] == 'CN']
     df_long_CI = df_long[df_long['class_at_baseline'] == 'CI']
-    print(f"Mean duration CN: {df_long_CN['duration'].mean()}")
+    print(f"Mean (SD) duration CN longitudinal participants: {df_long_CN['duration'].mean():.2f} ({df_long_CN['duration'].std():.2f})")
+    print(f"Mean (SD) duration CN all participants: {df_CN['duration'].mean():.2f} ({df_CN['duration'].std():.2f})")
     print(f"Mean duration CI: {df_long_CI['duration'].mean()}")
     print(f"Mean duration total: {df_long['duration'].mean()}")
 
@@ -60,6 +62,8 @@ if __name__ == "__main__":
     print(f"CN number of scans: {df_long_CN['mr_sessions'].value_counts()}")
     print(f"CI number of scans: {df_long_CI['mr_sessions'].value_counts()}")
     print(f"Total number of scans: {df_long['mr_sessions'].value_counts()}")
+
+    print(f"Mean (SD) number of scans CN: {df_CN['mr_sessions'].mean():.2f} ({df_CN['mr_sessions'].std():.2f})")
 
 
 

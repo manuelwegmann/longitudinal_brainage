@@ -1,0 +1,17 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/5314210
+Hardcoded folds 0.
+Using device: cuda
+Traceback (most recent call last):
+  File "/mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts/pdd.py", line 241, in <module>
+    trained_model, train_losses, train_mae, val_losses, val_mae = train(opt, train_fold, val_fold)
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts/pdd.py", line 79, in train
+    model = LILAC(opt).to(device)
+            ^^^^^^^^^^
+  File "/mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts/LILAC.py", line 104, in __init__
+    self.backbone, self.linear = get_backbone(args)
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts/LILAC.py", line 83, in get_backbone
+    backbone = CNNbasic3D(inputsize=args.image_size, channels=args.image_channel, n_of_blocks=args.n_of_blocks, initial_channel= args.initial_channel, kernel_size=args.kernel_size, dropout=args.dropout, additional_feature = n_of_meta)
+                                                                                                                                                                                             ^^^^^^^^^^^^
+AttributeError: 'Namespace' object has no attribute 'dropout'
