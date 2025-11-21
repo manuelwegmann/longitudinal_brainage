@@ -14,7 +14,7 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
-python -u pdd.py --run_name pdd_t1 \
+python -u sm_pdd.py --run_name sm1_pdd \
     --max_epoch 20 \
     --batchsize 24 \
     --threshold 1 \

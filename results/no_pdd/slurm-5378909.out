@@ -1,0 +1,149 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/5378909
+Hardcoded folds 0.
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: No matching image tensors found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30659 in session(s). Skipping.
+Loaded 1588 image pairs.
+Loaded 1588 rows of metadata.
+Loaded 1588 targets.
+Warning: No matching image tensors found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30797 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30797 in session(s). Skipping.
+Loaded 451 image pairs.
+Loaded 451 rows of metadata.
+Loaded 451 targets.
+Warning: No matching image tensors found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching image tensors found for sub-OAS30659 in session(s). Skipping.
+Loaded 1588 image pairs.
+Loaded 1588 rows of metadata.
+Loaded 1588 targets.
+Epoch:  0
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 1.00
+Avg Train Loss/MAE = 7.4253 / 2.0731. Weights were updated.
+Avg Val Loss/MAE = 5.3015 / 1.8433
+Epoch:  1
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 2.00
+Avg Train Loss/MAE = 3.6539 / 1.4979. Weights were updated.
+Avg Val Loss/MAE = 5.3249 / 1.8399
+Epoch:  2
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 3.00
+Avg Train Loss/MAE = 3.1736 / 1.3966. Weights were updated.
+Avg Val Loss/MAE = 5.0771 / 1.8067
+Epoch:  3
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 4.00
+Avg Train Loss/MAE = 2.3723 / 1.2055. Weights were updated.
+Avg Val Loss/MAE = 4.5447 / 1.7392
+Epoch:  4
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 5.00
+Avg Train Loss/MAE = 2.2723 / 1.1709. Weights were updated.
+Avg Val Loss/MAE = 2.8256 / 1.3082
+Epoch:  5
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 6.00
+Avg Train Loss/MAE = 1.9978 / 1.1051. Weights were updated.
+Avg Val Loss/MAE = 2.9029 / 1.3116
+Epoch:  6
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 7.00
+Avg Train Loss/MAE = 1.8981 / 1.0764. Weights were updated.
+Avg Val Loss/MAE = 3.3925 / 1.4513
+Epoch:  7
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 8.00
+Avg Train Loss/MAE = 1.6431 / 0.9982. Weights were updated.
+Avg Val Loss/MAE = 2.5509 / 1.2294
+Epoch:  8
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 9.00
+Avg Train Loss/MAE = 1.5237 / 0.9464. Weights were updated.
+Avg Val Loss/MAE = 2.6622 / 1.2480
+Epoch:  9
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 10.00
+Avg Train Loss/MAE = 1.3785 / 0.9076. Weights were updated.
+Avg Val Loss/MAE = 2.3058 / 1.1461
+Epoch:  10
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 11.00
+Avg Train Loss/MAE = 1.3010 / 0.8932. Weights were updated.
+Avg Val Loss/MAE = 2.0958 / 1.1010
+Epoch:  11
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 12.00
+Avg Train Loss/MAE = 1.2039 / 0.8595. Weights were updated.
+Avg Val Loss/MAE = 2.2360 / 1.1299
+Epoch:  12
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 13.00
+Avg Train Loss/MAE = 1.0802 / 0.8146. Weights were updated.
+Avg Val Loss/MAE = 2.3260 / 1.1611
+Epoch:  13
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 14.00
+Avg Train Loss/MAE = 1.0926 / 0.8108. Weights were updated.
+Avg Val Loss/MAE = 2.3776 / 1.1647
+Epoch:  14
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 15.00
+Avg Train Loss/MAE = 0.9624 / 0.7676. Weights were updated.
+Avg Val Loss/MAE = 2.1150 / 1.1127
+Epoch:  15
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 16.00
+Avg Train Loss/MAE = 0.8758 / 0.7280. Weights were updated.
+Avg Val Loss/MAE = 2.4759 / 1.1890
+Epoch:  16
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 17.00
+Avg Train Loss/MAE = 0.9100 / 0.7424. Weights were updated.
+Avg Val Loss/MAE = 2.1308 / 1.0989
+Epoch:  17
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 18.00
+Avg Train Loss/MAE = 0.8322 / 0.7114. Weights were updated.
+Avg Val Loss/MAE = 1.8926 / 1.0341
+Epoch:  18
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 19.00
+Avg Train Loss/MAE = 0.8286 / 0.7047. Weights were updated.
+Avg Val Loss/MAE = 1.9518 / 1.0739
+Epoch:  19
+Effective Epoch here: 1.00
+Total Effective Epochs so far: 20.00
+Avg Train Loss/MAE = 0.6873 / 0.6473. Weights were updated.
+Avg Val Loss/MAE = 1.9851 / 1.0573
+Loss plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/no_pdd/loss_plot.png
+MAE plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/no_pdd/mae_plot.png
+EE plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/no_pdd/ee_plot.png

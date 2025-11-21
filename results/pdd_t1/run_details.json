@@ -1,0 +1,26 @@
+{
+    "data_directory": "/mimer/NOBACKUP/groups/brainage/data/oasis3",
+    "project_data_dir": "/mimer/NOBACKUP/groups/brainage/thesis_brainage/data",
+    "folds_dir": "/mimer/NOBACKUP/groups/brainage/thesis_brainage/folds",
+    "image_size": [
+        128,
+        128,
+        128
+    ],
+    "image_channel": 1,
+    "target_name": "duration",
+    "optional_meta": [
+        "sex_M"
+    ],
+    "n_of_blocks": 4,
+    "initial_channel": 16,
+    "kernel_size": 3,
+    "lr": 0.001,
+    "batchsize": 24,
+    "max_epoch": 20,
+    "epoch": 0,
+    "dropout": 0,
+    "output_directory": "/mimer/NOBACKUP/groups/brainage/thesis_brainage/results",
+    "run_name": "pdd_t1",
+    "threshold": 1.0
+}

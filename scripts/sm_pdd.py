@@ -129,7 +129,15 @@ def train(opt, train_dataset, val_dataset):
 
             # Apply selective backprop PDD
             mask = abs_err > threshold
-            datapoints_for_backprop += mask.sum().item()
+            count = mask.sum().item()
+            # Randomly select `count` unique indices
+            selected_indices = torch.randperm(len(abs_err))[:count]
+
+            # Create boolean mask
+            mask = torch.zeros(len(abs_err), dtype=torch.bool)
+            mask[selected_indices] = True
+
+            datapoints_for_backprop += count
 
             loss = criterion(output[mask], target[mask])
             
