@@ -49,7 +49,7 @@ def parse_args():
     parser.add_argument('--output_directory', default='/mimer/NOBACKUP/groups/brainage/thesis_brainage/results', type=str, help="directory path for saving model and outputs")
     parser.add_argument('--run_name', default='test_run', type=str, help="name of the run")
 
-    parser.add_argument('--threshold', default=0, type=float, help="threshold ( 0 = no selective backprop) for progressive data dropout")
+    parser.add_argument('--prob', default=1, type=float, help="prob of including data in backprop ( 1 = no selective backprop).")
 
     args = parser.parse_args()
 
@@ -89,7 +89,7 @@ def train(opt, train_dataset, val_dataset):
     eff_epochs = 0
     N = len(loader3D(opt, train_dataset).demo)
 
-    threshold = opt.threshold
+    p = opt.prob
 
     train_losses, val_losses, train_mae, val_mae, ee_per_epoch = [], [], [], [], []
 
@@ -123,19 +123,29 @@ def train(opt, train_dataset, val_dataset):
             # Compute per-sample absolute error
             abs_err = torch.abs(output - target)
 
-            if epoch == opt.max_epoch - 1:
-                # In the last epoch, backpropagate on all samples
-                threshold = 0
-
             # Apply selective backprop PDD
-            mask = abs_err > threshold
+            abs_err = torch.abs(output - target)
+
+
+            if epoch == opt.max_epoch - 1:
+                # Last epoch: use all samples
+                mask = torch.ones_like(abs_err, dtype=torch.bool)
+            else:
+                # Random subset selection
+                mask = torch.rand_like(abs_err, dtype=torch.float32) < p**epoch
+
+                # Guarantee at least TWO samples
+                num_selected = mask.sum().item()
+                if num_selected < 2:
+                    needed = 2 - num_selected
+                    batch_size = len(mask)
+                    random_indices = torch.randperm(batch_size)[:needed]
+                    for idx in random_indices:
+                        mask[idx] = True
+
             datapoints_for_backprop += mask.sum().item()
 
             loss = criterion(output[mask], target[mask])
-            
-            # Skip this batch if no bad predictions
-            if mask.sum() == 0:
-                continue
 
             # Backpropagation
             optimizer.zero_grad()

@@ -14,8 +14,8 @@ source /mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/bin/activate
 
 # execute 
 cd /mimer/NOBACKUP/groups/brainage/thesis_brainage/scripts
-python -u pdd.py --run_name pdd_t1 \
+python -u random_pdd.py --run_name random085_pdd \
     --max_epoch 20 \
     --batchsize 24 \
-    --threshold 1 \
+    --prob 0.85 \
     --optional_meta sex_M
