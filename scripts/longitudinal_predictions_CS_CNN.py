@@ -88,6 +88,7 @@ if __name__ == "__main__":
         "Participant_ID": valid_lgt_dataset['participant_id'],
         "Target": valid_lgt_dataset['duration'],
         "Prediction": predictions,
+        "Pace": predictions/valid_lgt_dataset['duration'],
         "Age": valid_lgt_dataset['age'],
         "Sex (M)": valid_lgt_dataset['sex_M'],
         "Session 1":valid_lgt_dataset['session_id1'],

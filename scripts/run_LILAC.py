@@ -105,6 +105,12 @@ def train(opt, train_dataset, val_dataset):
     train_mae = []
     val_losses = []
     val_mae = []
+    
+    # Store final predictions
+    final_train_predictions = []
+    final_train_targets = []
+    final_val_predictions = []
+    final_val_targets = []
 
     # Training loop
     for epoch in range(opt.epoch, opt.max_epoch):
@@ -112,6 +118,10 @@ def train(opt, train_dataset, val_dataset):
         model.train()
         total_loss = 0
         total_mae = 0
+        
+        # Reset prediction lists at start of each epoch
+        epoch_train_predictions = []
+        epoch_train_targets = []
 
         for batch in dataloader_train:
             # Unpack batch
@@ -134,6 +144,11 @@ def train(opt, train_dataset, val_dataset):
             #calculate MAE
             mae = torch.mean(torch.abs(output - target))
             total_mae += mae.item()
+            
+            # Store predictions and targets for final epoch
+            if epoch == opt.max_epoch - 1:
+                epoch_train_predictions.extend(output.detach().cpu().numpy().flatten())
+                epoch_train_targets.extend(target.detach().cpu().numpy().flatten())
 
             # Backward pass and optimization
             optimizer.zero_grad()
@@ -153,6 +168,10 @@ def train(opt, train_dataset, val_dataset):
         model.eval()
         total_val_loss = 0
         total_val_mae = 0
+        
+        # Reset validation prediction lists
+        epoch_val_predictions = []
+        epoch_val_targets = []
 
         with torch.no_grad():
             for batch in dataloader_val:
@@ -176,6 +195,11 @@ def train(opt, train_dataset, val_dataset):
                 # Calculate MAE
                 mae = torch.mean(torch.abs(output - target))
                 total_val_mae += mae.item()
+                
+                # Store predictions and targets for final epoch
+                if epoch == opt.max_epoch - 1:
+                    epoch_val_predictions.extend(output.detach().cpu().numpy().flatten())
+                    epoch_val_targets.extend(target.detach().cpu().numpy().flatten())
 
         # Log the average validation loss/MAE
         avg_val_loss = total_val_loss / len(dataloader_val)
@@ -184,6 +208,13 @@ def train(opt, train_dataset, val_dataset):
         val_mae.append(avg_val_mae)
         print(f"Avg Val Loss/MAE = {avg_val_loss:.4f} / {avg_val_mae:.4f}")
 
+        # Store final epoch predictions
+        if epoch == opt.max_epoch - 1:
+            final_train_predictions = epoch_train_predictions
+            final_train_targets = epoch_train_targets
+            final_val_predictions = epoch_val_predictions
+            final_val_targets = epoch_val_targets
+        
         # Scheduler step
         scheduler.step()
         print(f"Current learning rate: {scheduler.get_last_lr()[0]}")
@@ -202,7 +233,7 @@ def train(opt, train_dataset, val_dataset):
     val_losses = [np.nan] + val_losses[:-1]
     val_mae = [np.nan] + val_mae[:-1]
 
-    return model, train_losses, train_mae, val_losses, val_mae
+    return model, train_losses, train_mae, val_losses, val_mae, final_train_predictions, final_train_targets, final_val_predictions, final_val_targets
 
 
 
@@ -241,7 +272,7 @@ if __name__ == "__main__":
         val_fold.to_csv((os.path.join(opt.output_directory, opt.run_name, 'val_fold.csv')), index=False)
 
         # Train
-        trained_model, train_losses, train_mae, val_losses, val_mae = train(opt, train_fold, val_fold)
+        trained_model, train_losses, train_mae, val_losses, val_mae, train_preds, train_targets, val_preds, val_targets = train(opt, train_fold, val_fold)
 
         training_metrics = pd.DataFrame({
             'train_loss': train_losses,
@@ -249,6 +280,19 @@ if __name__ == "__main__":
             'val_loss': val_losses,
             'val_mae': val_mae
         })
+        
+        # Save predictions
+        train_predictions_df = pd.DataFrame({
+            'actual': train_targets,
+            'predicted': train_preds
+        })
+        train_predictions_df.to_csv(os.path.join(opt.output_directory, opt.run_name, 'train_predictions.csv'), index=False)
+        
+        val_predictions_df = pd.DataFrame({
+            'actual': val_targets,
+            'predicted': val_preds
+        })
+        val_predictions_df.to_csv(os.path.join(opt.output_directory, opt.run_name, 'val_predictions.csv'), index=False)
 
         # Define directory and file path
         csv_path = os.path.join(opt.output_directory, opt.run_name, 'training_metrics.csv')
@@ -298,7 +342,7 @@ if __name__ == "__main__":
         val_fold.to_csv((os.path.join(opt.output_directory, opt.run_name, 'val_fold.csv')), index=False)
 
         # Train
-        trained_model, train_losses, train_mae, val_losses, val_mae = train(opt, train_fold, val_fold)
+        trained_model, train_losses, train_mae, val_losses, val_mae, train_preds, train_targets, val_preds, val_targets = train(opt, train_fold, val_fold)
 
         training_metrics = pd.DataFrame({
             'train_loss': train_losses,
@@ -310,6 +354,21 @@ if __name__ == "__main__":
         # Define directory and file path
         csv_path = os.path.join(opt.output_directory, opt.run_name, 'training_metrics.csv')
         training_metrics.to_csv(csv_path, index=False)
+        
+        # Save predictions
+        train_predictions_df = pd.DataFrame({
+            'fold': 'CI',
+            'actual': train_targets,
+            'predicted': train_preds
+        })
+        train_predictions_df.to_csv(os.path.join(opt.output_directory, opt.run_name, 'train_predictions.csv'), index=False)
+        
+        val_predictions_df = pd.DataFrame({
+            'fold': 'CI',
+            'actual': val_targets,
+            'predicted': val_preds
+        })
+        val_predictions_df.to_csv(os.path.join(opt.output_directory, opt.run_name, 'val_predictions.csv'), index=False)
 
         # Plot training and validation losses
         plt.figure(figsize=(10, 6))

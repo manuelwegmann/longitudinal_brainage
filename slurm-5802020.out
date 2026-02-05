@@ -1,0 +1,706 @@
+This job can be monitored from: https://job.c3se.chalmers.se/alvis/5802020
+Fold: 0
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: 'scans.tsv' file not found for participant sub-OAS30807 in session ses-d1492. Skipping this session.
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Loaded 1391 images.
+Loaded 1391 rows of metadata.
+Loaded 1391 targets.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 365 images.
+Loaded 365 rows of metadata.
+Loaded 365 targets.
+Epoch:  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Avg Train Loss/MAE = 2770.7632 / 50.7834. Weights were updated.
+Avg Val Loss/MAE = 1219.1191 / 33.9515
+Current learning rate: 0.0001
+Epoch:  1
+Avg Train Loss/MAE = 460.7624 / 18.7497. Weights were updated.
+Avg Val Loss/MAE = 115.0015 / 8.9784
+Current learning rate: 0.0001
+Epoch:  2
+Avg Train Loss/MAE = 70.8415 / 6.8992. Weights were updated.
+Avg Val Loss/MAE = 64.4486 / 6.5482
+Current learning rate: 0.0001
+Epoch:  3
+Avg Train Loss/MAE = 55.7830 / 5.9560. Weights were updated.
+Avg Val Loss/MAE = 129.5965 / 9.8904
+Current learning rate: 0.0001
+Epoch:  4
+Avg Train Loss/MAE = 53.4812 / 5.8039. Weights were updated.
+Avg Val Loss/MAE = 65.1561 / 6.6626
+Current learning rate: 0.0001
+Epoch:  5
+Avg Train Loss/MAE = 50.4259 / 5.6283. Weights were updated.
+Avg Val Loss/MAE = 49.4179 / 5.5376
+Current learning rate: 0.0001
+Epoch:  6
+Avg Train Loss/MAE = 50.3484 / 5.6084. Weights were updated.
+Avg Val Loss/MAE = 52.4603 / 5.8466
+Current learning rate: 0.0001
+Epoch:  7
+Avg Train Loss/MAE = 50.7502 / 5.6726. Weights were updated.
+Avg Val Loss/MAE = 51.8193 / 5.7895
+Current learning rate: 0.0001
+Epoch:  8
+Avg Train Loss/MAE = 48.8284 / 5.5697. Weights were updated.
+Avg Val Loss/MAE = 54.5146 / 5.6696
+Current learning rate: 0.0001
+Epoch:  9
+Avg Train Loss/MAE = 47.6974 / 5.4792. Weights were updated.
+Avg Val Loss/MAE = 47.0818 / 5.3677
+Current learning rate: 1e-05
+Epoch:  10
+Avg Train Loss/MAE = 46.1818 / 5.3562. Weights were updated.
+Avg Val Loss/MAE = 48.8370 / 5.4219
+Current learning rate: 1e-05
+Epoch:  11
+Avg Train Loss/MAE = 47.1968 / 5.4478. Weights were updated.
+Avg Val Loss/MAE = 48.2646 / 5.5597
+Current learning rate: 1e-05
+Epoch:  12
+Avg Train Loss/MAE = 46.5550 / 5.4377. Weights were updated.
+Avg Val Loss/MAE = 46.4528 / 5.3558
+Current learning rate: 1e-05
+Epoch:  13
+Avg Train Loss/MAE = 46.1332 / 5.4041. Weights were updated.
+Avg Val Loss/MAE = 48.9069 / 5.4236
+Current learning rate: 1e-05
+Epoch:  14
+Avg Train Loss/MAE = 45.7811 / 5.3831. Weights were updated.
+Avg Val Loss/MAE = 48.2194 / 5.5812
+Current learning rate: 1e-05
+Epoch:  15
+Avg Train Loss/MAE = 46.3076 / 5.3892. Weights were updated.
+Avg Val Loss/MAE = 49.5333 / 5.6966
+Current learning rate: 1e-05
+Epoch:  16
+Avg Train Loss/MAE = 45.9308 / 5.4010. Weights were updated.
+Avg Val Loss/MAE = 46.7887 / 5.4736
+Current learning rate: 1e-05
+Epoch:  17
+Avg Train Loss/MAE = 45.8333 / 5.3583. Weights were updated.
+Avg Val Loss/MAE = 47.7959 / 5.3757
+Current learning rate: 1e-05
+Epoch:  18
+Avg Train Loss/MAE = 45.9703 / 5.4088. Weights were updated.
+Avg Val Loss/MAE = 46.0699 / 5.2985
+Current learning rate: 1e-05
+Epoch:  19
+Avg Train Loss/MAE = 46.0688 / 5.3665. Weights were updated.
+Avg Val Loss/MAE = 45.6782 / 5.3937
+Current learning rate: 1.0000000000000002e-06
+Epoch:  20
+Avg Train Loss/MAE = 45.0462 / 5.3301. Weights were updated.
+Avg Val Loss/MAE = 46.1643 / 5.2984
+Current learning rate: 1.0000000000000002e-06
+Epoch:  21
+Avg Train Loss/MAE = 45.2551 / 5.3331. Weights were updated.
+Avg Val Loss/MAE = 45.5994 / 5.2778
+Current learning rate: 1.0000000000000002e-06
+Epoch:  22
+Avg Train Loss/MAE = 45.9179 / 5.3917. Weights were updated.
+Avg Val Loss/MAE = 45.4992 / 5.2748
+Current learning rate: 1.0000000000000002e-06
+Epoch:  23
+Avg Train Loss/MAE = 45.8912 / 5.3586. Weights were updated.
+Avg Val Loss/MAE = 44.9512 / 5.2957
+Current learning rate: 1.0000000000000002e-06
+Epoch:  24
+Avg Train Loss/MAE = 44.7051 / 5.2816. Weights were updated.
+Avg Val Loss/MAE = 45.4822 / 5.2726
+Current learning rate: 1.0000000000000002e-06
+Epoch:  25
+Avg Train Loss/MAE = 45.1153 / 5.3347. Weights were updated.
+Avg Val Loss/MAE = 44.9275 / 5.3086
+Current learning rate: 1.0000000000000002e-06
+Epoch:  26
+Avg Train Loss/MAE = 45.2147 / 5.3541. Weights were updated.
+Avg Val Loss/MAE = 44.8743 / 5.2930
+Current learning rate: 1.0000000000000002e-06
+Epoch:  27
+Avg Train Loss/MAE = 44.8527 / 5.3526. Weights were updated.
+Avg Val Loss/MAE = 44.8363 / 5.2792
+Current learning rate: 1.0000000000000002e-06
+Epoch:  28
+Avg Train Loss/MAE = 45.6233 / 5.3884. Weights were updated.
+Avg Val Loss/MAE = 44.8318 / 5.3033
+Current learning rate: 1.0000000000000002e-06
+Epoch:  29
+Avg Train Loss/MAE = 44.8616 / 5.3129. Weights were updated.
+Avg Val Loss/MAE = 44.8068 / 5.2760
+Current learning rate: 1.0000000000000002e-07
+Loss plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_save_preds/fold_0/loss_plot.png
+MAE plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_save_preds/fold_0/mae_plot.png
+Fold: 1
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: 'scans.tsv' file not found for participant sub-OAS30807 in session ses-d1492. Skipping this session.
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 1400 images.
+Loaded 1400 rows of metadata.
+Loaded 1400 targets.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Loaded 356 images.
+Loaded 356 rows of metadata.
+Loaded 356 targets.
+Epoch:  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Avg Train Loss/MAE = 2756.4733 / 50.7703. Weights were updated.
+Avg Val Loss/MAE = 1144.9799 / 32.6539
+Current learning rate: 0.0001
+Epoch:  1
+Avg Train Loss/MAE = 451.1985 / 18.5764. Weights were updated.
+Avg Val Loss/MAE = 127.3706 / 9.5059
+Current learning rate: 0.0001
+Epoch:  2
+Avg Train Loss/MAE = 71.9526 / 6.8870. Weights were updated.
+Avg Val Loss/MAE = 78.6248 / 7.3231
+Current learning rate: 0.0001
+Epoch:  3
+Avg Train Loss/MAE = 54.8785 / 5.8969. Weights were updated.
+Avg Val Loss/MAE = 170.6514 / 11.4176
+Current learning rate: 0.0001
+Epoch:  4
+Avg Train Loss/MAE = 53.5740 / 5.8346. Weights were updated.
+Avg Val Loss/MAE = 130.2473 / 9.5213
+Current learning rate: 0.0001
+Epoch:  5
+Avg Train Loss/MAE = 52.0970 / 5.7592. Weights were updated.
+Avg Val Loss/MAE = 59.6824 / 6.2771
+Current learning rate: 0.0001
+Epoch:  6
+Avg Train Loss/MAE = 53.0651 / 5.8297. Weights were updated.
+Avg Val Loss/MAE = 54.6968 / 5.9746
+Current learning rate: 0.0001
+Epoch:  7
+Avg Train Loss/MAE = 49.8892 / 5.6224. Weights were updated.
+Avg Val Loss/MAE = 49.7478 / 5.6285
+Current learning rate: 0.0001
+Epoch:  8
+Avg Train Loss/MAE = 52.7972 / 5.8109. Weights were updated.
+Avg Val Loss/MAE = 84.3146 / 7.6040
+Current learning rate: 0.0001
+Epoch:  9
+Avg Train Loss/MAE = 48.6583 / 5.5288. Weights were updated.
+Avg Val Loss/MAE = 165.1483 / 11.0754
+Current learning rate: 1e-05
+Epoch:  10
+Avg Train Loss/MAE = 49.0381 / 5.5787. Weights were updated.
+Avg Val Loss/MAE = 49.8763 / 5.6500
+Current learning rate: 1e-05
+Epoch:  11
+Avg Train Loss/MAE = 48.9547 / 5.5401. Weights were updated.
+Avg Val Loss/MAE = 52.6607 / 5.8398
+Current learning rate: 1e-05
+Epoch:  12
+Avg Train Loss/MAE = 48.5024 / 5.5131. Weights were updated.
+Avg Val Loss/MAE = 47.6532 / 5.4829
+Current learning rate: 1e-05
+Epoch:  13
+Avg Train Loss/MAE = 47.2248 / 5.4668. Weights were updated.
+Avg Val Loss/MAE = 47.9160 / 5.5129
+Current learning rate: 1e-05
+Epoch:  14
+Avg Train Loss/MAE = 48.8551 / 5.5682. Weights were updated.
+Avg Val Loss/MAE = 48.1903 / 5.4697
+Current learning rate: 1e-05
+Epoch:  15
+Avg Train Loss/MAE = 48.2447 / 5.5279. Weights were updated.
+Avg Val Loss/MAE = 60.0589 / 6.2966
+Current learning rate: 1e-05
+Epoch:  16
+Avg Train Loss/MAE = 47.2709 / 5.4804. Weights were updated.
+Avg Val Loss/MAE = 48.7114 / 5.4873
+Current learning rate: 1e-05
+Epoch:  17
+Avg Train Loss/MAE = 47.0105 / 5.4363. Weights were updated.
+Avg Val Loss/MAE = 53.0384 / 5.6903
+Current learning rate: 1e-05
+Epoch:  18
+Avg Train Loss/MAE = 47.9539 / 5.4949. Weights were updated.
+Avg Val Loss/MAE = 69.6225 / 6.6142
+Current learning rate: 1e-05
+Epoch:  19
+Avg Train Loss/MAE = 47.9135 / 5.4849. Weights were updated.
+Avg Val Loss/MAE = 47.0606 / 5.4176
+Current learning rate: 1.0000000000000002e-06
+Epoch:  20
+Avg Train Loss/MAE = 45.7187 / 5.3771. Weights were updated.
+Avg Val Loss/MAE = 47.7629 / 5.5191
+Current learning rate: 1.0000000000000002e-06
+Epoch:  21
+Avg Train Loss/MAE = 46.1484 / 5.4156. Weights were updated.
+Avg Val Loss/MAE = 46.8297 / 5.4223
+Current learning rate: 1.0000000000000002e-06
+Epoch:  22
+Avg Train Loss/MAE = 46.8229 / 5.4455. Weights were updated.
+Avg Val Loss/MAE = 46.9870 / 5.4493
+Current learning rate: 1.0000000000000002e-06
+Epoch:  23
+Avg Train Loss/MAE = 46.3799 / 5.3891. Weights were updated.
+Avg Val Loss/MAE = 47.1065 / 5.4615
+Current learning rate: 1.0000000000000002e-06
+Epoch:  24
+Avg Train Loss/MAE = 46.6564 / 5.3994. Weights were updated.
+Avg Val Loss/MAE = 47.1232 / 5.4641
+Current learning rate: 1.0000000000000002e-06
+Epoch:  25
+Avg Train Loss/MAE = 46.7089 / 5.4221. Weights were updated.
+Avg Val Loss/MAE = 46.7587 / 5.4151
+Current learning rate: 1.0000000000000002e-06
+Epoch:  26
+Avg Train Loss/MAE = 46.3141 / 5.4008. Weights were updated.
+Avg Val Loss/MAE = 46.7719 / 5.4149
+Current learning rate: 1.0000000000000002e-06
+Epoch:  27
+Avg Train Loss/MAE = 47.5315 / 5.4934. Weights were updated.
+Avg Val Loss/MAE = 47.1908 / 5.4719
+Current learning rate: 1.0000000000000002e-06
+Epoch:  28
+Avg Train Loss/MAE = 46.2857 / 5.4015. Weights were updated.
+Avg Val Loss/MAE = 47.2557 / 5.4790
+Current learning rate: 1.0000000000000002e-06
+Epoch:  29
+Avg Train Loss/MAE = 47.0780 / 5.4970. Weights were updated.
+Avg Val Loss/MAE = 46.7785 / 5.4302
+Current learning rate: 1.0000000000000002e-07
+Loss plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_save_preds/fold_1/loss_plot.png
+MAE plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_save_preds/fold_1/mae_plot.png
+Fold: 2
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: 'scans.tsv' file not found for participant sub-OAS30807 in session ses-d1492. Skipping this session.
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 1406 images.
+Loaded 1406 rows of metadata.
+Loaded 1406 targets.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Loaded 350 images.
+Loaded 350 rows of metadata.
+Loaded 350 targets.
+Epoch:  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Avg Train Loss/MAE = 2750.2277 / 50.5223. Weights were updated.
+Avg Val Loss/MAE = 1170.0991 / 33.1562
+Current learning rate: 0.0001
+Epoch:  1
+Avg Train Loss/MAE = 450.9634 / 18.5995. Weights were updated.
+Avg Val Loss/MAE = 139.2815 / 10.1543
+Current learning rate: 0.0001
+Epoch:  2
+Avg Train Loss/MAE = 71.3592 / 6.8459. Weights were updated.
+Avg Val Loss/MAE = 64.2545 / 6.6470
+Current learning rate: 0.0001
+Epoch:  3
+Avg Train Loss/MAE = 54.1119 / 5.8569. Weights were updated.
+Avg Val Loss/MAE = 82.1221 / 7.6793
+Current learning rate: 0.0001
+Epoch:  4
+Avg Train Loss/MAE = 52.6886 / 5.7823. Weights were updated.
+Avg Val Loss/MAE = 77.2370 / 7.4205
+Current learning rate: 0.0001
+Epoch:  5
+Avg Train Loss/MAE = 51.7938 / 5.6972. Weights were updated.
+Avg Val Loss/MAE = 55.9265 / 5.7652
+Current learning rate: 0.0001
+Epoch:  6
+Avg Train Loss/MAE = 51.6739 / 5.7118. Weights were updated.
+Avg Val Loss/MAE = 106.7866 / 8.9388
+Current learning rate: 0.0001
+Epoch:  7
+Avg Train Loss/MAE = 50.2915 / 5.6459. Weights were updated.
+Avg Val Loss/MAE = 114.9937 / 9.3253
+Current learning rate: 0.0001
+Epoch:  8
+Avg Train Loss/MAE = 49.7293 / 5.5600. Weights were updated.
+Avg Val Loss/MAE = 57.5136 / 6.2543
+Current learning rate: 0.0001
+Epoch:  9
+Avg Train Loss/MAE = 48.9001 / 5.4940. Weights were updated.
+Avg Val Loss/MAE = 53.8393 / 5.6409
+Current learning rate: 1e-05
+Epoch:  10
+Avg Train Loss/MAE = 46.9190 / 5.4234. Weights were updated.
+Avg Val Loss/MAE = 50.4719 / 5.5397
+Current learning rate: 1e-05
+Epoch:  11
+Avg Train Loss/MAE = 48.4050 / 5.5295. Weights were updated.
+Avg Val Loss/MAE = 50.0798 / 5.6511
+Current learning rate: 1e-05
+Epoch:  12
+Avg Train Loss/MAE = 47.8511 / 5.4812. Weights were updated.
+Avg Val Loss/MAE = 49.7906 / 5.6206
+Current learning rate: 1e-05
+Epoch:  13
+Avg Train Loss/MAE = 47.6340 / 5.4532. Weights were updated.
+Avg Val Loss/MAE = 51.5478 / 5.5530
+Current learning rate: 1e-05
+Epoch:  14
+Avg Train Loss/MAE = 46.7633 / 5.3803. Weights were updated.
+Avg Val Loss/MAE = 49.6012 / 5.6119
+Current learning rate: 1e-05
+Epoch:  15
+Avg Train Loss/MAE = 45.2195 / 5.3654. Weights were updated.
+Avg Val Loss/MAE = 49.0123 / 5.5289
+Current learning rate: 1e-05
+Epoch:  16
+Avg Train Loss/MAE = 45.5149 / 5.3493. Weights were updated.
+Avg Val Loss/MAE = 50.8754 / 5.5222
+Current learning rate: 1e-05
+Epoch:  17
+Avg Train Loss/MAE = 46.9897 / 5.4123. Weights were updated.
+Avg Val Loss/MAE = 49.4612 / 5.6143
+Current learning rate: 1e-05
+Epoch:  18
+Avg Train Loss/MAE = 45.8843 / 5.3436. Weights were updated.
+Avg Val Loss/MAE = 51.3645 / 5.8144
+Current learning rate: 1e-05
+Epoch:  19
+Avg Train Loss/MAE = 47.4797 / 5.4588. Weights were updated.
+Avg Val Loss/MAE = 50.5822 / 5.7513
+Current learning rate: 1.0000000000000002e-06
+Epoch:  20
+Avg Train Loss/MAE = 46.5196 / 5.3843. Weights were updated.
+Avg Val Loss/MAE = 49.5794 / 5.6522
+Current learning rate: 1.0000000000000002e-06
+Epoch:  21
+Avg Train Loss/MAE = 46.7151 / 5.4276. Weights were updated.
+Avg Val Loss/MAE = 49.2621 / 5.6161
+Current learning rate: 1.0000000000000002e-06
+Epoch:  22
+Avg Train Loss/MAE = 45.4521 / 5.3207. Weights were updated.
+Avg Val Loss/MAE = 48.9692 / 5.5805
+Current learning rate: 1.0000000000000002e-06
+Epoch:  23
+Avg Train Loss/MAE = 46.2644 / 5.3674. Weights were updated.
+Avg Val Loss/MAE = 49.4624 / 5.6396
+Current learning rate: 1.0000000000000002e-06
+Epoch:  24
+Avg Train Loss/MAE = 46.2697 / 5.3892. Weights were updated.
+Avg Val Loss/MAE = 49.4089 / 5.6347
+Current learning rate: 1.0000000000000002e-06
+Epoch:  25
+Avg Train Loss/MAE = 46.2281 / 5.3904. Weights were updated.
+Avg Val Loss/MAE = 49.8036 / 5.6760
+Current learning rate: 1.0000000000000002e-06
+Epoch:  26
+Avg Train Loss/MAE = 46.3922 / 5.4239. Weights were updated.
+Avg Val Loss/MAE = 49.5186 / 5.6483
+Current learning rate: 1.0000000000000002e-06
+Epoch:  27
+Avg Train Loss/MAE = 46.3768 / 5.3607. Weights were updated.
+Avg Val Loss/MAE = 48.6129 / 5.5291
+Current learning rate: 1.0000000000000002e-06
+Epoch:  28
+Avg Train Loss/MAE = 45.6727 / 5.4072. Weights were updated.
+Avg Val Loss/MAE = 49.0208 / 5.5907
+Current learning rate: 1.0000000000000002e-06
+Epoch:  29
+Avg Train Loss/MAE = 46.8563 / 5.4361. Weights were updated.
+Avg Val Loss/MAE = 48.9085 / 5.5786
+Current learning rate: 1.0000000000000002e-07
+Loss plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_save_preds/fold_2/loss_plot.png
+MAE plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_save_preds/fold_2/mae_plot.png
+Fold: 3
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: 'scans.tsv' file not found for participant sub-OAS30807 in session ses-d1492. Skipping this session.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 1413 images.
+Loaded 1413 rows of metadata.
+Loaded 1413 targets.
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Loaded 343 images.
+Loaded 343 rows of metadata.
+Loaded 343 targets.
+Epoch:  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Avg Train Loss/MAE = 2780.5257 / 50.8827. Weights were updated.
+Avg Val Loss/MAE = 1197.7321 / 33.5135
+Current learning rate: 0.0001
+Epoch:  1
+Avg Train Loss/MAE = 482.5364 / 19.4169. Weights were updated.
+Avg Val Loss/MAE = 157.8979 / 10.6965
+Current learning rate: 0.0001
+Epoch:  2
+Avg Train Loss/MAE = 75.3404 / 7.0989. Weights were updated.
+Avg Val Loss/MAE = 56.2724 / 5.9496
+Current learning rate: 0.0001
+Epoch:  3
+Avg Train Loss/MAE = 52.6993 / 5.8210. Weights were updated.
+Avg Val Loss/MAE = 136.5376 / 9.8911
+Current learning rate: 0.0001
+Epoch:  4
+Avg Train Loss/MAE = 51.4279 / 5.7280. Weights were updated.
+Avg Val Loss/MAE = 50.9774 / 5.6363
+Current learning rate: 0.0001
+Epoch:  5
+Avg Train Loss/MAE = 48.6757 / 5.5584. Weights were updated.
+Avg Val Loss/MAE = 164.3413 / 11.2192
+Current learning rate: 0.0001
+Epoch:  6
+Avg Train Loss/MAE = 48.8970 / 5.5185. Weights were updated.
+Avg Val Loss/MAE = 144.4520 / 10.3393
+Current learning rate: 0.0001
+Epoch:  7
+Avg Train Loss/MAE = 48.7139 / 5.5537. Weights were updated.
+Avg Val Loss/MAE = 97.0312 / 8.1525
+Current learning rate: 0.0001
+Epoch:  8
+Avg Train Loss/MAE = 47.0302 / 5.4559. Weights were updated.
+Avg Val Loss/MAE = 78.3170 / 7.2489
+Current learning rate: 0.0001
+Epoch:  9
+Avg Train Loss/MAE = 47.5905 / 5.4798. Weights were updated.
+Avg Val Loss/MAE = 76.6900 / 7.1683
+Current learning rate: 1e-05
+Epoch:  10
+Avg Train Loss/MAE = 45.7133 / 5.3614. Weights were updated.
+Avg Val Loss/MAE = 47.3842 / 5.3297
+Current learning rate: 1e-05
+Epoch:  11
+Avg Train Loss/MAE = 44.6862 / 5.3591. Weights were updated.
+Avg Val Loss/MAE = 44.3966 / 5.1561
+Current learning rate: 1e-05
+Epoch:  12
+Avg Train Loss/MAE = 44.0515 / 5.2910. Weights were updated.
+Avg Val Loss/MAE = 47.9137 / 5.3811
+Current learning rate: 1e-05
+Epoch:  13
+Avg Train Loss/MAE = 44.6006 / 5.3322. Weights were updated.
+Avg Val Loss/MAE = 43.5166 / 5.1347
+Current learning rate: 1e-05
+Epoch:  14
+Avg Train Loss/MAE = 44.3241 / 5.2850. Weights were updated.
+Avg Val Loss/MAE = 46.5071 / 5.3480
+Current learning rate: 1e-05
+Epoch:  15
+Avg Train Loss/MAE = 43.3066 / 5.2771. Weights were updated.
+Avg Val Loss/MAE = 45.6805 / 5.2222
+Current learning rate: 1e-05
+Epoch:  16
+Avg Train Loss/MAE = 43.0416 / 5.2323. Weights were updated.
+Avg Val Loss/MAE = 45.5728 / 5.2244
+Current learning rate: 1e-05
+Epoch:  17
+Avg Train Loss/MAE = 44.1245 / 5.2913. Weights were updated.
+Avg Val Loss/MAE = 62.2474 / 6.3687
+Current learning rate: 1e-05
+Epoch:  18
+Avg Train Loss/MAE = 42.6845 / 5.2190. Weights were updated.
+Avg Val Loss/MAE = 44.6983 / 5.1529
+Current learning rate: 1e-05
+Epoch:  19
+Avg Train Loss/MAE = 44.8720 / 5.3281. Weights were updated.
+Avg Val Loss/MAE = 45.5140 / 5.2621
+Current learning rate: 1.0000000000000002e-06
+Epoch:  20
+Avg Train Loss/MAE = 43.9216 / 5.2613. Weights were updated.
+Avg Val Loss/MAE = 44.0134 / 5.0972
+Current learning rate: 1.0000000000000002e-06
+Epoch:  21
+Avg Train Loss/MAE = 43.3419 / 5.2406. Weights were updated.
+Avg Val Loss/MAE = 43.8654 / 5.0893
+Current learning rate: 1.0000000000000002e-06
+Epoch:  22
+Avg Train Loss/MAE = 43.6409 / 5.2629. Weights were updated.
+Avg Val Loss/MAE = 42.5188 / 5.0282
+Current learning rate: 1.0000000000000002e-06
+Epoch:  23
+Avg Train Loss/MAE = 43.7503 / 5.2955. Weights were updated.
+Avg Val Loss/MAE = 42.5126 / 5.0240
+Current learning rate: 1.0000000000000002e-06
+Epoch:  24
+Avg Train Loss/MAE = 43.0913 / 5.2544. Weights were updated.
+Avg Val Loss/MAE = 43.2018 / 5.0482
+Current learning rate: 1.0000000000000002e-06
+Epoch:  25
+Avg Train Loss/MAE = 42.9390 / 5.2205. Weights were updated.
+Avg Val Loss/MAE = 42.8242 / 5.0297
+Current learning rate: 1.0000000000000002e-06
+Epoch:  26
+Avg Train Loss/MAE = 42.3620 / 5.1757. Weights were updated.
+Avg Val Loss/MAE = 42.8866 / 5.0320
+Current learning rate: 1.0000000000000002e-06
+Epoch:  27
+Avg Train Loss/MAE = 42.9290 / 5.2339. Weights were updated.
+Avg Val Loss/MAE = 42.2721 / 5.0193
+Current learning rate: 1.0000000000000002e-06
+Epoch:  28
+Avg Train Loss/MAE = 42.9185 / 5.2361. Weights were updated.
+Avg Val Loss/MAE = 42.7153 / 5.0236
+Current learning rate: 1.0000000000000002e-06
+Epoch:  29
+Avg Train Loss/MAE = 42.3703 / 5.1931. Weights were updated.
+Avg Val Loss/MAE = 43.1340 / 5.0447
+Current learning rate: 1.0000000000000002e-07
+Loss plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_save_preds/fold_3/loss_plot.png
+MAE plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_save_preds/fold_3/mae_plot.png
+Fold: 4
+Using device: cuda
+Last block has number of input channels: 64
+Last block has number of output channels: 16
+Warning: No matching T1w image found for sub-OAS30042 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30137 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30369 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30643 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30659 in session(s). Skipping.
+Warning: No matching T1w image found for sub-OAS30797 in session(s). Skipping.
+Loaded 1414 images.
+Loaded 1414 rows of metadata.
+Loaded 1414 targets.
+Warning: 'scans.tsv' file not found for participant sub-OAS30807 in session ses-d1492. Skipping this session.
+Loaded 342 images.
+Loaded 342 rows of metadata.
+Loaded 342 targets.
+Epoch:  0
+/mimer/NOBACKUP/groups/brainage/thesis_brainage/my_venv/lib/python3.12/site-packages/torchio/data/image.py:248: UserWarning: Using TorchIO images without a torchio.SubjectsLoader in PyTorch >= 2.3 might have unexpected consequences, e.g., the collated batches will be instances of torchio.Subject with 5D images. Replace your PyTorch DataLoader with a torchio.SubjectsLoader so that the collated batch becomes a dictionary, as expected. See https://github.com/TorchIO-project/torchio/issues/1179 for more context about this issue.
+  warnings.warn(message, stacklevel=1)
+Avg Train Loss/MAE = 2850.3673 / 51.6082. Weights were updated.
+Avg Val Loss/MAE = 1091.1120 / 31.8158
+Current learning rate: 0.0001
+Epoch:  1
+Avg Train Loss/MAE = 496.1357 / 19.6844. Weights were updated.
+Avg Val Loss/MAE = 118.6761 / 9.3130
+Current learning rate: 0.0001
+Epoch:  2
+Avg Train Loss/MAE = 76.2505 / 7.1255. Weights were updated.
+Avg Val Loss/MAE = 113.1204 / 8.5191
+Current learning rate: 0.0001
+Epoch:  3
+Avg Train Loss/MAE = 54.9195 / 5.9055. Weights were updated.
+Avg Val Loss/MAE = 176.5921 / 11.3596
+Current learning rate: 0.0001
+Epoch:  4
+Avg Train Loss/MAE = 52.0006 / 5.6952. Weights were updated.
+Avg Val Loss/MAE = 69.3306 / 6.9215
+Current learning rate: 0.0001
+Epoch:  5
+Avg Train Loss/MAE = 52.4169 / 5.7158. Weights were updated.
+Avg Val Loss/MAE = 61.5459 / 6.4817
+Current learning rate: 0.0001
+Epoch:  6
+Avg Train Loss/MAE = 50.9075 / 5.6183. Weights were updated.
+Avg Val Loss/MAE = 99.0879 / 8.4989
+Current learning rate: 0.0001
+Epoch:  7
+Avg Train Loss/MAE = 50.2817 / 5.5914. Weights were updated.
+Avg Val Loss/MAE = 97.0532 / 7.9981
+Current learning rate: 0.0001
+Epoch:  8
+Avg Train Loss/MAE = 50.6225 / 5.6696. Weights were updated.
+Avg Val Loss/MAE = 82.7515 / 7.3073
+Current learning rate: 0.0001
+Epoch:  9
+Avg Train Loss/MAE = 51.8648 / 5.6909. Weights were updated.
+Avg Val Loss/MAE = 71.1616 / 7.0601
+Current learning rate: 1e-05
+Epoch:  10
+Avg Train Loss/MAE = 48.4184 / 5.4927. Weights were updated.
+Avg Val Loss/MAE = 44.2365 / 5.4638
+Current learning rate: 1e-05
+Epoch:  11
+Avg Train Loss/MAE = 48.4682 / 5.4781. Weights were updated.
+Avg Val Loss/MAE = 44.0161 / 5.4376
+Current learning rate: 1e-05
+Epoch:  12
+Avg Train Loss/MAE = 48.9204 / 5.4992. Weights were updated.
+Avg Val Loss/MAE = 44.2848 / 5.4393
+Current learning rate: 1e-05
+Epoch:  13
+Avg Train Loss/MAE = 48.1199 / 5.4719. Weights were updated.
+Avg Val Loss/MAE = 44.4820 / 5.4438
+Current learning rate: 1e-05
+Epoch:  14
+Avg Train Loss/MAE = 49.2540 / 5.5528. Weights were updated.
+Avg Val Loss/MAE = 45.1472 / 5.4738
+Current learning rate: 1e-05
+Epoch:  15
+Avg Train Loss/MAE = 48.5412 / 5.4743. Weights were updated.
+Avg Val Loss/MAE = 46.9730 / 5.5539
+Current learning rate: 1e-05
+Epoch:  16
+Avg Train Loss/MAE = 47.1159 / 5.3783. Weights were updated.
+Avg Val Loss/MAE = 47.7727 / 5.6898
+Current learning rate: 1e-05
+Epoch:  17
+Avg Train Loss/MAE = 48.4329 / 5.4976. Weights were updated.
+Avg Val Loss/MAE = 44.6375 / 5.4449
+Current learning rate: 1e-05
+Epoch:  18
+Avg Train Loss/MAE = 47.5266 / 5.4170. Weights were updated.
+Avg Val Loss/MAE = 44.6281 / 5.4474
+Current learning rate: 1e-05
+Epoch:  19
+Avg Train Loss/MAE = 47.7338 / 5.4475. Weights were updated.
+Avg Val Loss/MAE = 43.7878 / 5.4290
+Current learning rate: 1.0000000000000002e-06
+Epoch:  20
+Avg Train Loss/MAE = 48.0554 / 5.4902. Weights were updated.
+Avg Val Loss/MAE = 43.7333 / 5.4154
+Current learning rate: 1.0000000000000002e-06
+Epoch:  21
+Avg Train Loss/MAE = 47.4561 / 5.4346. Weights were updated.
+Avg Val Loss/MAE = 44.2509 / 5.4317
+Current learning rate: 1.0000000000000002e-06
+Epoch:  22
+Avg Train Loss/MAE = 46.8830 / 5.4187. Weights were updated.
+Avg Val Loss/MAE = 43.8817 / 5.4189
+Current learning rate: 1.0000000000000002e-06
+Epoch:  23
+Avg Train Loss/MAE = 47.4811 / 5.4353. Weights were updated.
+Avg Val Loss/MAE = 43.7173 / 5.4151
+Current learning rate: 1.0000000000000002e-06
+Epoch:  24
+Avg Train Loss/MAE = 47.2283 / 5.4147. Weights were updated.
+Avg Val Loss/MAE = 43.8435 / 5.4182
+Current learning rate: 1.0000000000000002e-06
+Epoch:  25
+Avg Train Loss/MAE = 47.6733 / 5.4295. Weights were updated.
+Avg Val Loss/MAE = 44.0447 / 5.4253
+Current learning rate: 1.0000000000000002e-06
+Epoch:  26
+Avg Train Loss/MAE = 47.1545 / 5.3808. Weights were updated.
+Avg Val Loss/MAE = 43.8324 / 5.4188
+Current learning rate: 1.0000000000000002e-06
+Epoch:  27
+Avg Train Loss/MAE = 48.0811 / 5.4913. Weights were updated.
+Avg Val Loss/MAE = 43.8098 / 5.4186
+Current learning rate: 1.0000000000000002e-06
+Epoch:  28
+Avg Train Loss/MAE = 48.0253 / 5.5246. Weights were updated.
+Avg Val Loss/MAE = 43.9400 / 5.4217
+Current learning rate: 1.0000000000000002e-06
+Epoch:  29
+Avg Train Loss/MAE = 47.3279 / 5.4566. Weights were updated.
+Avg Val Loss/MAE = 44.2723 / 5.4331
+Current learning rate: 1.0000000000000002e-07
+Loss plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_save_preds/fold_4/loss_plot.png
+MAE plot saved to: /mimer/NOBACKUP/groups/brainage/thesis_brainage/results/CS_save_preds/fold_4/mae_plot.png

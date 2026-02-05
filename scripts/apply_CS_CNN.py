@@ -13,7 +13,7 @@ import torch
 from torch.utils.data import DataLoader
 
 from CS_3DCNN import CS_CNN
-from loader_CS import loader3D
+from new_loader_CS import loader3D
 
 #options from the command line
 def parse_args():
@@ -46,6 +46,10 @@ def decide_type_of_result(filepath):
         name = 'val'
     elif 'test_fold' in filepath.lower():
         name = 'test'
+    elif 'ci_participants' in filepath.lower():
+        name = 'ci'
+    elif 'cn_participants' in filepath.lower():
+        name = 'cn'
     else:
         print("Error in naming of file.")
         name = 'error'
@@ -150,7 +154,7 @@ if __name__ == "__main__":
     results = apply_model(opt, model, participants_df, name)
 
     #save results
-    folder_path = os.path.dirname(args.participants_file)
+    folder_path = os.path.dirname(args.model_state)
     file_name = f"predictions_{name}.csv"
     full_path = os.path.join(folder_path, file_name)
     results.to_csv(full_path, index=False)

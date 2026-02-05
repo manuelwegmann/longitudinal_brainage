@@ -160,19 +160,11 @@ class loader3D(Dataset):
             participant_id = str(row['participant_id'])
             session1 = str(row['session_id1'])
             session2 = str(row['session_id2'])
-            img_dir1 = os.path.join(self.datadir, 'derivatives', 'mriprep', participant_id, session1)
-            img_dir2 = os.path.join(self.datadir, 'derivatives', 'mriprep', participant_id, session2)
-            pattern1 = os.path.join(img_dir1, '*T1w.nii.gz')
-            pattern2 = os.path.join(img_dir2, '*T1w.nii.gz')
-
-            matching_files1 = glob.glob(pattern1)
-            matching_files2 = glob.glob(pattern2)
-
-            if not matching_files1 or not matching_files2: #skip if no matching files are found
-                print(f"Warning: No matching T1w image found for {participant_id} in session(s). Skipping.")
+            path1 = os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/resized_images', f'{participant_id}_{session1}_resized.pt')
+            path2 = os.path.join('/mimer/NOBACKUP/groups/brainage/thesis_brainage/resized_images', f'{participant_id}_{session2}_resized.pt')
+            if not os.path.exists(path1) or not os.path.exists(path2): #skip if no matching files are found
+                print(f"Warning: No matching image tensors found for {participant_id} in session(s). Skipping.")
                 continue
-            path1 = matching_files1[0]
-            path2 = matching_files2[0]
             self.image_pair_paths.append((path1, path2))
             valid_demo_rows.append(row)
 
@@ -196,15 +188,10 @@ class loader3D(Dataset):
         target = torch.tensor([self.demo[self.targetname].iloc[index]], dtype=torch.float32)
 
         path1, path2 = self.image_pair_paths[index]
-        
 
-        # Load images as torchio images
-        image1 = tio.ScalarImage(path1)
-        image2 = tio.ScalarImage(path2)
-        image1 = self.resize(image1)
-        image2 = self.resize(image2)
-        image1_tensor = image1.data
-        image2_tensor = image2.data
+        # Load images
+        image1_tensor = torch.load(path1)
+        image2_tensor = torch.load(path2)
 
         if len(self.optional_meta) > 0:
             meta = torch.tensor(self.optional_meta[index], dtype=torch.float32)
